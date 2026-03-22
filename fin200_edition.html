@@ -501,6 +501,9 @@
       <input id="auth-pass" class="auth-inp" type="password" placeholder="كلمة السر">
       <div id="auth-err" style="color:#c0392b;font-size:.82rem;text-align:center;min-height:18px;margin-bottom:10px;"></div>
       <button id="auth-submit" onclick="authSubmit()" style="width:100%;padding:13px;border-radius:12px;border:none;background:#6c63ff;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">دخول</button>
+      <div style="text-align:center;margin-top:16px;padding-top:16px;border-top:1px dashed #e6e8f3;">
+        <button onclick="skipAuth()" style="background:none;border:none;color:#888;font-size:.85rem;cursor:pointer;text-decoration:underline;">استخدم بدون حساب (لن يتم حفظ تقدمك)</button>
+      </div>
     </div>
   </div>
   <div class="top-bar" id="top-bar">
@@ -1830,6 +1833,13 @@
   }
 
   function doSignOut(){auth.signOut();}
+
+  function skipAuth(){
+    document.getElementById("auth-overlay").style.display="none";
+    document.getElementById("user-info").style.display="flex";
+    document.getElementById("user-name").textContent="Guest";
+    document.getElementById("user-avatar").textContent="👤";
+  }
 
   async function saveToCloud(key,value){
     if(!currentUser)return;

@@ -1786,13 +1786,20 @@
     });
   }
 
+  function showEQAnswer(idx,ans){
+    document.getElementById("eq-res-"+idx).innerHTML='<b style="color:#6c63ff">Answer: '+ans+'</b>';
+  }
   function checkEQ(idx,ans,tol){
     const raw=document.getElementById("eq-inp-"+idx).value.trim().replace(/[$,%OMR ]/g,"");
     const res=document.getElementById("eq-res-"+idx);
     if(!raw){res.textContent="";return;}
     const val=parseFloat(raw);
     const ok=typeof ans==="string"?raw.toUpperCase()===ans.toUpperCase():(!isNaN(val)&&Math.abs(val-ans)<=tol);
-    res.innerHTML=ok?'<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>':'<span style="color:#c0392b;font-weight:700;">❌ Try Again <button onclick="document.getElementById(\'eq-res-'+idx+\').innerHTML=\'<b>Answer: '+ans+'</b>\';" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show</button></span>';
+    if(ok){
+      res.innerHTML='<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>';
+    } else {
+      res.innerHTML='<span style="color:#c0392b;font-weight:700;">❌ Try Again </span><button onclick="showEQAnswer('+idx+','+JSON.stringify(ans)+')" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show Answer</button>';
+    }
   }
   buildExamQs();
 

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FIN 200 Practice — THEKEY Style</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#f5f6fa;display:flex;height:100vh;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{width:220px;background:#fff;border-right:1px solid #e8eaf0;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sidebar-logo{padding:18px 16px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:10px}
+.sidebar-logo .logo-circle{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6c63ff,#a78bfa);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.85rem}
+.sidebar-logo span{font-weight:800;font-size:1rem;color:#1a1a2e}
+.sidebar-course{padding:12px 16px;font-size:.78rem;font-weight:700;color:#6c63ff;background:#efedff;border-bottom:1px solid #e0dcff}
+.sidebar-nav a{display:flex;align-items:center;gap:10px;padding:11px 16px;font-size:.82rem;color:#555;text-decoration:none;border-bottom:1px solid #f0f0f5;cursor:pointer;transition:background .15s}
+.sidebar-nav a:hover{background:#f8f7ff}
+.sidebar-nav a.active{background:#efedff;color:#6c63ff;font-weight:700;border-left:3px solid #6c63ff}
+.sidebar-nav a svg{flex-shrink:0}
+.sidebar-section{padding:8px 16px 4px;font-size:.72rem;font-weight:700;color:#aaa;letter-spacing:.06em;text-transform:uppercase}
+.q-list{list-style:none}
+.q-list li{padding:8px 16px;font-size:.8rem;color:#444;cursor:pointer;border-bottom:1px solid #f5f5f8;transition:background .15s;display:flex;align-items:center;gap:8px}
+.q-list li:hover{background:#f8f7ff}
+.q-list li.active{background:#efedff;color:#6c63ff;font-weight:700}
+.q-list li .q-badge{width:20px;height:20px;border-radius:50%;background:#e8eaf0;font-size:.7rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700}
+.q-list li.active .q-badge{background:#6c63ff;color:#fff}
+.q-list li.done .q-badge{background:#1f8f5f;color:#fff}
+
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.main-header{background:#fff;border-bottom:1px solid #e8eaf0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.main-header h2{font-size:.95rem;font-weight:700;color:#1a1a2e}
+.nav-btns{display:flex;gap:8px}
+.nav-btn{padding:6px 16px;border-radius:8px;border:1.5px solid #6c63ff;background:#fff;color:#6c63ff;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .15s}
+.nav-btn:hover,.nav-btn.primary{background:#6c63ff;color:#fff}
+.nav-btn:disabled{opacity:.4;cursor:default}
+
+.content{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
+
+/* ── QUESTION CARD ── */
+.q-card{background:#fff;border-radius:12px;border:1px solid #e8eaf0;padding:20px 24px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.q-level{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:#666;margin-bottom:10px}
+.level-dot{width:8px;height:8px;border-radius:50%;background:#f59e0b}
+.level-dot.easy{background:#10b981}
+.level-dot.hard{background:#ef4444}
+.q-topic{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:10px}
+.q-text{font-size:.9rem;color:#333;line-height:1.7}
+.q-score{margin-top:12px;font-size:.8rem;color:#6c63ff;font-weight:600}
+
+/* ── ANSWER ── */
+.ans-section{background:#fff;border-radius:12px;border:1px solid #e8eaf0;padding:16px 24px}
+.ans-label{font-size:.82rem;font-weight:600;color:#555;margin-bottom:8px}
+.ans-row{display:flex;gap:10px;align-items:center}
+.ans-input{flex:1;padding:10px 14px;border:1.5px solid #d0d4f0;border-radius:8px;font-size:.95rem;outline:none;transition:border .2s;font-family:inherit}
+.ans-input:focus{border-color:#6c63ff}
+.check-btn{padding:10px 20px;background:#6c63ff;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.88rem;cursor:pointer;transition:opacity .15s}
+.check-btn:hover{opacity:.85}
+.ans-result{margin-top:10px;padding:10px 14px;border-radius:8px;font-weight:600;font-size:.88rem;display:none}
+.ans-result.correct{background:#d4f5e2;color:#1f8f5f;display:block}
+.ans-result.wrong{background:#ffe5e5;color:#c0392b;display:block}
+
+/* ── SPREADSHEET ── */
+.ss-section{background:#fff;border-radius:12px;border:1px solid #e8eaf0;overflow:hidden}
+.ss-header{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee}
+.ss-header-left{display:flex;align-items:center;gap:8px}
+.ss-title{font-size:.85rem;font-weight:700;color:#333;display:flex;align-items:center;gap:6px}
+.ss-toggle{font-size:.8rem;color:#6c63ff;cursor:pointer;font-weight:600;background:none;border:none;cursor:pointer}
+.ss-body{display:flex;flex-direction:column}
+.ss-toolbar{background:#f9fafb;border-bottom:1px solid #eee;padding:5px 10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.ss-toolbar select,.ss-toolbar button{font-size:.78rem;padding:3px 8px;border:1px solid #ddd;border-radius:4px;background:#fff;cursor:pointer;color:#333}
+.ss-toolbar button:hover{background:#f0efff;border-color:#6c63ff;color:#6c63ff}
+.ss-toolbar .sep{width:1px;height:18px;background:#ddd;margin:0 2px}
+.formulabar{display:flex;align-items:center;gap:0;background:#fff;border-bottom:1px solid #e0e0e0;padding:0}
+.cell-ref-box{min-width:70px;padding:4px 8px;border-right:1px solid #ddd;font-size:.82rem;font-weight:700;color:#333;text-align:center;background:#f9fafb}
+.formula-icons{display:flex;align-items:center;padding:0 6px;gap:4px;border-right:1px solid #ddd}
+.formula-icons span{cursor:pointer;color:#666;font-size:.85rem}
+.formula-input{flex:1;padding:4px 8px;font-size:.85rem;border:none;outline:none;font-family:'Segoe UI',monospace}
+.ss-grid-wrap{overflow:auto;max-height:280px}
+.ss-grid{border-collapse:collapse;table-layout:fixed;min-width:100%}
+.ss-grid .col-hdr{background:#f1f3fa;color:#555;font-size:.75rem;font-weight:700;text-align:center;padding:3px 6px;border:1px solid #dde1f0;min-width:80px;position:sticky;top:0;z-index:2}
+.ss-grid .col-hdr.row-num-hdr{min-width:40px;width:40px;background:#f1f3fa;position:sticky;top:0;left:0;z-index:3}
+.ss-grid .row-num{background:#f1f3fa;color:#555;font-size:.72rem;font-weight:700;text-align:center;border:1px solid #dde1f0;padding:2px 4px;min-width:40px;width:40px;position:sticky;left:0;z-index:1}
+.ss-cell{border:1px solid #e8eaf0;padding:0;min-width:80px;height:24px;position:relative}
+.ss-cell input{width:100%;height:100%;border:none;outline:none;padding:2px 5px;font-size:.82rem;background:transparent;font-family:'Segoe UI',monospace;text-align:right}
+.ss-cell input:focus{background:#fffff0}
+.ss-cell.selected{outline:2px solid #6c63ff;outline-offset:-1px;z-index:1}
+.ss-col-sel{background:#ddd9ff !important}
+.ss-row-sel{background:#ddd9ff !important}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────── -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-circle">F</div>
+    <span>FIN 200</span>
+  </div>
+  <div class="sidebar-course">FIN200: Principles of Finance</div>
+  <nav class="sidebar-nav">
+    <a href="#">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Home
+    </a>
+    <a href="#" class="active">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      My Learning
+    </a>
+    <a href="#">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg>
+      Assignments
+    </a>
+    <a href="#">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Exam Scheduling
+    </a>
+  </nav>
+
+  <div class="sidebar-section">Questions</div>
+  <ul class="q-list" id="q-list"></ul>
+</div>
+
+<!-- ── MAIN ─────────────────────────────────────────────────────── -->
+<div class="main">
+  <div class="main-header">
+    <h2 id="chapter-title">Chapter 2 — Time Value of Money</h2>
+    <div class="nav-btns">
+      <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">← Previous</button>
+      <button class="nav-btn primary" id="btn-next" onclick="navigate(1)">Next →</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Question card -->
+    <div class="q-card">
+      <div class="q-level"><span class="level-dot" id="level-dot"></span><span id="q-level-txt"></span></div>
+      <div class="q-topic" id="q-topic"></div>
+      <div class="q-text" id="q-text"></div>
+    </div>
+
+    <!-- Answer -->
+    <div class="ans-section">
+      <div class="ans-label">Enter your answer</div>
+      <div class="ans-row">
+        <input class="ans-input" id="ans-input" type="text" placeholder="Type your answer here…" onkeydown="if(event.key==='Enter')checkAnswer()"/>
+        <button class="check-btn" onclick="checkAnswer()">Check ✓</button>
+      </div>
+      <div class="ans-result" id="ans-result"></div>
+    </div>
+
+    <!-- Spreadsheet -->
+    <div class="ss-section">
+      <div class="ss-header">
+        <div class="ss-header-left">
+          <div class="ss-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1f8f5f" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            Use Spreadsheet
+          </div>
+        </div>
+        <button class="ss-toggle" onclick="toggleSS()">Hide Spreadsheet ↑</button>
+      </div>
+      <div id="ss-body" class="ss-body">
+        <div class="ss-toolbar">
+          <button onclick="ssCmd('bold')"><b>B</b></button>
+          <button onclick="ssCmd('italic')"><i>I</i></button>
+          <div class="sep"></div>
+          <button onclick="ssCmd('alignLeft')">≡</button>
+          <button onclick="ssCmd('alignCenter')">☰</button>
+          <button onclick="ssCmd('alignRight')">≡</button>
+          <div class="sep"></div>
+          <select onchange="changeFmt(this.value)">
+            <option value="general">General</option>
+            <option value="number">Number</option>
+            <option value="currency">Currency ($)</option>
+            <option value="percent">Percent (%)</option>
+          </select>
+          <div class="sep"></div>
+          <button onclick="clearCell()" title="Clear cell">✕</button>
+        </div>
+        <div class="formulabar">
+          <div class="cell-ref-box" id="cell-ref">A1</div>
+          <div class="formula-icons">
+            <span title="Cancel">✕</span>
+            <span title="Confirm">✓</span>
+            <span title="Function">fx</span>
+          </div>
+          <input class="formula-input" id="formula-input" placeholder="Enter value or formula (e.g. =FV(8%,5,0,-1000))"
+            oninput="syncFormulaBar()" onkeydown="fbarKeyDown(event)"/>
+        </div>
+        <div class="ss-grid-wrap">
+          <table class="ss-grid" id="ss-grid"></table>
+        </div>
+        <div style="padding:6px 12px;font-size:.75rem;color:#888;background:#f9fafb;border-top:1px solid #eee;">
+          💡 Supported: =FV(rate,nper,pmt,pv) &nbsp;|&nbsp; =PV(rate,nper,pmt,fv) &nbsp;|&nbsp; =PMT(rate,nper,pv) &nbsp;|&nbsp; =RATE(nper,pmt,pv,fv) &nbsp;|&nbsp; =NPER(rate,pmt,pv,fv) &nbsp;|&nbsp; =EFFECT(apr,m) &nbsp;|&nbsp; =SUM() &nbsp;|&nbsp; =ABS() &nbsp;|&nbsp; =SQRT()
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+//  QUESTIONS DATA
+// ══════════════════════════════════════════════════════════════════
+const questions = [
+  // ── Ch2 ────────────────────────────────────────────────────────
+  {ch:"Chapter 2 — Time Value of Money", topic:"Simple vs. Compound Interest", level:"Medium",
+   text:"Bank Muscat offers a savings account with an interest rate of 4.5% compounded annually, whereas National Bank of Oman offers 4.5% simple interest. If you deposit OMR 15,000 in each bank, how much more money would you earn from Bank Muscat after 8 years? (Round to 2 decimal places.)",
+   ans:1044.07, tol:1, hint:"FV_compound = 15000×(1.045)^8 | FV_simple = 15000×(1+0.045×8) | Difference = FV_compound − FV_simple"},
+
+  {ch:"Chapter 2 — Time Value of Money", topic:"Future Value", level:"Easy",
+   text:"You invest $2,000 today at an annual interest rate of 6% compounded annually. How much will you have after 10 years? Round to 2 decimal places.",
+   ans:3581.70, tol:1, hint:"=FV(6%,10,0,-2000)"},
+
+  {ch:"Chapter 2 — Time Value of Money", topic:"Present Value", level:"Easy",
+   text:"You want $10,000 in 5 years. The annual interest rate is 8% compounded annually. How much do you need to invest today? Round to 2 decimal places.",
+   ans:6805.83, tol:1, hint:"=PV(8%,5,0,10000)"},
+
+  {ch:"Chapter 2 — Time Value of Money", topic:"Finding the Rate", level:"Medium",
+   text:"An investment grows from $3,000 to $4,500 in 6 years. What is the annual interest rate? (Express as a percentage, round to 2 decimal places.)",
+   ans:7.00, tol:0.1, hint:"=RATE(6,0,-3000,4500)*100"},
+
+  {ch:"Chapter 2 — Time Value of Money", topic:"Investment Duration", level:"Medium",
+   text:"How many years does it take for $1,000 to grow to $3,000 at an annual rate of 12%? Round to 2 decimal places.",
+   ans:9.69, tol:0.1, hint:"=NPER(12%,0,-1000,3000)"},
+
+  // ── Ch3 ─────────────────────────────────────────────────────────
+  {ch:"Chapter 3 — Annuities & Loans", topic:"Loan Payment (PMT)", level:"Easy",
+   text:"You take a loan of $20,000 at an annual interest rate of 6%, to be repaid in monthly installments over 4 years. What is the monthly payment? Round to 2 decimal places.",
+   ans:469.70, tol:1, hint:"Monthly rate = 6%/12 = 0.5% | n = 48 | =PMT(0.5%,48,-20000)"},
+
+  {ch:"Chapter 3 — Annuities & Loans", topic:"EAR vs APR", level:"Medium",
+   text:"A bank offers an APR of 9% compounded monthly. What is the Effective Annual Rate (EAR)? Express as a percentage, round to 4 decimal places.",
+   ans:9.3807, tol:0.01, hint:"=EFFECT(9%,12)*100  or  (1+0.09/12)^12 − 1"},
+
+  {ch:"Chapter 3 — Annuities & Loans", topic:"Present Value of Annuity", level:"Medium",
+   text:"You will receive $1,500 per year for 7 years. The discount rate is 10% per year. What is the present value of this annuity today? Round to 2 decimal places.",
+   ans:7302.78, tol:1, hint:"=PV(10%,7,1500)"},
+
+  {ch:"Chapter 3 — Annuities & Loans", topic:"Loan Amortization", level:"Hard",
+   text:"A $15,000 car loan at 7.2% annual interest (monthly payments) over 3 years. What is the total interest paid over the life of the loan? Round to 2 decimal places.",
+   ans:1713.12, tol:2, hint:"Monthly PMT = PMT(0.6%,36,-15000) | Total paid = PMT×36 | Interest = Total paid − 15000"},
+
+  // ── Ch4 ─────────────────────────────────────────────────────────
+  {ch:"Chapter 4 — Bonds", topic:"Bond Pricing", level:"Medium",
+   text:"A bond has a face value of $1,000, a coupon rate of 7%, matures in 6 years, and has a required return of 9%. What is the current price of the bond? Round to 2 decimal places.",
+   ans:910.08, tol:1, hint:"Coupon = 7%×1000 = $70/yr | =PV(9%,6,70,1000)"},
+
+  {ch:"Chapter 4 — Bonds", topic:"Bond Yield (YTM)", level:"Hard",
+   text:"A bond with face value $1,000, coupon rate 8%, 5 years to maturity, is currently selling at $920. What is the Yield to Maturity (YTM)? Express as a percentage, round to 2 decimal places.",
+   ans:10.09, tol:0.2, hint:"=RATE(5,80,-920,1000)*100"},
+
+  {ch:"Chapter 4 — Bonds", topic:"Fisher Effect", level:"Medium",
+   text:"The nominal interest rate is 12% and the inflation rate is 4%. What is the real interest rate according to the Fisher Effect? Express as a percentage, round to 2 decimal places.",
+   ans:7.69, tol:0.1, hint:"(1+nominal) = (1+real)×(1+inflation) | real = (1.12/1.04) − 1"},
+
+  {ch:"Chapter 4 — Bonds", topic:"Bond Premium/Discount", level:"Easy",
+   text:"A bond has a coupon rate of 9% and the required return is 7%. Is this bond trading at a Premium (P), Discount (D), or Par (N)? Type P, D, or N.",
+   ans:"P", tol:0, hint:"Coupon rate 9% > Required return 7% → Premium"},
+
+  // ── Ch5 ─────────────────────────────────────────────────────────
+  {ch:"Chapter 5 — Stocks", topic:"Constant Growth Model (Gordon)", level:"Medium",
+   text:"A stock just paid a dividend of $2.00 (D₀). Dividends are expected to grow at 6% per year. The required return is 11%. What is the current stock price? Round to 2 decimal places.",
+   ans:42.40, tol:0.5, hint:"D₁ = 2.00 × 1.06 = 2.12 | P = D₁/(r−g) = 2.12/(0.11−0.06)"},
+
+  {ch:"Chapter 5 — Stocks", topic:"Zero Growth Stock", level:"Easy",
+   text:"A preferred stock pays a fixed annual dividend of $4.50. If the required return is 9%, what is the price of the stock? Round to 2 decimal places.",
+   ans:50.00, tol:0.1, hint:"P = D/r = 4.50/0.09"},
+
+  {ch:"Chapter 5 — Stocks", topic:"Sustainable Growth Rate", level:"Medium",
+   text:"A company has ROE of 18% and a dividend payout ratio of 35%. What is the Sustainable Growth Rate (SGR)? Express as a percentage, round to 2 decimal places.",
+   ans:11.70, tol:0.05, hint:"Retention ratio b = 1 − 0.35 = 0.65 | SGR = ROE × b = 18% × 65%"},
+
+  {ch:"Chapter 5 — Stocks", topic:"P/E Valuation", level:"Easy",
+   text:"A company has earnings per share (EPS) of $3.20 and the industry average P/E ratio is 18. What is the estimated stock price? Round to 2 decimal places.",
+   ans:57.60, tol:0.1, hint:"Price = P/E × EPS = 18 × 3.20"},
+];
+
+// ══════════════════════════════════════════════════════════════════
+//  SPREADSHEET ENGINE
+// ══════════════════════════════════════════════════════════════════
+const ROWS=20, COLS=10;
+const LETTERS='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+let cells={};       // {A1: {formula:'=FV(...)', display:'1469.33'}}
+let selRow=1, selCol=1;
+
+function colName(c){ return LETTERS[c-1]; }
+function cellId(r,c){ return colName(c)+r; }
+
+function buildGrid(){
+  const tbl=document.getElementById('ss-grid');
+  tbl.innerHTML='';
+  // Header row
+  const hrow=document.createElement('tr');
+  const th0=document.createElement('th'); th0.className='col-hdr row-num-hdr'; hrow.appendChild(th0);
+  for(let c=1;c<=COLS;c++){
+    const th=document.createElement('th'); th.className='col-hdr'; th.id='ch-'+c;
+    th.textContent=colName(c); hrow.appendChild(th);
+  }
+  tbl.appendChild(hrow);
+  // Data rows
+  for(let r=1;r<=ROWS;r++){
+    const tr=document.createElement('tr');
+    const rn=document.createElement('td'); rn.className='row-num'; rn.id='rn-'+r;
+    rn.textContent=r; tr.appendChild(rn);
+    for(let c=1;c<=COLS;c++){
+      const td=document.createElement('td'); td.className='ss-cell'; td.id='cell-'+r+'-'+c;
+      const inp=document.createElement('input');
+      inp.type='text';
+      inp.id='inp-'+r+'-'+c;
+      inp.addEventListener('focus',()=>selectCell(r,c));
+      inp.addEventListener('input',()=>{ onCellInput(r,c,inp.value); });
+      inp.addEventListener('keydown',(e)=>cellKeyDown(e,r,c));
+      td.appendChild(inp); tr.appendChild(td);
+    }
+    tbl.appendChild(tr);
+  }
+  selectCell(1,1);
+}
+
+function selectCell(r,c){
+  // deselect old
+  const old=document.getElementById('cell-'+selRow+'-'+selCol);
+  if(old) old.classList.remove('selected');
+  document.querySelectorAll('.ss-col-sel').forEach(x=>x.classList.remove('ss-col-sel'));
+  document.querySelectorAll('.ss-row-sel').forEach(x=>x.classList.remove('ss-row-sel'));
+
+  selRow=r; selCol=c;
+  const td=document.getElementById('cell-'+r+'-'+c);
+  if(td) td.classList.add('selected');
+  const ci=cellId(r,c);
+  document.getElementById('cell-ref').textContent=ci;
+  const stored=cells[ci];
+  const fInput=document.getElementById('formula-input');
+  fInput.value=stored?stored.formula:'';
+  document.getElementById('inp-'+r+'-'+c).focus();
+}
+
+function onCellInput(r,c,val){
+  const ci=cellId(r,c);
+  document.getElementById('formula-input').value=val;
+  updateCell(r,c,val);
+}
+
+function syncFormulaBar(){
+  const val=document.getElementById('formula-input').value;
+  const inp=document.getElementById('inp-'+selRow+'-'+selCol);
+  if(inp){ inp.value=val; updateCell(selRow,selCol,val); }
+}
+
+function fbarKeyDown(e){
+  if(e.key==='Enter'){ e.preventDefault(); updateCell(selRow,selCol,document.getElementById('formula-input').value); selectCell(selRow+1,selCol); }
+  if(e.key==='Escape'){ selectCell(selRow,selCol); }
+}
+
+function updateCell(r,c,raw){
+  const ci=cellId(r,c);
+  if(!raw){ delete cells[ci]; document.getElementById('inp-'+r+'-'+c).value=''; return; }
+  const result=raw.startsWith('=')?evalFormula(raw.slice(1)):raw;
+  cells[ci]={formula:raw, display:result};
+  document.getElementById('inp-'+r+'-'+c).value=result;
+  // re-eval dependent cells
+  recalcAll();
+}
+
+function recalcAll(){
+  for(const ci in cells){
+    if(cells[ci].formula && cells[ci].formula.startsWith('=')){
+      const [r,c]=ciToRC(ci);
+      const result=evalFormula(cells[ci].formula.slice(1));
+      cells[ci].display=result;
+      if(!(selRow===r&&selCol===c))
+        document.getElementById('inp-'+r+'-'+c).value=result;
+    }
+  }
+}
+
+function ciToRC(ci){
+  const col=LETTERS.indexOf(ci[0])+1;
+  const row=parseInt(ci.slice(1));
+  return [row,col];
+}
+
+function getCellVal(ci){
+  if(cells[ci]){
+    const v=parseFloat(cells[ci].display);
+    return isNaN(v)?cells[ci].display:v;
+  }
+  return 0;
+}
+
+function cellKeyDown(e,r,c){
+  const moves={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1],Tab:[0,1],Enter:[1,0]};
+  if(moves[e.key]){
+    e.preventDefault();
+    updateCell(r,c,document.getElementById('inp-'+r+'-'+c).value);
+    const [dr,dc]=moves[e.key];
+    const nr=Math.max(1,Math.min(ROWS,r+dr));
+    const nc=Math.max(1,Math.min(COLS,c+dc));
+    selectCell(nr,nc);
+  }
+}
+
+function clearCell(){ updateCell(selRow,selCol,''); document.getElementById('formula-input').value=''; }
+function ssCmd(cmd){ /* formatting placeholder */ }
+function changeFmt(v){ /* format placeholder */ }
+
+// ── FORMULA EVALUATOR ──────────────────────────────────────────────
+function evalFormula(expr){
+  try{
+    // Replace cell references
+    expr=expr.replace(/([A-Z]+)(\d+)/g,(_,col,row)=>{
+      const ci=col+row; const v=getCellVal(ci); return typeof v==='number'?v:'"'+v+'"';
+    });
+    // Replace range A1:B2 sums (basic)
+    // Parse and evaluate
+    const result=evalExpr(expr.trim());
+    if(typeof result==='number') return isFinite(result)?String(Math.round(result*10000)/10000):'#NUM!';
+    return String(result);
+  }catch(e){ return '#ERR'; }
+}
+
+function evalExpr(s){
+  s=s.trim();
+  // Functions
+  const fnMatch=s.match(/^([A-Z]+)\((.*)\)$/);
+  if(fnMatch) return callFn(fnMatch[1],fnMatch[2]);
+  // String literal
+  if(s.startsWith('"')&&s.endsWith('"')) return s.slice(1,-1);
+  // Number / arithmetic
+  return evalArith(s);
+}
+
+function evalArith(s){
+  // Handle negative leading
+  // Use Function to safely evaluate arithmetic
+  s=s.replace(/\^/g,'**');
+  // Only allow safe chars
+  if(!/^[\d\s+\-*/().,e%]+$/.test(s)) throw new Error('unsafe');
+  // Handle % — treat as /100
+  s=s.replace(/(\d+\.?\d*)%/g,'($1/100)');
+  return Function('"use strict";return('+s+')')();
+}
+
+function parseArgs(argsStr){
+  // Split by comma respecting parentheses
+  const args=[]; let depth=0, cur='';
+  for(const ch of argsStr){
+    if(ch==='('){ depth++; cur+=ch; }
+    else if(ch===')'){ depth--; cur+=ch; }
+    else if(ch===','&&depth===0){ args.push(cur.trim()); cur=''; }
+    else cur+=ch;
+  }
+  if(cur.trim()) args.push(cur.trim());
+  return args;
+}
+
+function numArg(s){ const v=evalExpr(s); return typeof v==='number'?v:parseFloat(v)||0; }
+
+function callFn(name,argsStr){
+  const args=parseArgs(argsStr);
+  switch(name){
+    case 'FV':{ // FV(rate,nper,pmt,pv,type=0)
+      const rate=numArg(args[0]),nper=numArg(args[1]),pmt=numArg(args[2]||'0'),pv=numArg(args[3]||'0'),type=numArg(args[4]||'0');
+      if(rate===0) return -pv-pmt*nper;
+      return -(pv*Math.pow(1+rate,nper)+pmt*(1+rate*type)*(Math.pow(1+rate,nper)-1)/rate);
+    }
+    case 'PV':{ // PV(rate,nper,pmt,fv,type=0)
+      const rate=numArg(args[0]),nper=numArg(args[1]),pmt=numArg(args[2]||'0'),fv=numArg(args[3]||'0'),type=numArg(args[4]||'0');
+      if(rate===0) return -fv-pmt*nper;
+      return -(fv/Math.pow(1+rate,nper)+pmt*(1+rate*type)*(1-Math.pow(1+rate,-nper))/rate);
+    }
+    case 'PMT':{ // PMT(rate,nper,pv,fv=0,type=0)
+      const rate=numArg(args[0]),nper=numArg(args[1]),pv=numArg(args[2]),fv=numArg(args[3]||'0'),type=numArg(args[4]||'0');
+      if(rate===0) return -(pv+fv)/nper;
+      const pmt=-(pv*Math.pow(1+rate,nper)+fv)/((Math.pow(1+rate,nper)-1)/rate*(1+rate*type));
+      return pmt;
+    }
+    case 'NPER':{ // NPER(rate,pmt,pv,fv=0,type=0)
+      const rate=numArg(args[0]),pmt=numArg(args[1]),pv=numArg(args[2]),fv=numArg(args[3]||'0'),type=numArg(args[4]||'0');
+      if(rate===0) return -(pv+fv)/pmt;
+      const num=pmt*(1+rate*type)/rate-fv;
+      const den=pv+pmt*(1+rate*type)/rate;
+      return Math.log(num/den)/Math.log(1+rate);
+    }
+    case 'RATE':{ // RATE(nper,pmt,pv,fv=0,type=0,guess=0.1) Newton-Raphson
+      const nper=numArg(args[0]),pmt=numArg(args[1]),pv=numArg(args[2]),fv=numArg(args[3]||'0'),type=numArg(args[4]||'0');
+      let r=0.1;
+      for(let i=0;i<200;i++){
+        const r1=Math.pow(1+r,nper);
+        const f=pv*r1+pmt*(1+r*type)*(r1-1)/r+fv;
+        const df=nper*pv*Math.pow(1+r,nper-1)+pmt*(1+r*type)*(nper*Math.pow(1+r,nper-1)*r-(r1-1))/(r*r);
+        const dr=f/df; r-=dr;
+        if(Math.abs(dr)<1e-10) break;
+      }
+      return r;
+    }
+    case 'EFFECT':{ // EFFECT(nominal,npery)
+      const nom=numArg(args[0]),m=numArg(args[1]);
+      return Math.pow(1+nom/m,m)-1;
+    }
+    case 'NOMINAL':{ const eff=numArg(args[0]),m=numArg(args[1]); return m*(Math.pow(1+eff,1/m)-1); }
+    case 'SUM':{ return args.reduce((s,a)=>{
+      if(a.includes(':')){ return s+sumRange(a); }
+      return s+numArg(a);
+    },0); }
+    case 'AVERAGE':{ const vals=args.map(a=>numArg(a)); return vals.reduce((s,v)=>s+v,0)/vals.length; }
+    case 'ABS':  return Math.abs(numArg(args[0]));
+    case 'SQRT': return Math.sqrt(numArg(args[0]));
+    case 'POWER':return Math.pow(numArg(args[0]),numArg(args[1]));
+    case 'ROUND':return Math.round(numArg(args[0])*Math.pow(10,numArg(args[1])))/Math.pow(10,numArg(args[1]));
+    case 'MAX':  return Math.max(...args.map(a=>numArg(a)));
+    case 'MIN':  return Math.min(...args.map(a=>numArg(a)));
+    case 'IF':{
+      const cond=evalExpr(args[0]);
+      return cond?evalExpr(args[1]):evalExpr(args[2]);
+    }
+    default: return '#NAME?';
+  }
+}
+
+function sumRange(rangeStr){
+  const parts=rangeStr.split(':');
+  const [r1,c1]=ciToRC(parts[0]);
+  const [r2,c2]=ciToRC(parts[1]);
+  let s=0;
+  for(let r=r1;r<=r2;r++) for(let c=c1;c<=c2;c++) s+=getCellVal(cellId(r,c));
+  return s;
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  QUESTION NAVIGATION
+// ══════════════════════════════════════════════════════════════════
+let currentQ=0;
+const done=new Set();
+
+function buildQList(){
+  const ul=document.getElementById('q-list');
+  ul.innerHTML='';
+  let currentCh='';
+  questions.forEach((q,i)=>{
+    if(q.ch!==currentCh){
+      currentCh=q.ch;
+      const li=document.createElement('li');
+      li.style.cssText='font-weight:700;color:#6c63ff;background:#efedff;pointer-events:none;font-size:.75rem;padding:6px 14px;';
+      li.textContent='── '+q.ch.split('—')[1].trim()+' ──';
+      ul.appendChild(li);
+    }
+    const li=document.createElement('li');
+    li.id='ql-'+i;
+    li.className=i===0?'active':'';
+    if(done.has(i)) li.classList.add('done');
+    const badge=document.createElement('span');
+    badge.className='q-badge'; badge.textContent=i+1;
+    li.appendChild(badge);
+    const span=document.createElement('span');
+    span.textContent=q.topic;
+    li.appendChild(span);
+    li.onclick=()=>loadQuestion(i);
+    ul.appendChild(li);
+  });
+}
+
+function loadQuestion(idx){
+  currentQ=idx;
+  const q=questions[idx];
+  // Update sidebar
+  document.querySelectorAll('.q-list li[id]').forEach(li=>li.classList.remove('active'));
+  const li=document.getElementById('ql-'+idx);
+  if(li){ li.classList.add('active'); li.scrollIntoView({block:'nearest'}); }
+  // Update content
+  document.getElementById('chapter-title').textContent=q.ch;
+  const levels={Easy:'easy',Medium:'',Hard:'hard'};
+  document.getElementById('level-dot').className='level-dot '+(levels[q.level]||'');
+  document.getElementById('q-level-txt').textContent='Level: '+q.level;
+  document.getElementById('q-topic').textContent=q.topic;
+  document.getElementById('q-text').textContent=q.text;
+  // Reset answer
+  document.getElementById('ans-input').value='';
+  const res=document.getElementById('ans-result');
+  res.className='ans-result'; res.textContent='';
+  // Nav buttons
+  document.getElementById('btn-prev').disabled=idx===0;
+  document.getElementById('btn-next').disabled=idx===questions.length-1;
+}
+
+function navigate(dir){
+  const next=currentQ+dir;
+  if(next>=0&&next<questions.length) loadQuestion(next);
+}
+
+function checkAnswer(){
+  const q=questions[currentQ];
+  const raw=document.getElementById('ans-input').value.trim().replace(/[$,OMR %]/g,'');
+  const res=document.getElementById('ans-result');
+  if(!raw){ res.className='ans-result wrong'; res.textContent='Please enter an answer first.'; return; }
+  let ok=false;
+  if(typeof q.ans==='string'){
+    ok=raw.toUpperCase()===q.ans.toUpperCase();
+  } else {
+    const val=parseFloat(raw);
+    ok=!isNaN(val)&&Math.abs(val-q.ans)<=q.tol;
+  }
+  if(ok){
+    res.className='ans-result correct';
+    res.textContent='✅ Correct! Well done. | '+q.hint;
+    done.add(currentQ);
+    const li=document.getElementById('ql-'+currentQ);
+    if(li){ li.classList.add('done'); li.classList.remove('active'); }
+    setTimeout(()=>{ if(currentQ<questions.length-1) navigate(1); },1200);
+  } else {
+    res.className='ans-result wrong';
+    res.textContent='❌ Not quite. Hint: '+q.hint;
+  }
+}
+
+function toggleSS(){
+  const body=document.getElementById('ss-body');
+  const btn=document.querySelector('.ss-toggle');
+  if(body.style.display==='none'){ body.style.display=''; btn.textContent='Hide Spreadsheet ↑'; }
+  else { body.style.display='none'; btn.textContent='Show Spreadsheet ↓'; }
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+buildGrid();
+buildQList();
+loadQuestion(0);
+</script>
+</body>
+</html>

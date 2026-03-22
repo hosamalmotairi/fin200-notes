@@ -371,66 +371,18 @@
     }
 
     @media print {
-      body {
-        background: white;
+      .topnav, .hero, .notice, .chapter:not(#cheatsheet-section),
+      #flash-section, #mistakes-section, #exam-section,
+      #practice-section, #quiz-section, #calc-section,
+      #glossary-section, #plan-section, .page > div:first-child {
+        display: none !important;
       }
-
-      .page {
-        max-width: none;
-        padding: 0;
+      #cheatsheet-section {
+        display: block !important;
+        box-shadow: none !important;
+        border: none !important;
       }
-
-      .hero,
-      .toc,
-      .notice,
-      .chapter {
-        box-shadow: none;
-        break-inside: auto;
-        page-break-inside: auto;
-      }
-
-      .hero {
-        min-height: 220mm;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        page-break-after: always;
-      }
-
-      .notice,
-      .toc {
-        page-break-inside: avoid;
-      }
-
-      .toc {
-        page-break-after: always;
-      }
-
-      .chapter {
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .section,
-      .bilingual,
-      .point-list,
-      .formula {
-        break-inside: auto;
-        page-break-inside: auto;
-      }
-
-      h2, h3 {
-        break-after: avoid;
-      }
-
-      h2 {
-        page-break-after: avoid;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+      body { background: white !important; }
     }
   
     /* ── QUIZ MODE ── */
@@ -521,14 +473,14 @@
   <div class="top-bar" id="top-bar">
     <div class="top-bar-left">
       <a class="nav-link active" onclick="scrollTo(0,0)">📖 Notes</a>
+      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Cheat Sheet</a>
       <a class="nav-link" onclick="scrollToId('flash-section')">🃏 Flash Cards</a>
       <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
-      <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
+      <a class="nav-link" onclick="scrollToId('glossary-section')">📖 Glossary</a>
       <a class="nav-link" onclick="scrollToId('practice-section')">🧮 Practice</a>
+      <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
       <a class="nav-link" onclick="scrollToId('quiz-section')">🎯 Quiz</a>
       <a class="nav-link" onclick="scrollToId('calc-section')">🔢 Calculator</a>
-      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Cheat Sheet</a>
-      <a class="nav-link" onclick="scrollToId('glossary-section')">📖 Glossary</a>
       <a class="nav-link" onclick="scrollToId('plan-section')">📅 Study Plan</a>
     </div>
     <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
@@ -567,6 +519,70 @@
         </div>
       </div>
     </div>
+    <!-- ═══════════════════════════════════════════════════════════════
+         CHEAT SHEET SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="cheatsheet-section">
+      <h2>📄 Cheat Sheet | ورقة المعادلات</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
+      <button class="print-btn" onclick="window.print()">🖨️ Print Cheat Sheet</button>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>
+          <div class="cs-row"><span class="cs-key">Future Value</span><span class="cs-val">=FV(rate,nper,0,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Present Value</span><span class="cs-val">=PV(rate,nper,0,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Interest Rate</span><span class="cs-val">=RATE(nper,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Periods</span><span class="cs-val">=NPER(rate,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">FV formula</span><span class="cs-val">PV × (1+r)^t</span></div>
+          <div class="cs-row"><span class="cs-key">PV formula</span><span class="cs-val">FV / (1+r)^t</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">💳 Chapter 3 — Annuities & Rates</div>
+          <div class="cs-row"><span class="cs-key">Loan Payment</span><span class="cs-val">=PMT(rate,nper,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity PV</span><span class="cs-val">=PV(rate,nper,pmt)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity Due</span><span class="cs-val">type=1 in Excel</span></div>
+          <div class="cs-row"><span class="cs-key">EAR</span><span class="cs-val">=EFFECT(apr,m)</span></div>
+          <div class="cs-row"><span class="cs-key">EAR formula</span><span class="cs-val">(1+APR/m)^m − 1</span></div>
+          <div class="cs-row"><span class="cs-key">Monthly rate</span><span class="cs-val">APR / 12</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📊 Chapter 4 — Bonds</div>
+          <div class="cs-row"><span class="cs-key">Bond Price</span><span class="cs-val">=PV(req,yrs,cpn,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">YTM</span><span class="cs-val">=RATE(yrs,cpn,-price,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Coupon ($)</span><span class="cs-val">Coupon% × Face Value</span></div>
+          <div class="cs-row"><span class="cs-key">Premium bond</span><span class="cs-val">Coupon% > Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Discount bond</span><span class="cs-val">Coupon% < Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Fisher Effect</span><span class="cs-val">(1+n)=(1+r)(1+π)</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📈 Chapter 5 — Stocks</div>
+          <div class="cs-row"><span class="cs-key">Zero Growth</span><span class="cs-val">P = D / r</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon Model</span><span class="cs-val">P = D₁ / (r − g)</span></div>
+          <div class="cs-row"><span class="cs-key">D₁</span><span class="cs-val">D₀ × (1 + g)</span></div>
+          <div class="cs-row"><span class="cs-key">P/E Valuation</span><span class="cs-val">P = P/E × EPS</span></div>
+          <div class="cs-row"><span class="cs-key">SGR</span><span class="cs-val">ROE × (1 − payout)</span></div>
+          <div class="cs-row"><span class="cs-key">Dividend Yield</span><span class="cs-val">D₁ / P₀</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚡ Key Relationships</div>
+          <div class="cs-row"><span class="cs-key">Bond Price ↑ ⟹</span><span class="cs-val">Yield ↓</span></div>
+          <div class="cs-row"><span class="cs-key">EAR vs APR</span><span class="cs-val">EAR > APR (m > 1)</span></div>
+          <div class="cs-row"><span class="cs-key">Higher r → FV</span><span class="cs-val">Increases ↑</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon: need</span><span class="cs-val">r > g</span></div>
+          <div class="cs-row"><span class="cs-key">Ordinary annuity</span><span class="cs-val">type = 0</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity due</span><span class="cs-val">type = 1</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">🔢 Excel Quick Reference</div>
+          <div class="cs-row"><span class="cs-key">=FV()</span><span class="cs-val">Future Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PV()</span><span class="cs-val">Present Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PMT()</span><span class="cs-val">Payment/period</span></div>
+          <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
+          <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
+          <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
+        </div>
+      </div>
+    </section>
 
     <section class="notice">
       <h2>Introduction</h2>
@@ -1281,11 +1297,14 @@
       </div>
     </section>
 
-    <!-- ── PAST EXAM QUESTIONS ── -->
-    <section class="chapter" id="exam-section">
-      <h2>📝 Exam-Style Questions | أسئلة على نمط الامتحان</h2>
-      <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">اكتب إجابتك واضغط Enter أو Check ✓</p>
-      <div id="exam-questions-container"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         GLOSSARY SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="glossary-section">
+      <h2>📖 Glossary | المصطلحات</h2>
+      <input class="glossary-search" id="glossary-search" type="text" placeholder="Search term... / ابحث عن مصطلح" oninput="filterGlossary(this.value)">
+      <div class="glossary-grid" id="glossary-grid"></div>
     </section>
 
   <!-- ═══════════════════════════════════════════════════════
@@ -1825,7 +1844,7 @@
       res.innerHTML='<span style="color:#c0392b;font-weight:700;">❌ Try Again </span><button onclick="showEQAnswer('+idx+','+JSON.stringify(ans)+')" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show Answer</button>';
     }
   }
-  buildExamQs();
+  window.addEventListener('load', function(){ buildExamQs(); });
 
   // ═══════════════════════════════════════════════════════════════
   // CONFETTI
@@ -2199,6 +2218,13 @@
   window.addEventListener('load', function(){ buildStudyPlan(); });
 
   </script>
+    <!-- ── PAST EXAM QUESTIONS ── -->
+    <section class="chapter" id="exam-section">
+      <h2>📝 Exam-Style Questions | أسئلة على نمط الامتحان</h2>
+      <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">اكتب إجابتك واضغط Enter أو Check ✓</p>
+      <div id="exam-questions-container"></div>
+    </section>
+
 
 
     <!-- ═══════════════════════════════════════════════════════════════
@@ -2450,80 +2476,6 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         CHEAT SHEET SECTION
-    ═══════════════════════════════════════════════════════════════ -->
-    <section class="chapter" id="cheatsheet-section">
-      <h2>📄 Cheat Sheet | ورقة المعادلات</h2>
-      <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
-      <button class="print-btn" onclick="printCheatSheet()">🖨️ Print Cheat Sheet</button>
-      <div class="cs-grid">
-        <div class="cs-card">
-          <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>
-          <div class="cs-row"><span class="cs-key">Future Value</span><span class="cs-val">=FV(rate,nper,0,-pv)</span></div>
-          <div class="cs-row"><span class="cs-key">Present Value</span><span class="cs-val">=PV(rate,nper,0,fv)</span></div>
-          <div class="cs-row"><span class="cs-key">Interest Rate</span><span class="cs-val">=RATE(nper,0,-pv,fv)</span></div>
-          <div class="cs-row"><span class="cs-key">Periods</span><span class="cs-val">=NPER(rate,0,-pv,fv)</span></div>
-          <div class="cs-row"><span class="cs-key">FV formula</span><span class="cs-val">PV × (1+r)^t</span></div>
-          <div class="cs-row"><span class="cs-key">PV formula</span><span class="cs-val">FV / (1+r)^t</span></div>
-        </div>
-        <div class="cs-card">
-          <div class="cs-title">💳 Chapter 3 — Annuities & Rates</div>
-          <div class="cs-row"><span class="cs-key">Loan Payment</span><span class="cs-val">=PMT(rate,nper,-pv)</span></div>
-          <div class="cs-row"><span class="cs-key">Annuity PV</span><span class="cs-val">=PV(rate,nper,pmt)</span></div>
-          <div class="cs-row"><span class="cs-key">Annuity Due</span><span class="cs-val">type=1 in Excel</span></div>
-          <div class="cs-row"><span class="cs-key">EAR</span><span class="cs-val">=EFFECT(apr,m)</span></div>
-          <div class="cs-row"><span class="cs-key">EAR formula</span><span class="cs-val">(1+APR/m)^m − 1</span></div>
-          <div class="cs-row"><span class="cs-key">Monthly rate</span><span class="cs-val">APR / 12</span></div>
-        </div>
-        <div class="cs-card">
-          <div class="cs-title">📊 Chapter 4 — Bonds</div>
-          <div class="cs-row"><span class="cs-key">Bond Price</span><span class="cs-val">=PV(req,yrs,cpn,fv)</span></div>
-          <div class="cs-row"><span class="cs-key">YTM</span><span class="cs-val">=RATE(yrs,cpn,-price,fv)</span></div>
-          <div class="cs-row"><span class="cs-key">Coupon ($)</span><span class="cs-val">Coupon% × Face Value</span></div>
-          <div class="cs-row"><span class="cs-key">Premium bond</span><span class="cs-val">Coupon% > Yield</span></div>
-          <div class="cs-row"><span class="cs-key">Discount bond</span><span class="cs-val">Coupon% < Yield</span></div>
-          <div class="cs-row"><span class="cs-key">Fisher Effect</span><span class="cs-val">(1+n)=(1+r)(1+π)</span></div>
-        </div>
-        <div class="cs-card">
-          <div class="cs-title">📈 Chapter 5 — Stocks</div>
-          <div class="cs-row"><span class="cs-key">Zero Growth</span><span class="cs-val">P = D / r</span></div>
-          <div class="cs-row"><span class="cs-key">Gordon Model</span><span class="cs-val">P = D₁ / (r − g)</span></div>
-          <div class="cs-row"><span class="cs-key">D₁</span><span class="cs-val">D₀ × (1 + g)</span></div>
-          <div class="cs-row"><span class="cs-key">P/E Valuation</span><span class="cs-val">P = P/E × EPS</span></div>
-          <div class="cs-row"><span class="cs-key">SGR</span><span class="cs-val">ROE × (1 − payout)</span></div>
-          <div class="cs-row"><span class="cs-key">Dividend Yield</span><span class="cs-val">D₁ / P₀</span></div>
-        </div>
-        <div class="cs-card">
-          <div class="cs-title">⚡ Key Relationships</div>
-          <div class="cs-row"><span class="cs-key">Bond Price ↑ ⟹</span><span class="cs-val">Yield ↓</span></div>
-          <div class="cs-row"><span class="cs-key">EAR vs APR</span><span class="cs-val">EAR > APR (m > 1)</span></div>
-          <div class="cs-row"><span class="cs-key">Higher r → FV</span><span class="cs-val">Increases ↑</span></div>
-          <div class="cs-row"><span class="cs-key">Gordon: need</span><span class="cs-val">r > g</span></div>
-          <div class="cs-row"><span class="cs-key">Ordinary annuity</span><span class="cs-val">type = 0</span></div>
-          <div class="cs-row"><span class="cs-key">Annuity due</span><span class="cs-val">type = 1</span></div>
-        </div>
-        <div class="cs-card">
-          <div class="cs-title">🔢 Excel Quick Reference</div>
-          <div class="cs-row"><span class="cs-key">=FV()</span><span class="cs-val">Future Value</span></div>
-          <div class="cs-row"><span class="cs-key">=PV()</span><span class="cs-val">Present Value</span></div>
-          <div class="cs-row"><span class="cs-key">=PMT()</span><span class="cs-val">Payment/period</span></div>
-          <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
-          <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
-          <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         GLOSSARY SECTION
-    ═══════════════════════════════════════════════════════════════ -->
-    <section class="chapter" id="glossary-section">
-      <h2>📖 Glossary | المصطلحات</h2>
-      <input class="glossary-search" id="glossary-search" type="text" placeholder="Search term... / ابحث عن مصطلح" oninput="filterGlossary(this.value)">
-      <div class="glossary-grid" id="glossary-grid"></div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════
          STUDY PLAN SECTION
     ═══════════════════════════════════════════════════════════════ -->
     <section class="chapter" id="plan-section">
@@ -2532,6 +2484,7 @@
       <div id="plan-overall" style="margin-bottom:20px;"></div>
       <div class="plan-grid" id="plan-grid"></div>
     </section>
+
 
   </div>
 </body>

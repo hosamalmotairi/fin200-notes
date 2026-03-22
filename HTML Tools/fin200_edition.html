@@ -1,0 +1,2671 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Midterm Review Notes</title>
+  <style>
+    :root {
+      --bg: #f4f6ff;
+      --paper: #ffffff;
+      --ink: #23263a;
+      --muted: #6e7488;
+      --accent: #6c63ff;
+      --accent-soft: #efedff;
+      --line: #e6e8f3;
+      --good: #1f8f5f;
+      --shadow: 0 18px 40px rgba(70, 80, 140, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 24%),
+        linear-gradient(180deg, #f8f9ff 0%, #f1f4ff 100%);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5f58da, #7c74ff);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cover-box {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+
+    .cover-label {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.88;
+      margin-bottom: 4px;
+    }
+
+    .cover-value {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 950px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .toc,
+    .notice,
+    .chapter {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    h2, h3, h4 {
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+      margin-top: 16px;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: 12px;
+      color: #454b63;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed #d8dcf4;
+    }
+
+    .page-ref {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .point-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .point-list li {
+      margin: 8px 0;
+    }
+
+    .bilingual {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fafaff;
+      margin-top: 10px;
+    }
+
+    .en-line,
+    .ar-line {
+      margin: 0;
+    }
+
+    .en-line {
+      font-weight: 600;
+    }
+
+    .ar-line {
+      direction: rtl;
+      text-align: right;
+      color: #4c5268;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #dde1f6;
+    }
+
+    .bilingual strong {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--good);
+    }
+
+    .formula {
+      font-family: Menlo, Consolas, monospace;
+      background: #f7f8ff;
+      border: 1px dashed #ced3f5;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 8px;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    .print-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ── new additions ── */
+    .summary-box {
+      background: linear-gradient(135deg, #f0f4ff, #e8ecff);
+      border: 1.5px solid #c5cdf7;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-top: 16px;
+    }
+    .summary-box h4 { color: var(--accent); margin-bottom: 8px; }
+
+    .example-box {
+      background: #f5fff9;
+      border: 1.5px solid #a8e6c4;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-top: 16px;
+    }
+    .example-box h4 { color: var(--good); margin-bottom: 8px; }
+
+    .mcq-box {
+      background: #fffbf0;
+      border: 1.5px solid #f5d87a;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-top: 16px;
+    }
+    .mcq-box h4 { color: #b07d00; margin-bottom: 10px; }
+    .mcq-question { margin: 14px 0 6px; font-weight: 600; }
+    .mcq-options { list-style: none; padding-left: 10px; margin: 0; }
+    .mcq-options li { margin: 4px 0; padding: 4px 8px; border-radius: 8px; }
+    .mcq-options li.correct { background: #d4f5e2; font-weight: 700; color: #1a6e42; }
+
+    .ref-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ref-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.92rem; min-width: 400px; }
+    .ref-table th {
+      background: var(--accent);
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .ref-table td { padding: 7px 10px; border-bottom: 1px solid var(--line); }
+    .ref-table tr:nth-child(even) td { background: #f8f9ff; }
+
+    .formula-sheet {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+    .formula-sheet h2 { color: var(--accent); margin-bottom: 14px; }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .formula-card {
+      background: #f7f8ff;
+      border: 1px dashed #ced3f5;
+      border-radius: 12px;
+      padding: 10px 13px;
+    }
+    .formula-card .label { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+    .formula-card .f { font-family: Menlo, Consolas, monospace; font-weight: 700; color: var(--accent); }
+
+    @media (max-width: 600px) { .formula-grid { grid-template-columns: 1fr; } }
+
+
+    /* ── DARK MODE ── */
+    body.dark { --bg:#0f1117;--paper:#1a1d2e;--ink:#e8eaf6;--muted:#9da3c0;--accent:#a78bfa;--accent-soft:#2d2b4e;--line:#2e3150;--good:#34d399; }
+    body.dark .hero { background:linear-gradient(135deg,#3730a3,#5b21b6); }
+    body.dark .toc,body.dark .notice,body.dark .chapter,body.dark .formula-sheet { background:#1a1d2e;border-color:#2e3150; }
+    body.dark .bilingual { background:#12152a;border-color:#2e3150; }
+    body.dark .formula { background:#12152a;border-color:#3730a3; }
+    body.dark .summary-box { background:#1e213a;border-color:#3730a3; }
+    body.dark .example-box { background:#0d2a1f;border-color:#065f46; }
+    body.dark .mcq-box { background:#2a2200;border-color:#92400e; }
+    body.dark .formula-card { background:#12152a;border-color:#3730a3; }
+    body.dark .ref-table tr:nth-child(even) td { background:#12152a; }
+    body.dark .ref-table th { background:#4c1d95; }
+    body.dark input[type=text] { background:#12152a!important;color:#e8eaf6!important;border-color:#6c63ff!important; }
+    body.dark .ps-chapter { background:#1a1d2e;border-color:#2e3150; }
+    body.dark .mcq-opt { border-color:#3730a3;color:#c4b5fd; }
+    body.dark .mcq-opt:hover { background:#2d2b4e; }
+    body.dark .tab-btn { background:#1a1d2e;color:#a78bfa;border-color:#3730a3; }
+    body.dark .tab-btn.active { background:#6c63ff;color:#fff; }
+
+    /* ── TOP NAV BAR ── */
+    .top-bar { position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px; }
+    body.dark .top-bar { background:rgba(26,29,46,0.95); }
+    .top-bar-left { display:flex;gap:8px;flex-wrap:wrap; }
+    .nav-link { padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none;color:var(--accent);border:1.5px solid var(--accent-soft);transition:all .2s;cursor:pointer; }
+    .nav-link:hover,.nav-link.active { background:var(--accent);color:#fff; }
+    .dark-toggle { padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:none;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--ink);transition:all .2s; }
+    .dark-toggle:hover { border-color:var(--accent);color:var(--accent); }
+
+    /* ── FLASH CARDS ── */
+    .flash-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px; }
+    .flash-card { height:140px;perspective:800px;cursor:pointer; }
+    .flash-inner { position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d; }
+    .flash-card.flipped .flash-inner { transform:rotateY(180deg); }
+    .flash-front,.flash-back { position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center; }
+    .flash-front { background:linear-gradient(135deg,#6c63ff,#a78bfa);color:#fff;box-shadow:0 6px 20px rgba(108,99,255,.25); }
+    .flash-back { background:#fff;border:2px solid #6c63ff;transform:rotateY(180deg);color:#23263a; }
+    body.dark .flash-back { background:#1a1d2e;color:#e8eaf6; }
+    .flash-front .f-label { font-size:.72rem;opacity:.8;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em; }
+    .flash-front .f-q { font-size:.92rem;font-weight:700; }
+    .flash-back .f-ans { font-family:monospace;font-size:1rem;font-weight:800;color:#6c63ff; }
+    .flash-back .f-hint { font-size:.75rem;color:#888;margin-top:6px; }
+    .flash-tip { text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:8px; }
+
+    /* ── TIMER ── */
+    .timer-bar { display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.12);border-radius:12px;padding:10px 16px;margin-top:12px;flex-wrap:wrap; }
+    .timer-display { font-size:1.4rem;font-weight:800;color:#fff;min-width:70px; }
+    .timer-display.warning { color:#fbbf24; }
+    .timer-display.danger { color:#f87171; }
+    .timer-btn { padding:5px 14px;border-radius:8px;border:none;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .15s; }
+    .timer-btn.start { background:#10b981;color:#fff; }
+    .timer-btn.stop { background:#ef4444;color:#fff; }
+    .timer-btn.reset { background:rgba(255,255,255,.2);color:#fff; }
+
+    /* ── DIFFICULTY BADGES ── */
+    .diff-badge { display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;font-weight:700;margin-right:6px; }
+    .diff-easy { background:#d1fae5;color:#065f46; }
+    .diff-medium { background:#fef3c7;color:#92400e; }
+    .diff-hard { background:#fee2e2;color:#991b1b; }
+    body.dark .diff-easy { background:#064e3b;color:#34d399; }
+    body.dark .diff-medium { background:#451a03;color:#fbbf24; }
+    body.dark .diff-hard { background:#450a0a;color:#f87171; }
+
+    /* ── COMMON MISTAKES ── */
+    .mistake-item { background:#fff8f0;border:1.5px solid #fed7aa;border-radius:12px;padding:12px 16px;margin-bottom:10px; }
+    body.dark .mistake-item { background:#1c1209;border-color:#78350f; }
+    .mistake-item .m-wrong { color:#c0392b;font-weight:700;font-size:.9rem; }
+    .mistake-item .m-right { color:#1f8f5f;font-weight:700;font-size:.9rem;margin-top:6px; }
+    .mistake-item .m-note { color:var(--muted);font-size:.82rem;margin-top:4px; }
+
+    /* ── EXAM QUESTIONS ── */
+    .exam-q { background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px; }
+    body.dark .exam-q { background:#1a1d2e; }
+    .exam-q .eq-header { display:flex;align-items:center;gap:8px;margin-bottom:8px; }
+    .exam-q .eq-year { font-size:.75rem;font-weight:700;color:#fff;background:#6c63ff;padding:2px 8px;border-radius:999px; }
+    .exam-q .eq-text { font-size:.88rem;color:var(--ink);line-height:1.6;margin-bottom:10px; }
+    .exam-q .eq-inp { display:flex;gap:8px;align-items:center;flex-wrap:wrap; }
+    .exam-q .eq-input { padding:6px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:.88rem;outline:none;width:160px; }
+    .exam-q .eq-input:focus { border-color:#6c63ff; }
+    .exam-q .eq-check { padding:6px 14px;background:#6c63ff;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer; }
+    .exam-q .eq-result { font-size:.85rem;font-weight:700;margin-top:6px; }
+
+    /* ── SCORE BADGE ── */
+    .score-display { display:flex;gap:12px;flex-wrap:wrap;margin-top:10px; }
+    .score-pill { background:rgba(255,255,255,0.15);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:700;color:#fff; }
+    .score-pill span { opacity:.8;font-weight:400;margin-right:4px; }
+
+    /* ── MOBILE ── */
+    @media(max-width:600px){
+      .flash-grid{grid-template-columns:1fr 1fr;}
+      .top-bar{padding:6px 10px;gap:6px;}
+      .top-bar-left{gap:4px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+      .top-bar-left::-webkit-scrollbar{display:none;}
+      .nav-link{padding:5px 9px;font-size:.72rem;white-space:nowrap;flex-shrink:0;}
+      .dark-toggle{font-size:.72rem;padding:5px 9px;white-space:nowrap;}
+      #user-info{font-size:.72rem;}
+      .hero{padding:18px;}
+      .hero h1{font-size:1.6rem;}
+      .cover-meta{grid-template-columns:1fr;}
+      .page{padding:14px 12px 60px;}
+      .chapter,.toc,.notice{padding:14px;}
+      .cs-grid{grid-template-columns:1fr;}
+      .glossary-grid{grid-template-columns:1fr;}
+      .plan-grid{grid-template-columns:1fr;}
+      .timer-bar{gap:6px;}
+      .ps-table{font-size:.78rem;}
+      .ps-given,.ps-hint{display:none;}
+      .ps-inp input{width:70px;}
+      .quiz-card{padding:18px;}
+      .calc-grid{grid-template-columns:1fr;}
+      #auth-box{padding:24px 18px;}
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm 18mm 14mm;
+    }
+
+    @media print {
+      .top-bar, .hero, .notice, .chapter:not(#cheatsheet-section),
+      #flash-section, #mistakes-section, #exam-section,
+      #practice-section, #quiz-section, #calc-section,
+      #glossary-section, #plan-section, .page > div {
+        display: none !important;
+      }
+      #cheatsheet-section {
+        display: block !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      body { background: white !important; }
+    }
+  
+    /* ── QUIZ MODE ── */
+    .quiz-wrap { max-width:700px; margin:0 auto; }
+    .quiz-progress-bar { height:10px; background:#e0e0e0; border-radius:999px; margin-bottom:20px; overflow:hidden; }
+    .quiz-progress-fill { height:100%; background:linear-gradient(90deg,#6c63ff,#a89cff); border-radius:999px; transition:width .4s; }
+    .quiz-card { background:var(--paper); border-radius:20px; padding:28px; box-shadow:var(--shadow); border:1px solid var(--line); }
+    .quiz-q-num { font-size:.82rem; color:var(--muted); margin-bottom:8px; }
+    .quiz-q-text { font-size:1.1rem; font-weight:600; margin-bottom:20px; line-height:1.5; }
+    .quiz-opts button { display:block; width:100%; text-align:left; padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; cursor:pointer; transition:.2s; }
+    .quiz-opts button:hover { border-color:var(--accent); background:var(--accent-soft); }
+    .quiz-opts button.correct-opt { background:#d4edda; border-color:#1f8f5f; color:#1f8f5f; font-weight:700; }
+    .quiz-opts button.wrong-opt { background:#fde8e8; border-color:#c0392b; color:#c0392b; }
+    .quiz-feedback { margin-top:14px; font-weight:700; font-size:1rem; min-height:24px; }
+    .quiz-actions { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .quiz-btn { padding:11px 24px; border-radius:12px; border:none; font-weight:700; font-size:.95rem; cursor:pointer; }
+    .quiz-btn-primary { background:var(--accent); color:#fff; }
+    .quiz-btn-secondary { background:var(--accent-soft); color:var(--accent); }
+    .quiz-result-card { text-align:center; padding:36px; }
+    .quiz-score-big { font-size:3.5rem; font-weight:900; color:var(--accent); }
+    .quiz-score-label { font-size:1rem; color:var(--muted); margin-bottom:20px; }
+    .leaderboard-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .leaderboard-table th, .leaderboard-table td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.9rem; }
+    .leaderboard-table th { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+    .leaderboard-table tr:first-child td { font-weight:700; }
+    .medal { font-size:1.2rem; }
+
+    /* ── FORMULA CALCULATOR ── */
+    .calc-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .calc-tab { padding:9px 18px; border-radius:999px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-weight:600; font-size:.88rem; cursor:pointer; transition:.2s; }
+    .calc-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .calc-panel { display:none; }
+    .calc-panel.active { display:block; }
+    .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+    @media(max-width:500px){ .calc-grid { grid-template-columns:1fr; } }
+    .calc-field label { display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:4px; }
+    .calc-field input { width:100%; padding:10px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; }
+    .calc-result { background:linear-gradient(135deg,#6c63ff,#a89cff); color:#fff; border-radius:16px; padding:20px; text-align:center; margin-top:4px; }
+    .calc-result-label { font-size:.82rem; opacity:.85; margin-bottom:4px; }
+    .calc-result-value { font-size:2rem; font-weight:900; }
+    .calc-result-formula { font-size:.78rem; opacity:.8; margin-top:6px; font-family:monospace; }
+    .calc-btn { width:100%; padding:12px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:1rem; font-weight:700; cursor:pointer; margin-bottom:14px; }
+    .calc-error { color:#c0392b; font-size:.88rem; text-align:center; padding:8px; }
+
+    /* ── CHEAT SHEET ── */
+    .cs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+    .cs-card { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:18px; }
+    .cs-title { font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .cs-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.9rem; }
+    .cs-row:last-child { border-bottom:none; }
+    .cs-key { font-weight:600; }
+    .cs-val { font-family:monospace; font-size:.82rem; color:var(--accent); }
+    .print-btn { display:inline-block; padding:10px 22px; background:var(--accent); color:#fff; border-radius:10px; font-weight:700; cursor:pointer; border:none; margin-bottom:16px; font-size:.9rem; }
+
+    /* ── GLOSSARY ── */
+    .glossary-search { width:100%; padding:12px 18px; border-radius:12px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:1rem; margin-bottom:16px; }
+    .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .glossary-item { background:var(--paper); border-radius:14px; border:1px solid var(--line); padding:14px 16px; }
+    .glossary-en { font-weight:700; color:var(--ink); font-size:.95rem; }
+    .glossary-ar { direction:rtl; text-align:right; color:#4c5268; font-size:.9rem; margin-top:4px; }
+    .glossary-def { font-size:.82rem; color:var(--muted); margin-top:6px; border-top:1px dashed var(--line); padding-top:6px; }
+    .glossary-item.hidden { display:none; }
+
+    /* ── STUDY PLAN ── */
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+    .plan-day { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:16px; }
+    .plan-day-title { font-weight:700; font-size:.95rem; margin-bottom:10px; color:var(--accent); }
+    .plan-task { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:.88rem; cursor:pointer; }
+    .plan-task input[type=checkbox] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; }
+    .plan-task span.done { text-decoration:line-through; color:var(--muted); }
+    .plan-progress { height:6px; background:#e0e0e0; border-radius:999px; margin-top:10px; overflow:hidden; }
+    .plan-progress-fill { height:100%; background:var(--accent); border-radius:999px; transition:width .3s; }
+
+    /* ── CONFETTI ── */
+    .confetti-piece { position:fixed; width:10px; height:10px; border-radius:2px; pointer-events:none; z-index:9999; animation:confettiFall 1.2s ease-in forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0deg);} 100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
+
+    /* ── DARK MODE additions ── */
+    body.dark .calc-field input,
+    body.dark .glossary-search { background:#2a2d3e; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button { background:#1e2130; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button:hover { background:#2e3150; }
+    body.dark .cs-card, body.dark .glossary-item, body.dark .plan-day { background:#1e2130; border-color:#3a3d54; }
+
+  </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <style>
+    #auth-overlay{position:fixed;inset:0;background:rgba(15,17,30,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;}
+    #auth-box{background:#fff;border-radius:24px;padding:40px;width:90%;max-width:420px;box-shadow:0 24px 64px rgba(0,0,0,0.4);}
+    body.dark #auth-box{background:#1a1d2e;color:#e8eaf6;}
+    .auth-tab-btn{flex:1;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.95rem;transition:.2s;}
+    .auth-inp{width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid #e6e8f3;font-size:.95rem;box-sizing:border-box;margin-bottom:12px;background:#fff;color:#23263a;}
+    body.dark .auth-inp{background:#12152a;border-color:#3730a3;color:#e8eaf6;}
+    #user-info{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;}
+    #user-avatar{width:28px;height:28px;border-radius:50%;background:#6c63ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.82rem;}
+    .signout-btn{padding:5px 12px;border-radius:999px;border:1.5px solid #e6e8f3;background:none;cursor:pointer;font-size:.78rem;font-weight:700;color:#c0392b;}
+  </style>
+</head>
+<body>
+  <!-- Auth Modal -->
+  <div id="auth-overlay">
+    <div id="auth-box">
+      <h2 style="text-align:center;color:#6c63ff;margin:0 0 6px;">🎯 FIN 200</h2>
+      <p style="text-align:center;color:#888;margin:0 0 24px;font-size:.88rem;">سجّل دخولك لحفظ تقدمك من أي جهاز</p>
+      <div style="display:flex;gap:8px;margin-bottom:20px;">
+        <button id="tab-login" class="auth-tab-btn" onclick="authTab('login')" style="background:#6c63ff;color:#fff;border:none;">دخول</button>
+        <button id="tab-register" class="auth-tab-btn" onclick="authTab('register')" style="background:#fff;color:#6c63ff;border:2px solid #e6e8f3;">حساب جديد</button>
+      </div>
+      <div id="auth-name-wrap" style="display:none;">
+        <input id="auth-name" class="auth-inp" type="text" placeholder="اسمك (مثال: Hosam)">
+      </div>
+      <input id="auth-email" class="auth-inp" type="email" placeholder="البريد الإلكتروني">
+      <input id="auth-pass" class="auth-inp" type="password" placeholder="كلمة السر">
+      <div id="auth-err" style="color:#c0392b;font-size:.82rem;text-align:center;min-height:18px;margin-bottom:10px;"></div>
+      <button id="auth-submit" onclick="authSubmit()" style="width:100%;padding:13px;border-radius:12px;border:none;background:#6c63ff;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">دخول</button>
+      <div style="text-align:center;margin-top:16px;padding-top:16px;border-top:1px dashed #e6e8f3;">
+        <button onclick="skipAuth()" style="background:none;border:none;color:#888;font-size:.85rem;cursor:pointer;text-decoration:underline;">استخدم بدون حساب (لن يتم حفظ تقدمك)</button>
+      </div>
+    </div>
+  </div>
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-left">
+      <a class="nav-link active" onclick="window.scrollTo({top:0,behavior:'smooth'})">🏠 Home</a>
+      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Formula Sheet</a>
+      <a class="nav-link" onclick="scrollToId('chapters-section')">📖 Chapters</a>
+      <a class="nav-link" onclick="scrollToId('flash-section')">🃏 Flash Cards</a>
+      <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
+      <a class="nav-link" onclick="scrollToId('glossary-section')">📚 Glossary</a>
+      <a class="nav-link" onclick="scrollToId('practice-section')">🧮 Practice</a>
+      <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
+      <a class="nav-link" onclick="scrollToId('quiz-section')">🎯 Quiz</a>
+      <a class="nav-link" onclick="scrollToId('calc-section')">🔢 Calculator</a>
+      <a class="nav-link" onclick="scrollToId('plan-section')">🗺️ Study Roadmap</a>
+    </div>
+    <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
+    <div id="user-info" style="display:none;">
+      <div id="user-avatar">?</div>
+      <span id="user-name"></span>
+      <button class="signout-btn" onclick="doSignOut()">Sign out</button>
+    </div>
+  </div>
+  <div class="page">
+    <section class="hero" id="notes-section">
+      <div class="tag">FIN 200 • Midterm Review Notes</div>
+      <h1>🎯 FIN 200 Midterm Review Notes</h1>
+      <p>Everything you need to ace FIN 200 — notes, formulas, practice, and more.</p>
+      <div class="cover-meta">
+        <div class="cover-box">
+          <span class="cover-label">Course</span>
+          <span class="cover-value">FIN 200</span>
+        </div>
+        <div class="cover-box">
+          <span class="cover-label">Document Type</span>
+          <span class="cover-value">Midterm Study Notes</span>
+        </div>
+        <div class="cover-box">
+          <span class="cover-label">Coverage</span>
+          <span class="cover-value">Chapters 2, 3, 4, and 5</span>
+        </div>
+      </div>
+      <p class="print-note">📚 Notes &nbsp;|&nbsp; 🧮 Practice &nbsp;|&nbsp; 🃏 Flash Cards &nbsp;|&nbsp; 🎯 Quiz &nbsp;|&nbsp; 📄 Formula Sheet</p>
+    </section>
+
+    <div style="background:linear-gradient(135deg,#fff3cd,#ffeaa0);border:2px solid #f5a623;border-radius:18px;padding:20px 24px;margin-bottom:18px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 4px 16px rgba(245,166,35,0.2);">
+      <div style="font-size:2rem;flex-shrink:0;">⚠️</div>
+      <div>
+        <div dir="rtl" style="font-weight:800;font-size:1.05rem;color:#7a4f00;margin-bottom:6px;text-align:right;">⚡ تنبيه مهم جداً</div>
+        <div style="font-size:.97rem;color:#5a3800;line-height:1.9;">
+          <div dir="rtl" style="text-align:right;margin-bottom:4px;">أسئلة البراكتس الموجودة على منصة <strong>thekey.sa</strong> مهمة جداً للامتحان — راجعها وحلّها قبل الاختبار!</div>
+          <div style="color:#7a5000;">The practice questions on <strong>thekey.sa</strong> platform are very important for the exam. Review and solve them before the test!</div>
+        </div>
+      </div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════════════
+         CHEAT SHEET SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="cheatsheet-section">
+      <h2>📄 Formula Sheet | ورقة المعادلات</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
+      <button class="print-btn" onclick="window.print()">🖨️ Print Formula Sheet</button>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>
+          <div class="cs-row"><span class="cs-key">Future Value</span><span class="cs-val">=FV(rate,nper,0,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Present Value</span><span class="cs-val">=PV(rate,nper,0,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Interest Rate</span><span class="cs-val">=RATE(nper,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Periods</span><span class="cs-val">=NPER(rate,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">FV formula</span><span class="cs-val">PV × (1+r)^t</span></div>
+          <div class="cs-row"><span class="cs-key">PV formula</span><span class="cs-val">FV / (1+r)^t</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">💳 Chapter 3 — Annuities & Rates</div>
+          <div class="cs-row"><span class="cs-key">Loan Payment</span><span class="cs-val">=PMT(rate,nper,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity PV</span><span class="cs-val">=PV(rate,nper,pmt)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity Due</span><span class="cs-val">type=1 in Excel</span></div>
+          <div class="cs-row"><span class="cs-key">EAR</span><span class="cs-val">=EFFECT(apr,m)</span></div>
+          <div class="cs-row"><span class="cs-key">EAR formula</span><span class="cs-val">(1+APR/m)^m − 1</span></div>
+          <div class="cs-row"><span class="cs-key">Monthly rate</span><span class="cs-val">APR / 12</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📊 Chapter 4 — Bonds</div>
+          <div class="cs-row"><span class="cs-key">Bond Price</span><span class="cs-val">=PV(req,yrs,cpn,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">YTM</span><span class="cs-val">=RATE(yrs,cpn,-price,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Coupon ($)</span><span class="cs-val">Coupon% × Face Value</span></div>
+          <div class="cs-row"><span class="cs-key">Premium bond</span><span class="cs-val">Coupon% > Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Discount bond</span><span class="cs-val">Coupon% < Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Fisher Effect</span><span class="cs-val">(1+n)=(1+r)(1+π)</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📈 Chapter 5 — Stocks</div>
+          <div class="cs-row"><span class="cs-key">Zero Growth</span><span class="cs-val">P = D / r</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon Model</span><span class="cs-val">P = D₁ / (r − g)</span></div>
+          <div class="cs-row"><span class="cs-key">D₁</span><span class="cs-val">D₀ × (1 + g)</span></div>
+          <div class="cs-row"><span class="cs-key">P/E Valuation</span><span class="cs-val">P = P/E × EPS</span></div>
+          <div class="cs-row"><span class="cs-key">SGR</span><span class="cs-val">ROE × (1 − payout)</span></div>
+          <div class="cs-row"><span class="cs-key">Dividend Yield</span><span class="cs-val">D₁ / P₀</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚡ Key Relationships</div>
+          <div class="cs-row"><span class="cs-key">Bond Price ↑ ⟹</span><span class="cs-val">Yield ↓</span></div>
+          <div class="cs-row"><span class="cs-key">EAR vs APR</span><span class="cs-val">EAR > APR (m > 1)</span></div>
+          <div class="cs-row"><span class="cs-key">Higher r → FV</span><span class="cs-val">Increases ↑</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon: need</span><span class="cs-val">r > g</span></div>
+          <div class="cs-row"><span class="cs-key">Ordinary annuity</span><span class="cs-val">type = 0</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity due</span><span class="cs-val">type = 1</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">🔢 Excel Quick Reference</div>
+          <div class="cs-row"><span class="cs-key">=FV()</span><span class="cs-val">Future Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PV()</span><span class="cs-val">Present Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PMT()</span><span class="cs-val">Payment/period</span></div>
+          <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
+          <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
+          <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
+          <div class="cs-row"><span class="cs-key">=IRR()</span><span class="cs-val">Internal Rate of Return</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">🔄 IRR — معدل العائد الداخلي</div>
+          <div class="cs-row"><span class="cs-key">Formula</span><span class="cs-val">=IRR(values, guess)</span></div>
+          <div class="cs-row"><span class="cs-key">الهدف</span><span class="cs-val">معدل العائد على مشروع</span></div>
+          <div class="cs-row"><span class="cs-key">مثال</span><span class="cs-val">=IRR({-100000,30000,30000,30000,30000})</span></div>
+          <div class="cs-row"><span class="cs-key">تنبيه</span><span class="cs-val">أول قيمة لازم تكون سالبة</span></div>
+          <div class="cs-row"><span class="cs-key">خطأ NUM!</span><span class="cs-val">أضف guess=0.1</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚡ القواعد الذهبية للإشارات</div>
+          <div class="cs-row"><span class="cs-key">فلوس تطلع منك ➜</span><span class="cs-val">سالب (−)</span></div>
+          <div class="cs-row"><span class="cs-key">استثمار / دفع أقساط</span><span class="cs-val">سالب (−)</span></div>
+          <div class="cs-row"><span class="cs-key">فلوس تدخل لك ➜</span><span class="cs-val">موجب (+)</span></div>
+          <div class="cs-row"><span class="cs-key">استلام / أرباح</span><span class="cs-val">موجب (+)</span></div>
+          <div class="cs-row"><span class="cs-key">PV نتيجة</span><span class="cs-val">دائماً سالبة</span></div>
+          <div class="cs-row"><span class="cs-key">NPER نتيجة</span><span class="cs-val">دائماً موجبة</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚠️ أخطاء شائعة — تجنبها!</div>
+          <div class="cs-row"><span class="cs-key">لا تنسى</span><span class="cs-val">= قبل الدالة دائماً</span></div>
+          <div class="cs-row"><span class="cs-key">الأرقام</span><span class="cs-val">نقطة . وليس فاصلة ،</span></div>
+          <div class="cs-row"><span class="cs-key">بين المتغيرات</span><span class="cs-val">فاصلة , وليس ;</span></div>
+          <div class="cs-row"><span class="cs-key">RATE خطأ NUM!</span><span class="cs-val">أضف guess=0.1</span></div>
+          <div class="cs-row"><span class="cs-key">PV دائماً</span><span class="cs-val">اكتبها سالبة (−PV)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="notice">
+      <h2>Introduction</h2>
+      <div class="bilingual">
+        <strong>Overview</strong>
+        <p class="en-line">These notes present the core midterm topics of FIN 200 in a clear and structured format designed to support understanding, revision, and exam preparation.</p>
+        <p class="ar-line">تعرض هذه المذكرة موضوعات الميدترم الأساسية في مقرر FIN 200 بصورة واضحة ومنظمة، بما يدعم الفهم والمراجعة والاستعداد للاختبار.</p>
+      </div>
+      <h3>Midterm Coverage</h3>
+      <ul class="point-list">
+        <li><a href="Chapter_2.pdf">Chapter 2</a></li>
+        <li><a href="Chapter_3.pdf">Chapter 3</a></li>
+        <li><a href="Chapter_4.pdf">Chapter 4</a></li>
+        <li><a href="Chapter_5.pdf">Chapter 5</a></li>
+      </ul>
+    </section>
+
+    <section class="toc">
+      <h2>Contents</h2>
+      <ul class="point-list">
+        <li>Chapter 2: Future Value, Present Value, Return on Investment, Investment Duration</li>
+        <li>Chapter 3: Multiple Cash Flows, Annuities, PMT, RATE, Amortization, APR and EAR</li>
+        <li>Chapter 4: Bond Features, Bond Values and Yields, Ratings, Inflation, Term Structure</li>
+        <li>Chapter 5: Dividend Valuation, Multiples, Voting Systems, Stock Markets</li>
+      </ul>
+    </section>
+
+    <section class="chapter" id="chapters-section">
+      <h2>Chapter 2: Time Value of Money Foundations</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-13</div>
+        <h3>Determining the Future Value of an Investment</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Future Value (FV) is the amount an investment grows to over time. It depends on three inputs: present value (PV), interest rate (r), and time (t).</p>
+          <p class="ar-line">القيمة المستقبلية هي المبلغ الذي يصل إليه الاستثمار مع مرور الزمن، وتعتمد على ثلاثة عناصر: القيمة الحالية، ومعدل الفائدة، والزمن.</p>
+        </div>
+        <h4>Simple vs. Compounded Interest</h4>
+        <ul class="point-list">
+          <li><strong>Simple interest</strong> is calculated only on the original principal.<br />تُحسب الفائدة البسيطة على أصل المبلغ فقط.</li>
+          <li><strong>Compounded interest</strong> is calculated on the principal plus accumulated interest.<br />تُحسب الفائدة المركبة على أصل المبلغ بالإضافة إلى الفوائد المتراكمة.</li>
+          <li>The chapter states that the course focuses on <strong>compounded interest</strong>.<br />الفصل يوضح أن التركيز في المقرر يكون على الفائدة المركبة.</li>
+        </ul>
+        <div class="bilingual">
+          <strong>Single vs. Multi-Period</strong>
+          <p class="en-line">Single-period investment means only one compounding period. Multi-period investment extends compounding across several periods.</p>
+          <p class="ar-line">الاستثمار لفترة واحدة يعني أن الفائدة تُحسب لفترة واحدة فقط، أما الاستثمار متعدد الفترات فيعني تكرار التراكم عبر عدة فترات.</p>
+        </div>
+        <div class="formula">Excel: =FV(rate, nper, 0, -pv, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 14-23</div>
+        <h3>Determining the Present Value of Future Cash Flows</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Present Value (PV) is the current value of a future amount of money. It reflects the time value of money by discounting future cash flows to today.</p>
+          <p class="ar-line">القيمة الحالية هي القيمة اليوم لمبلغ سيتم استلامه في المستقبل، ويتم الوصول إليها من خلال خصم التدفقات النقدية المستقبلية إلى الزمن الحالي.</p>
+        </div>
+        <ul class="point-list">
+          <li>The chapter includes <strong>single-period PV</strong> and <strong>multi-period PV</strong>.<br />الفصل يتضمن القيمة الحالية لفترة واحدة والقيمة الحالية لعدة فترات.</li>
+          <li>It also introduces <strong>perpetuity</strong> as a stream of cash flows that continues forever.<br />كما يقدم مفهوم الدفعات الدائمة بوصفها تدفقات نقدية تستمر إلى ما لا نهاية.</li>
+          <li>Present value is important for investment comparison and financial decision-making.<br />القيمة الحالية مهمة لمقارنة الاستثمارات واتخاذ القرارات المالية.</li>
+        </ul>
+        <div class="formula">Excel: =PV(rate, nper, 0, fv, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 24-32</div>
+        <h3>Finding the Return on an Investment</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Return on Investment (ROI) measures the gain or loss generated by an investment relative to the amount initially invested.</p>
+          <p class="ar-line">العائد على الاستثمار يقيس مقدار الربح أو الخسارة الناتجة عن الاستثمار مقارنةً بالمبلغ المستثمر في البداية.</p>
+        </div>
+        <ul class="point-list">
+          <li>ROI is usually expressed as a percentage.<br />يُعبَّر عن العائد عادة على شكل نسبة مئوية.</li>
+          <li>The chapter shows how to compute annualized return.<br />الفصل يوضح طريقة حساب العائد السنوي.</li>
+        </ul>
+        <div class="formula">Excel: =RATE(nper, 0, -pv, fv)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-40</div>
+        <h3>Calculating Investment Duration</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Investment duration asks how long it takes an investment to grow from its current value to a target future value.</p>
+          <p class="ar-line">مدة الاستثمار تعني كم من الوقت يحتاج الاستثمار حتى ينتقل من قيمته الحالية إلى القيمة المستقبلية المطلوبة.</p>
+        </div>
+        <div class="formula">Excel: =NPER(rate, 0, -pv, fv)</div>
+      </div>
+      <!-- Chapter 2 Summary -->
+      <div class="summary-box">
+        <h4>📌 Chapter 2 Summary | ملخص الفصل الثاني</h4>
+        <ul class="point-list">
+          <li>FV = PV × (1 + r)<sup>t</sup> — القيمة المستقبلية</li>
+          <li>PV = FV / (1 + r)<sup>t</sup> — القيمة الحالية</li>
+          <li>Compounded interest grows faster than simple interest — الفائدة المركبة أسرع نموًا</li>
+          <li>Higher rate or longer period → higher FV — المعدل الأعلى أو المدة الأطول = قيمة مستقبلية أكبر</li>
+          <li>Excel functions: =FV(), =PV(), =RATE(), =NPER()</li>
+          <li>Discounting is the reverse of compounding — الخصم عكس التراكم</li>
+        </ul>
+      </div>
+
+      <!-- Chapter 2 Solved Example -->
+      <div class="example-box">
+        <h4>✏️ Solved Example | مثال محلول</h4>
+        <p><strong>Q:</strong> You invest $1,000 at 8% annual rate for 5 years. What is the FV?<br/>
+        استثمرت $1,000 بمعدل 8% سنويًا لمدة 5 سنوات. ما القيمة المستقبلية؟</p>
+        <div class="formula">FV = 1000 × (1.08)⁵ = $1,469.33</div>
+        <div class="formula">Excel: =FV(8%, 5, 0, -1000) → $1,469.33</div>
+        <p><strong>Q:</strong> If you want $2,000 in 6 years at 10%, what must you invest today?<br/>
+        إذا أردت $2,000 بعد 6 سنوات بمعدل 10%، كم تستثمر اليوم؟</p>
+        <div class="formula">PV = 2000 / (1.10)⁶ = $1,128.95</div>
+        <div class="formula">Excel: =PV(10%, 6, 0, 2000) → -$1,128.95</div>
+      </div>
+
+      <!-- Chapter 2 MCQ -->
+      <div class="mcq-box">
+        <h4>❓ Practice Questions | أسئلة تدريبية</h4>
+        <p class="mcq-question">1. What is the FV of $500 at 6% for 3 years?</p>
+        <ul class="mcq-options">
+          <li>a) $575.20</li>
+          <li class="correct">b) $595.51 ✓</li>
+          <li>c) $530.00</li>
+          <li>d) $618.00</li>
+        </ul>
+        <p class="mcq-question">2. If FV = $1,331 and PV = $1,000 at r = 10%, how many periods?</p>
+        <ul class="mcq-options">
+          <li>a) 2</li>
+          <li class="correct">b) 3 ✓</li>
+          <li>c) 4</li>
+          <li>d) 5</li>
+        </ul>
+        <p class="mcq-question">3. Which Excel function finds the interest rate? / أي دالة إكسل تجد معدل الفائدة؟</p>
+        <ul class="mcq-options">
+          <li>a) =FV()</li>
+          <li>b) =PV()</li>
+          <li class="correct">c) =RATE() ✓</li>
+          <li>d) =NPER()</li>
+        </ul>
+        <p class="mcq-question">4. Compounded interest is calculated on: / الفائدة المركبة تُحسب على:</p>
+        <ul class="mcq-options">
+          <li>a) Principal only / الأصل فقط</li>
+          <li class="correct">b) Principal + accumulated interest ✓ / الأصل + الفوائد المتراكمة</li>
+          <li>c) Interest only / الفائدة فقط</li>
+          <li>d) None of the above</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 3: Cash Flows, Annuities, and Loan Calculations</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-12</div>
+        <h3>Future and Present Value of Multiple Cash Flows</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">When there are multiple cash flows at different dates, each cash flow must be valued according to its own timing before all values are added together.</p>
+          <p class="ar-line">عندما توجد تدفقات نقدية متعددة في تواريخ مختلفة، يجب تقييم كل تدفق حسب زمنه أولًا ثم جمع القيم بعد ذلك.</p>
+        </div>
+        <ul class="point-list">
+          <li>The chapter covers both FV and PV of multiple cash flows.<br />الفصل يغطي القيمة المستقبلية والقيمة الحالية للتدفقات النقدية المتعددة.</li>
+          <li>It uses an example with annual cash flows over five years.<br />ويستخدم مثالًا يتضمن تدفقات سنوية على مدى خمس سنوات.</li>
+          <li>Excel is used by valuing each cash flow and then summing, or by using NPV for PV cases.<br />ويُستخدم Excel إما بحساب قيمة كل تدفق على حدة ثم الجمع، أو باستخدام NPV في مسائل القيمة الحالية.</li>
+        </ul>
+        <div class="formula">Excel PV idea: =NPV(rate, cashflow_range)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 13-18</div>
+        <h3>Present and Future Value of Annuities</h3>
+        <ul class="point-list">
+          <li>An annuity is a series of equal payments over a specified period.<br />الدفعات السنوية أو الدورية هي سلسلة من المدفوعات المتساوية خلال فترة محددة.</li>
+          <li><strong>Ordinary annuity</strong>: payments occur at the end of each period.<br />الدفعات العادية تكون في نهاية كل فترة.</li>
+          <li><strong>Annuity due</strong>: payments occur at the beginning of each period.<br />الدفعات المستحقة مقدمًا تكون في بداية كل فترة.</li>
+          <li>In Excel, type = 0 for ordinary annuity and type = 1 for annuity due.<br />في Excel تُستخدم القيمة 0 للدفعات العادية و1 للدفعات المستحقة مقدمًا.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-32</div>
+        <h3>Loan Payments and Interest Rates</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">PMT represents the periodic loan payment. RATE is used when the payment is known but the interest rate must be found.</p>
+          <p class="ar-line">الدالة PMT تمثل القسط الدوري للقرض، أما RATE فتُستخدم عندما يكون القسط معلومًا لكن معدل الفائدة غير معلوم.</p>
+        </div>
+        <div class="formula">Excel PMT: =PMT(rate, nper, -pv, 0, 0)</div>
+        <div class="formula">Excel RATE: =RATE(nper, pmt, pv, 0, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-46</div>
+        <h3>Loan Amortization</h3>
+        <ul class="point-list">
+          <li>An amortization schedule breaks each payment into interest and principal.<br />جدول الإطفاء يقسم كل دفعة إلى جزء فائدة وجزء أصل.</li>
+          <li>It also tracks the remaining balance over time.<br />كما يتابع الرصيد المتبقي مع مرور الوقت.</li>
+          <li>The chapter shows how to build an amortization schedule in Excel.<br />ويشرح الفصل طريقة بناء جدول الإطفاء في Excel.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 47-55</div>
+        <h3>APR and EAR</h3>
+        <ul class="point-list">
+          <li><strong>APR</strong> is the annual percentage rate and does not account for within-year compounding.<br />APR هو المعدل السنوي المعلن ولا يأخذ التراكم داخل السنة في الحسبان.</li>
+          <li><strong>EAR</strong> is the effective annual rate and does account for compounding.<br />EAR هو المعدل السنوي الفعلي ويأخذ التراكم داخل السنة في الحسبان.</li>
+          <li>EAR is the better comparison tool when compounding differs.<br />ويُعد EAR أداة المقارنة الأدق عندما تختلف مرات التراكم.</li>
+        </ul>
+        <div class="formula">Excel: =EFFECT(apr, compounding_periods)</div>
+      </div>
+      <!-- Chapter 3 Summary -->
+      <div class="summary-box">
+        <h4>📌 Chapter 3 Summary | ملخص الفصل الثالث</h4>
+        <ul class="point-list">
+          <li>Each cash flow must be valued at its own time — كل تدفق يُقيَّم في زمنه</li>
+          <li>Ordinary annuity: end of period | Annuity due: beginning of period — العادية: نهاية الفترة | المستحقة: بداية الفترة</li>
+          <li>=PMT() finds the payment | =RATE() finds the interest rate</li>
+          <li>Amortization: each payment = interest portion + principal portion — كل قسط = فائدة + أصل</li>
+          <li>EAR = (1 + APR/m)<sup>m</sup> – 1 &nbsp;|&nbsp; EAR > APR when m > 1</li>
+          <li>EAR is better for comparing loans with different compounding — EAR أفضل للمقارنة</li>
+        </ul>
+      </div>
+
+      <!-- Chapter 3 Solved Example -->
+      <div class="example-box">
+        <h4>✏️ Solved Example | مثال محلول</h4>
+        <p><strong>Q:</strong> Loan of $10,000 at 6% annual rate, 3 years, monthly payments. Find PMT.<br/>
+        قرض $10,000 بمعدل 6% سنوي، 3 سنوات، أقساط شهرية. احسب القسط.</p>
+        <div class="formula">Monthly rate = 6% / 12 = 0.5% | n = 36</div>
+        <div class="formula">Excel: =PMT(0.5%, 36, -10000) → $304.22/month</div>
+        <p style="margin-top:10px"><strong>Q:</strong> APR = 12% compounded monthly. Find EAR.<br/>
+        APR = 12% تراكم شهري. احسب EAR.</p>
+        <div class="formula">EAR = (1 + 0.12/12)¹² − 1 = 12.68%</div>
+        <div class="formula">Excel: =EFFECT(12%, 12) → 12.68%</div>
+      </div>
+
+      <!-- Chapter 3 MCQ -->
+      <div class="mcq-box">
+        <h4>❓ Practice Questions | أسئلة تدريبية</h4>
+        <p class="mcq-question">1. Payments at the end of each period = ? / الدفعات في نهاية كل فترة تسمى؟</p>
+        <ul class="mcq-options">
+          <li>a) Annuity due / دفعات مستحقة</li>
+          <li class="correct">b) Ordinary annuity ✓ / دفعات عادية</li>
+          <li>c) Perpetuity / دفعات دائمة</li>
+          <li>d) Lump sum / مبلغ إجمالي</li>
+        </ul>
+        <p class="mcq-question">2. APR = 12% compounded monthly. EAR = ?</p>
+        <ul class="mcq-options">
+          <li>a) 12.00%</li>
+          <li class="correct">b) 12.68% ✓</li>
+          <li>c) 12.36%</li>
+          <li>d) 13.00%</li>
+        </ul>
+        <p class="mcq-question">3. In Excel, annuity due uses type = ? / دفعات مستحقة مقدمًا تستخدم type =</p>
+        <ul class="mcq-options">
+          <li>a) 0</li>
+          <li class="correct">b) 1 ✓</li>
+          <li>c) 2</li>
+          <li>d) -1</li>
+        </ul>
+        <p class="mcq-question">4. Which function finds the loan payment? / أي دالة تجد قسط القرض؟</p>
+        <ul class="mcq-options">
+          <li>a) =PV()</li>
+          <li>b) =RATE()</li>
+          <li class="correct">c) =PMT() ✓</li>
+          <li>d) =NPER()</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 4: Bonds</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-8</div>
+        <h3>Bond Features and Types</h3>
+        <ul class="point-list">
+          <li>A bond is essentially a loan made by the investor to the issuer.<br />السند في جوهره قرض يقدمه المستثمر إلى الجهة المصدرة.</li>
+          <li>Important features: face value, coupon payment, coupon rate, maturity date, issuer.<br />أهم خصائصه: القيمة الاسمية، دفعة الكوبون، معدل الكوبون، تاريخ الاستحقاق، والجهة المصدرة.</li>
+          <li>Types of bonds in the chapter: treasury, municipal, corporate, zero-coupon.<br />ومن أنواع السندات في الفصل: الحكومية، البلدية، الشركات، والسندات عديمة الكوبون.</li>
+          <li>The chapter also covers bonds with options, especially the call provision.<br />كما يغطي الفصل السندات ذات الخيارات وخصوصًا حق الاستدعاء.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 9-20</div>
+        <h3>Bond Values and Yields</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">The price of a bond is the present value of its future cash flows: coupon payments plus face value.</p>
+          <p class="ar-line">سعر السند يساوي القيمة الحالية للتدفقات النقدية المستقبلية: الكوبونات بالإضافة إلى القيمة الاسمية.</p>
+        </div>
+        <div class="formula">Excel Price Idea: =PV(required_return, years, coupon_payment, face_value, 0)</div>
+        <div class="formula">Excel Yield Idea: =RATE(years, coupon_payment, -price, face_value)</div>
+        <ul class="point-list">
+          <li>Coupon rate is the stated rate on the bond.<br />معدل الكوبون هو المعدل المكتوب على السند.</li>
+          <li>Yield is the actual return based on market price and cash flows.<br />أما العائد فهو العائد الفعلي بناءً على سعر السوق والتدفقات النقدية.</li>
+          <li>Premium bonds sell above par, discount bonds sell below par, and par bonds sell around face value.<br />السند الممتاز يباع فوق القيمة الاسمية، والسند المخصوم دونها، والسند عند التعادل قريب من القيمة الاسمية.</li>
+          <li>Bond prices and yields move inversely.<br />أسعار السندات والعوائد تتحركان في اتجاهين متعاكسين.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 21-30</div>
+        <h3>Bond Ratings</h3>
+        <ul class="point-list">
+          <li>Major agencies: Moody’s, S&amp;P, Fitch.<br />أهم وكالات التصنيف: موديز، ستاندرد آند بورز، وفيتش.</li>
+          <li>Investment grade is higher quality; non-investment grade is lower quality or junk.<br />الدرجة الاستثمارية أعلى جودة، أما الدرجة غير الاستثمارية فأقل جودة وتسمى أحيانًا عالية المخاطر.</li>
+          <li>Ratings reflect creditworthiness and default risk.<br />والتصنيفات تعكس الجدارة الائتمانية واحتمال التعثر.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 31-42</div>
+        <h3>Inflation and Interest Rates</h3>
+        <ul class="point-list">
+          <li>Inflation reduces purchasing power.<br />التضخم يقلل القوة الشرائية.</li>
+          <li>Central banks may raise rates to control inflation.<br />وقد ترفع البنوك المركزية أسعار الفائدة للسيطرة على التضخم.</li>
+          <li>The Fisher Effect links nominal rate, real rate, and inflation.<br />ويشرح أثر فيشر العلاقة بين المعدل الاسمي والمعدل الحقيقي والتضخم.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 43-53</div>
+        <h3>Term Structure and Bond Yields</h3>
+        <ul class="point-list">
+          <li>The term structure is shown by the yield curve.<br />الهيكل الزمني للفائدة يظهر من خلال منحنى العائد.</li>
+          <li>The chapter explains upward-sloping yield curves.<br />ويشرح الفصل منحنى العائد الصاعد.</li>
+          <li>Determinants of bond yields include interest rate risk, inflation expectations, credit risk, liquidity risk, and economic conditions.<br />ومن محددات عوائد السندات: مخاطر سعر الفائدة، وتوقعات التضخم، والمخاطر الائتمانية، والسيولة، والظروف الاقتصادية.</li>
+        </ul>
+      </div>
+      <!-- Chapter 4 Summary -->
+      <div class="summary-box">
+        <h4>📌 Chapter 4 Summary | ملخص الفصل الرابع</h4>
+        <ul class="point-list">
+          <li>Bond price = PV of coupons + PV of face value — سعر السند = القيمة الحالية للكوبونات + القيمة الاسمية</li>
+          <li>Price ↑ when yield ↓ — السعر والعائد يتحركان عكسيًا</li>
+          <li>Premium: coupon rate > yield | Discount: coupon rate &lt; yield | Par: coupon rate = yield</li>
+          <li>Fisher Effect: (1 + nominal) = (1 + real) × (1 + inflation) — أثر فيشر</li>
+          <li>Higher credit risk → higher yield / yield spread — المخاطر الائتمانية تزيد العائد</li>
+          <li>Yield curve: upward = normal; flat or inverted = unusual — منحنى العائد الصاعد = طبيعي</li>
+        </ul>
+      </div>
+
+      <!-- Chapter 4 Solved Example -->
+      <div class="example-box">
+        <h4>✏️ Solved Example | مثال محلول</h4>
+        <p><strong>Q:</strong> Bond: face value $1,000, coupon rate 8%, 5 years, required return 10%. Find the price.<br/>
+        سند: قيمة اسمية $1,000، معدل كوبون 8%، 5 سنوات، عائد مطلوب 10%. احسب السعر.</p>
+        <div class="formula">Coupon = 8% × $1,000 = $80/year</div>
+        <div class="formula">Excel: =PV(10%, 5, 80, 1000) → $924.18 (Discount bond)</div>
+        <p style="margin-top:10px"><strong>Q:</strong> Same bond but required return = 6%. Find the price.<br/>
+        نفس السند لكن العائد المطلوب = 6%. احسب السعر.</p>
+        <div class="formula">Excel: =PV(6%, 5, 80, 1000) → $1,084.25 (Premium bond)</div>
+      </div>
+
+      <!-- Chapter 4 MCQ -->
+      <div class="mcq-box">
+        <h4>❓ Practice Questions | أسئلة تدريبية</h4>
+        <p class="mcq-question">1. A bond with 8% coupon and 10% required return sells at: / سند كوبون 8% وعائد مطلوب 10% يُباع:</p>
+        <ul class="mcq-options">
+          <li>a) Premium / فوق الاسمية</li>
+          <li>b) Par / عند الاسمية</li>
+          <li class="correct">c) Discount ✓ / دون الاسمية</li>
+          <li>d) Cannot determine</li>
+        </ul>
+        <p class="mcq-question">2. Bond prices and yields move: / أسعار السندات والعوائد تتحرك:</p>
+        <ul class="mcq-options">
+          <li>a) In the same direction / بنفس الاتجاه</li>
+          <li class="correct">b) In opposite directions ✓ / بعكس بعضها</li>
+          <li>c) Independently / بشكل مستقل</li>
+          <li>d) Only when inflation changes</li>
+        </ul>
+        <p class="mcq-question">3. The Fisher Effect relates: / أثر فيشر يربط:</p>
+        <ul class="mcq-options">
+          <li>a) APR and EAR</li>
+          <li class="correct">b) Nominal rate, real rate, and inflation ✓ / المعدل الاسمي والحقيقي والتضخم</li>
+          <li>c) Coupon and yield</li>
+          <li>d) FV and PV</li>
+        </ul>
+        <p class="mcq-question">4. Zero-coupon bonds: / السندات عديمة الكوبون:</p>
+        <ul class="mcq-options">
+          <li>a) Pay interest monthly / تدفع فائدة شهرية</li>
+          <li>b) Pay coupon annually / تدفع كوبون سنوي</li>
+          <li class="correct">c) Pay no coupons; only face value at maturity ✓ / لا تدفع كوبون</li>
+          <li>d) Have no face value</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 5: Stocks</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-10</div>
+        <h3>Stock Valuation from Dividends and Growth</h3>
+        <ul class="point-list">
+          <li>Common stock valuation is more complex than bond valuation because stock cash flows are uncertain.<br />تقييم الأسهم العادية أكثر تعقيدًا من تقييم السندات لأن تدفقاتها النقدية غير مؤكدة.</li>
+          <li>Stocks have a perpetual life.<br />والأسهم لها عمر افتراضي دائم تقريبًا.</li>
+          <li>The required return plays a central role in valuation.<br />كما أن العائد المطلوب يلعب دورًا أساسيًا في التقييم.</li>
+          <li>Models covered:
+            <ul class="point-list">
+              <li>Zero Growth Stock<br />السهم ذو النمو الصفري</li>
+              <li>Constant Growth Stock<br />السهم ذو النمو الثابت</li>
+              <li>Nonconstant Growth<br />النمو غير الثابت</li>
+              <li>Two-stage Growth Model<br />نموذج النمو على مرحلتين</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 11-18</div>
+        <h3>Stock Valuation Using Multiples</h3>
+        <ul class="point-list">
+          <li>If dividends are not enough for valuation, the chapter introduces multiples.<br />إذا لم تكن التوزيعات كافية للتقييم، يقدم الفصل أسلوب المضاعفات.</li>
+          <li>Covered multiples:
+            <ul class="point-list">
+              <li>P/E Ratio<br />مضاعف السعر إلى الربحية</li>
+              <li>P/S Ratio<br />مضاعف السعر إلى المبيعات</li>
+              <li>EV/EBITDA Ratio<br />مضاعف قيمة المنشأة إلى EBITDA</li>
+            </ul>
+          </li>
+          <li>The chapter also explains Sustainable Growth Rate (SGR), retention ratio, and ROE.<br />كما يشرح الفصل معدل النمو المستدام ونسبة الاحتجاز والعائد على حقوق الملكية.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-25</div>
+        <h3>Corporate Directors and Voting</h3>
+        <ul class="point-list">
+          <li>Cumulative voting gives minority shareholders more power.<br />التصويت التراكمي يمنح المساهمين الأقلية قوة أكبر.</li>
+          <li>Straight voting favors majority shareholders.<br />أما التصويت المباشر فيميل لمصلحة الأغلبية.</li>
+          <li>Proxy voting allows voting without attending in person.<br />والتصويت بالوكالة يسمح بالتصويت دون الحضور الشخصي.</li>
+          <li>Staggered boards elect directors in groups over time.<br />أما المجالس المتدرجة فتنتخب الأعضاء على دفعات عبر الزمن.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 26-34</div>
+        <h3>How Stock Markets Work</h3>
+        <ul class="point-list">
+          <li>The chapter introduces Tadawul and market participants.<br />الفصل يعرّف بتداول وبالمشاركين في السوق.</li>
+          <li>Order types: market order, limit order, stop order.<br />ومن أنواع الأوامر: أمر السوق، والأمر المحدد، وأمر الإيقاف.</li>
+          <li>Core metrics covered: market capitalization, dividend yield, EPS, and P/E ratio.<br />كما يغطي مؤشرات أساسية مثل القيمة السوقية، وعائد التوزيعات، وربحية السهم، ومضاعف الربحية.</li>
+        </ul>
+      </div>
+      <!-- Chapter 5 Summary -->
+      <div class="summary-box">
+        <h4>📌 Chapter 5 Summary | ملخص الفصل الخامس</h4>
+        <ul class="point-list">
+          <li>Zero growth: P = D / r — النمو الصفري</li>
+          <li>Constant growth (Gordon Model): P = D₁ / (r – g) — نموذج النمو الثابت</li>
+          <li>P/E Ratio = Price per share / EPS — مضاعف الربحية</li>
+          <li>SGR = ROE × Retention ratio — معدل النمو المستدام = العائد على الملكية × نسبة الاحتجاز</li>
+          <li>Stocks have no maturity date (perpetual life) — الأسهم لا تاريخ استحقاق لها</li>
+          <li>Cumulative voting protects minority shareholders — التصويت التراكمي يحمي أقلية المساهمين</li>
+        </ul>
+      </div>
+
+      <!-- Chapter 5 Solved Example -->
+      <div class="example-box">
+        <h4>✏️ Solved Example | مثال محلول</h4>
+        <p><strong>Q:</strong> Stock pays D₁ = $2, required return r = 10%, growth g = 5%. Find the price.<br/>
+        سهم يدفع D₁ = $2، عائد مطلوب 10%، معدل نمو 5%. احسب السعر.</p>
+        <div class="formula">P = D₁ / (r – g) = 2 / (0.10 – 0.05) = $40</div>
+        <p style="margin-top:10px"><strong>Q:</strong> EPS = $4, P/E = 15. Find the stock price.<br/>
+        ربحية السهم $4، مضاعف P/E = 15. احسب سعر السهم.</p>
+        <div class="formula">Price = P/E × EPS = 15 × $4 = $60</div>
+        <p style="margin-top:10px"><strong>Q:</strong> ROE = 20%, payout ratio = 40%. Find SGR.<br/>
+        العائد على الملكية 20%، نسبة التوزيع 40%. احسب معدل النمو المستدام.</p>
+        <div class="formula">Retention ratio = 1 – 0.40 = 0.60</div>
+        <div class="formula">SGR = 20% × 0.60 = 12%</div>
+      </div>
+
+      <!-- Chapter 5 MCQ -->
+      <div class="mcq-box">
+        <h4>❓ Practice Questions | أسئلة تدريبية</h4>
+        <p class="mcq-question">1. D₁ = $3, r = 12%, g = 4%. Stock price = ? / سعر السهم؟</p>
+        <ul class="mcq-options">
+          <li>a) $25.00</li>
+          <li class="correct">b) $37.50 ✓</li>
+          <li>c) $30.00</li>
+          <li>d) $43.75</li>
+        </ul>
+        <p class="mcq-question">2. SGR = ? / معدل النمو المستدام =</p>
+        <ul class="mcq-options">
+          <li>a) ROE × payout ratio</li>
+          <li class="correct">b) ROE × retention ratio ✓ / العائد على الملكية × نسبة الاحتجاز</li>
+          <li>c) EPS / Price</li>
+          <li>d) Dividend / Price</li>
+        </ul>
+        <p class="mcq-question">3. Cumulative voting benefits: / التصويت التراكمي يفيد:</p>
+        <ul class="mcq-options">
+          <li>a) Majority shareholders / المساهمين الأغلبية</li>
+          <li>b) Board members / مجلس الإدارة</li>
+          <li class="correct">c) Minority shareholders ✓ / المساهمين الأقلية</li>
+          <li>d) Creditors / الدائنين</li>
+        </ul>
+        <p class="mcq-question">4. Zero growth stock formula: / معادلة السهم ذو النمو الصفري:</p>
+        <ul class="mcq-options">
+          <li class="correct">a) P = D / r ✓</li>
+          <li>b) P = D₁ / (r – g)</li>
+          <li>c) P = EPS × P/E</li>
+          <li>d) P = FV / (1+r)ⁿ</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quick Reference Tables -->
+    <section class="chapter">
+      <h2>Quick Reference Tables | جداول المقارنة السريعة</h2>
+
+      <div class="section">
+        <h3>Excel Functions Summary | ملخص دوال Excel</h3>
+        <div class="ref-table-wrap"><table class="ref-table">
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Purpose / الهدف</th>
+              <th>Key Arguments</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>=FV()</td><td>Future Value / القيمة المستقبلية</td><td>rate, nper, pmt, pv</td><td>=FV(8%,5,0,-1000)</td></tr>
+            <tr><td>=PV()</td><td>Present Value / القيمة الحالية</td><td>rate, nper, pmt, fv</td><td>=PV(10%,5,0,2000)</td></tr>
+            <tr><td>=RATE()</td><td>Interest Rate / معدل الفائدة</td><td>nper, pmt, pv, fv</td><td>=RATE(5,0,-1000,1469)</td></tr>
+            <tr><td>=NPER()</td><td>Number of Periods / عدد الفترات</td><td>rate, pmt, pv, fv</td><td>=NPER(8%,0,-1000,1469)</td></tr>
+            <tr><td>=PMT()</td><td>Loan Payment / قسط القرض</td><td>rate, nper, pv</td><td>=PMT(0.5%,36,-10000)</td></tr>
+            <tr><td>=NPV()</td><td>Net Present Value / صافي القيمة الحالية</td><td>rate, values</td><td>=NPV(10%,B1:B5)</td></tr>
+            <tr><td>=EFFECT()</td><td>EAR from APR / المعدل الفعلي</td><td>apr, nper</td><td>=EFFECT(12%,12)</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="section">
+        <h3>APR vs EAR | مقارنة APR و EAR</h3>
+        <div class="ref-table-wrap"><table class="ref-table">
+          <thead>
+            <tr><th>Feature</th><th>APR</th><th>EAR</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Full name</td><td>Annual Percentage Rate</td><td>Effective Annual Rate</td></tr>
+            <tr><td>Accounts for compounding?</td><td>❌ No</td><td>✅ Yes</td></tr>
+            <tr><td>Better for comparison?</td><td>❌ No</td><td>✅ Yes</td></tr>
+            <tr><td>Formula</td><td>Stated rate</td><td>(1 + APR/m)ᵐ − 1</td></tr>
+            <tr><td>When m = 1</td><td colspan="2">APR = EAR</td></tr>
+            <tr><td>When m &gt; 1</td><td colspan="2">EAR &gt; APR</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="section">
+        <h3>Bond Types | أنواع السندات</h3>
+        <div class="ref-table-wrap"><table class="ref-table">
+          <thead>
+            <tr><th>Type</th><th>Condition</th><th>Price vs Face Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Premium / ممتاز</td><td>Coupon Rate &gt; Required Return</td><td>Price &gt; Face Value</td></tr>
+            <tr><td>Par / عند التعادل</td><td>Coupon Rate = Required Return</td><td>Price = Face Value</td></tr>
+            <tr><td>Discount / مخصوم</td><td>Coupon Rate &lt; Required Return</td><td>Price &lt; Face Value</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="section">
+        <h3>Stock Valuation Models | نماذج تقييم الأسهم</h3>
+        <div class="ref-table-wrap"><table class="ref-table">
+          <thead>
+            <tr><th>Model</th><th>Condition</th><th>Formula</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Zero Growth / نمو صفري</td><td>g = 0</td><td>P = D / r</td></tr>
+            <tr><td>Constant Growth / نمو ثابت</td><td>g = constant</td><td>P = D₁ / (r – g)</td></tr>
+            <tr><td>Nonconstant / نمو غير ثابت</td><td>g changes</td><td>PV each period then terminal value</td></tr>
+            <tr><td>P/E Multiple</td><td>No dividends / لا توزيعات</td><td>P = P/E × EPS</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- Formulas Sheet -->
+    <section class="formula-sheet">
+      <h2>Formulas Sheet | ورقة المعادلات</h2>
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="label">Future Value | القيمة المستقبلية</div>
+          <div class="f">FV = PV × (1 + r)ᵗ</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Present Value | القيمة الحالية</div>
+          <div class="f">PV = FV / (1 + r)ᵗ</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Perpetuity | الدفعات الدائمة</div>
+          <div class="f">PV = C / r</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">EAR from APR</div>
+          <div class="f">EAR = (1 + APR/m)ᵐ − 1</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Fisher Effect | أثر فيشر</div>
+          <div class="f">(1+n) = (1+r) × (1+i)</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Bond Price | سعر السند</div>
+          <div class="f">P = PV(coupons) + PV(FV)</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Zero Growth Stock | نمو صفري</div>
+          <div class="f">P = D / r</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Constant Growth (Gordon) | نمو ثابت</div>
+          <div class="f">P = D₁ / (r − g)</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">SGR | معدل النمو المستدام</div>
+          <div class="f">SGR = ROE × b</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Retention Ratio | نسبة الاحتجاز</div>
+          <div class="f">b = 1 − payout ratio</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">P/E Ratio | مضاعف الربحية</div>
+          <div class="f">P/E = Price / EPS</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Dividend Yield | عائد التوزيعات</div>
+          <div class="f">DY = D / Price</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FLASH CARDS ── -->
+    <section class="chapter" id="flash-section">
+      <h2>🃏 Flash Cards | بطاقات المراجعة السريعة</h2>
+      <p class="flash-tip">اضغط على أي بطاقة لتظهر الإجابة | Click any card to reveal the answer</p>
+
+      <h3 style="margin-top:16px;color:#6c63ff;">Chapter 2 — Time Value</h3>
+      <div class="flash-grid" id="fc2"></div>
+
+      <h3 style="margin-top:20px;color:#1f8f5f;">Chapter 3 — Annuities & Loans</h3>
+      <div class="flash-grid" id="fc3"></div>
+
+      <h3 style="margin-top:20px;color:#b07d00;">Chapter 4 — Bonds</h3>
+      <div class="flash-grid" id="fc4"></div>
+
+      <h3 style="margin-top:20px;color:#c0392b;">Chapter 5 — Stocks</h3>
+      <div class="flash-grid" id="fc5"></div>
+    </section>
+
+    <!-- ── COMMON MISTAKES ── -->
+    <section class="chapter" id="mistakes-section">
+      <h2>⚠️ Common Mistakes | أخطاء شائعة</h2>
+
+      <h3 style="margin-top:12px;">Chapter 2</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using simple interest instead of compound: FV = PV × (1 + r×t)</div>
+        <div class="m-right">✅ Correct: FV = PV × (1 + r)^t</div>
+        <div class="m-note">الفائدة المركبة تُطبّق الأُس — لا تضرب فقط</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Forgetting the negative sign in Excel: =FV(8%,5,0,1000)</div>
+        <div class="m-right">✅ Correct: =FV(8%,5,0,-1000) — PV must be negative</div>
+        <div class="m-note">في Excel، القيمة الحالية تكون سالبة (مدفوعة)</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 3</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using annual rate directly for monthly payments: =PMT(6%,36,-10000)</div>
+        <div class="m-right">✅ Correct: =PMT(6%/12, 36, -10000) — divide rate by 12</div>
+        <div class="m-note">لما الأقساط شهرية، قسّم المعدل على 12</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Confusing APR with EAR — they are NOT the same when m > 1</div>
+        <div class="m-right">✅ EAR = (1 + APR/m)^m − 1 | Always use EAR for comparisons</div>
+        <div class="m-note">APR ≠ EAR إلا لو التراكم سنوي فقط</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 4</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Thinking high coupon rate = high bond price (always)</div>
+        <div class="m-right">✅ Bond price depends on required return vs coupon rate</div>
+        <div class="m-note">السعر يعتمد على الفرق بين معدل الكوبون والعائد المطلوب</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Forgetting that bond price and yield move INVERSELY</div>
+        <div class="m-right">✅ Price ↑ → Yield ↓ | Price ↓ → Yield ↑</div>
+        <div class="m-note">السعر والعائد يتحركان عكسياً دائماً</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 5</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using D₀ instead of D₁ in Gordon Model: P = D₀/(r-g)</div>
+        <div class="m-right">✅ Correct: P = D₁/(r-g) where D₁ = D₀ × (1+g)</div>
+        <div class="m-note">نموذج Gordon يستخدم التوزيع القادم D₁ وليس الحالي D₀</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using Gordon Model when r ≤ g</div>
+        <div class="m-right">✅ Gordon Model only works when r > g</div>
+        <div class="m-note">النموذج لا يعمل إذا كان معدل النمو أكبر من العائد المطلوب</div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         GLOSSARY SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="glossary-section">
+      <h2>📚 Glossary | المصطلحات</h2>
+      <input class="glossary-search" id="glossary-search" type="text" placeholder="Search term... / ابحث عن مصطلح" oninput="filterGlossary(this.value)">
+      <div class="glossary-grid" id="glossary-grid"></div>
+    </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTERACTIVE PRACTICE SPREADSHEET
+       ═══════════════════════════════════════════════════════ -->
+  <div class="page" id="practice-section">
+
+    <div style="background:linear-gradient(135deg,#23263a,#3d3a80);color:white;border-radius:24px;padding:28px;margin-bottom:18px;">
+      <div style="display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.15);font-weight:800;font-size:.85rem;margin-bottom:10px;">🧮 Interactive Practice</div>
+      <h1 style="margin:0 0 8px;font-size:2rem;">Practice Spreadsheet</h1>
+      <p style="margin:0;opacity:.9;">Type your answer in the yellow box → get instant feedback | اكتب إجابتك في المربع الأصفر واحصل على تقييم فوري</p>
+      <div class="score-display">
+        <div class="score-pill"><span>✅</span><strong id="sc-correct">0</strong> Correct</div>
+        <div class="score-pill"><span>❌</span><strong id="sc-wrong">0</strong> Wrong</div>
+        <div class="score-pill"><span>🎯</span><strong id="sc-pct">0%</strong> Score</div>
+      </div>
+      <div class="timer-bar">
+        <div>⏱️ Timer:</div>
+        <div class="timer-display" id="timer-display">05:00</div>
+        <button class="timer-btn start" onclick="timerStart()">Start</button>
+        <button class="timer-btn stop" onclick="timerStop()">Pause</button>
+        <button class="timer-btn reset" onclick="timerReset()">Reset</button>
+        <select id="timer-select" onchange="timerReset()" style="background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:8px;padding:4px 8px;font-size:.82rem;">
+          <option value="300">5 min</option>
+          <option value="600">10 min</option>
+          <option value="900">15 min</option>
+          <option value="1800">30 min</option>
+        </select>
+      </div>
+    </div>
+
+    <style>
+      .ps-chapter { background:#fff;border:1px solid #e6e8f3;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 8px 24px rgba(70,80,140,.07); }
+      .ps-chapter h2 { margin:0 0 14px;font-size:1.25rem; }
+      .ps-table { width:100%;border-collapse:collapse;font-size:.9rem; }
+      .ps-table th { padding:9px 10px;text-align:left;font-weight:700;font-size:.82rem; }
+      .ps-table td { padding:8px 10px;border-bottom:1px solid #eef0fa;vertical-align:middle; }
+      .ps-table tr:last-child td { border-bottom:none; }
+      .ps-table tr:hover td { background:#f8f9ff; }
+      .ps-num { text-align:center;font-weight:700;color:#6c63ff;width:36px; }
+      .ps-q { font-weight:500;line-height:1.4; }
+      .ps-given { text-align:center;color:#454b8a;font-size:.85rem;width:90px; }
+      .ps-inp { width:110px; }
+      .ps-inp input {
+        width:100%;padding:6px 8px;border:2px solid #f5d87a;border-radius:8px;
+        background:#fffbec;font-size:.9rem;text-align:center;outline:none;
+        font-family:inherit;transition:border .2s;
+      }
+      .ps-inp input:focus { border-color:#6c63ff;background:#fff; }
+      .ps-result { width:180px;text-align:center;font-size:.85rem;font-weight:700; }
+      .res-correct { color:#1f8f5f;background:#d4f5e2;border-radius:8px;padding:6px 10px;display:block; }
+      .res-wrong   { color:#c0392b;background:#ffe5e5;border-radius:8px;padding:6px 10px;display:block;line-height:1.5; }
+      .res-wrong .ans-val { font-size:1.05rem;font-weight:800;display:block;margin-top:2px; }
+      .res-empty   { color:#aaa; }
+      .ps-hint { font-size:.78rem;color:#888;margin-top:3px;font-style:italic; }
+      .tab-nav { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px; }
+      .tab-btn {
+        padding:8px 18px;border-radius:999px;border:2px solid #e6e8f3;
+        background:#fff;font-weight:700;cursor:pointer;font-size:.88rem;
+        transition:all .2s;color:#6c63ff;
+      }
+      .tab-btn.active, .tab-btn:hover { background:#6c63ff;color:#fff;border-color:#6c63ff; }
+      .tab-pane { display:none; }
+      .tab-pane.active { display:block; }
+      .mcq-opts { margin:4px 0 0;display:flex;gap:6px;flex-wrap:wrap; }
+      .mcq-opt {
+        padding:4px 12px;border-radius:999px;border:1.5px solid #dde1f6;
+        cursor:pointer;font-size:.82rem;transition:all .15s;user-select:none;
+      }
+      .mcq-opt:hover { background:#efedff;border-color:#6c63ff; }
+      .mcq-opt.selected { background:#6c63ff;color:#fff;border-color:#6c63ff; }
+      .mcq-opt.correct-opt { background:#d4f5e2;border-color:#1f8f5f;color:#1f8f5f; }
+      .mcq-opt.wrong-opt   { background:#ffe5e5;border-color:#c0392b;color:#c0392b; }
+      @media(max-width:640px){
+        .ps-given,.ps-result,.ps-hint{display:none;}
+        .ps-inp{width:90px;}
+        .ps-table th:nth-child(3),.ps-table th:nth-child(4){display:none;}
+      }
+    
+    /* ── QUIZ MODE ── */
+    .quiz-wrap { max-width:700px; margin:0 auto; }
+    .quiz-progress-bar { height:10px; background:#e0e0e0; border-radius:999px; margin-bottom:20px; overflow:hidden; }
+    .quiz-progress-fill { height:100%; background:linear-gradient(90deg,#6c63ff,#a89cff); border-radius:999px; transition:width .4s; }
+    .quiz-card { background:var(--paper); border-radius:20px; padding:28px; box-shadow:var(--shadow); border:1px solid var(--line); }
+    .quiz-q-num { font-size:.82rem; color:var(--muted); margin-bottom:8px; }
+    .quiz-q-text { font-size:1.1rem; font-weight:600; margin-bottom:20px; line-height:1.5; }
+    .quiz-opts button { display:block; width:100%; text-align:left; padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; cursor:pointer; transition:.2s; }
+    .quiz-opts button:hover { border-color:var(--accent); background:var(--accent-soft); }
+    .quiz-opts button.correct-opt { background:#d4edda; border-color:#1f8f5f; color:#1f8f5f; font-weight:700; }
+    .quiz-opts button.wrong-opt { background:#fde8e8; border-color:#c0392b; color:#c0392b; }
+    .quiz-feedback { margin-top:14px; font-weight:700; font-size:1rem; min-height:24px; }
+    .quiz-actions { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .quiz-btn { padding:11px 24px; border-radius:12px; border:none; font-weight:700; font-size:.95rem; cursor:pointer; }
+    .quiz-btn-primary { background:var(--accent); color:#fff; }
+    .quiz-btn-secondary { background:var(--accent-soft); color:var(--accent); }
+    .quiz-result-card { text-align:center; padding:36px; }
+    .quiz-score-big { font-size:3.5rem; font-weight:900; color:var(--accent); }
+    .quiz-score-label { font-size:1rem; color:var(--muted); margin-bottom:20px; }
+    .leaderboard-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .leaderboard-table th, .leaderboard-table td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.9rem; }
+    .leaderboard-table th { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+    .leaderboard-table tr:first-child td { font-weight:700; }
+    .medal { font-size:1.2rem; }
+
+    /* ── FORMULA CALCULATOR ── */
+    .calc-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .calc-tab { padding:9px 18px; border-radius:999px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-weight:600; font-size:.88rem; cursor:pointer; transition:.2s; }
+    .calc-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .calc-panel { display:none; }
+    .calc-panel.active { display:block; }
+    .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+    @media(max-width:500px){ .calc-grid { grid-template-columns:1fr; } }
+    .calc-field label { display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:4px; }
+    .calc-field input { width:100%; padding:10px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; }
+    .calc-result { background:linear-gradient(135deg,#6c63ff,#a89cff); color:#fff; border-radius:16px; padding:20px; text-align:center; margin-top:4px; }
+    .calc-result-label { font-size:.82rem; opacity:.85; margin-bottom:4px; }
+    .calc-result-value { font-size:2rem; font-weight:900; }
+    .calc-result-formula { font-size:.78rem; opacity:.8; margin-top:6px; font-family:monospace; }
+    .calc-btn { width:100%; padding:12px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:1rem; font-weight:700; cursor:pointer; margin-bottom:14px; }
+    .calc-error { color:#c0392b; font-size:.88rem; text-align:center; padding:8px; }
+
+    /* ── CHEAT SHEET ── */
+    .cs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+    .cs-card { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:18px; }
+    .cs-title { font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .cs-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.9rem; }
+    .cs-row:last-child { border-bottom:none; }
+    .cs-key { font-weight:600; }
+    .cs-val { font-family:monospace; font-size:.82rem; color:var(--accent); }
+    .print-btn { display:inline-block; padding:10px 22px; background:var(--accent); color:#fff; border-radius:10px; font-weight:700; cursor:pointer; border:none; margin-bottom:16px; font-size:.9rem; }
+
+    /* ── GLOSSARY ── */
+    .glossary-search { width:100%; padding:12px 18px; border-radius:12px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:1rem; margin-bottom:16px; }
+    .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .glossary-item { background:var(--paper); border-radius:14px; border:1px solid var(--line); padding:14px 16px; }
+    .glossary-en { font-weight:700; color:var(--ink); font-size:.95rem; }
+    .glossary-ar { direction:rtl; text-align:right; color:#4c5268; font-size:.9rem; margin-top:4px; }
+    .glossary-def { font-size:.82rem; color:var(--muted); margin-top:6px; border-top:1px dashed var(--line); padding-top:6px; }
+    .glossary-item.hidden { display:none; }
+
+    /* ── STUDY PLAN ── */
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+    .plan-day { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:16px; }
+    .plan-day-title { font-weight:700; font-size:.95rem; margin-bottom:10px; color:var(--accent); }
+    .plan-task { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:.88rem; cursor:pointer; }
+    .plan-task input[type=checkbox] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; }
+    .plan-task span.done { text-decoration:line-through; color:var(--muted); }
+    .plan-progress { height:6px; background:#e0e0e0; border-radius:999px; margin-top:10px; overflow:hidden; }
+    .plan-progress-fill { height:100%; background:var(--accent); border-radius:999px; transition:width .3s; }
+
+    /* ── CONFETTI ── */
+    .confetti-piece { position:fixed; width:10px; height:10px; border-radius:2px; pointer-events:none; z-index:9999; animation:confettiFall 1.2s ease-in forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0deg);} 100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
+
+    /* ── DARK MODE additions ── */
+    body.dark .calc-field input,
+    body.dark .glossary-search { background:#2a2d3e; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button { background:#1e2130; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button:hover { background:#2e3150; }
+    body.dark .cs-card, body.dark .glossary-item, body.dark .plan-day { background:#1e2130; border-color:#3a3d54; }
+
+  </style>
+
+    <!-- Tab navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('t2',this)">Ch 2 — Time Value</button>
+      <button class="tab-btn" onclick="showTab('t3',this)">Ch 3 — Annuities</button>
+      <button class="tab-btn" onclick="showTab('t4',this)">Ch 4 — Bonds</button>
+      <button class="tab-btn" onclick="showTab('t5',this)">Ch 5 — Stocks</button>
+      <button class="tab-btn" onclick="showTab('tmcq',this)">MCQ Practice</button>
+    </div>
+
+    <div class="tab-pane active" id="t2">
+      <div class="ps-chapter">
+        <h2 style="color:#6c63ff;">Chapter 2 — Time Value of Money | القيمة الزمنية للنقود</h2>
+        <table class="ps-table">
+          <thead><tr style="background:#efedff;">
+            <th class="ps-num">#</th><th>Question</th><th class="ps-given">Given</th>
+            <th>Your Answer</th><th class="ps-result">Result</th>
+          </tr></thead>
+          <tbody id="tb2"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="t3">
+      <div class="ps-chapter">
+        <h2 style="color:#1f8f5f;">Chapter 3 — Annuities &amp; Loans | الدفعات والقروض</h2>
+        <table class="ps-table">
+          <thead><tr style="background:#d4f5e2;">
+            <th class="ps-num">#</th><th>Question</th><th class="ps-given">Given</th>
+            <th>Your Answer</th><th class="ps-result">Result</th>
+          </tr></thead>
+          <tbody id="tb3"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="t4">
+      <div class="ps-chapter">
+        <h2 style="color:#b07d00;">Chapter 4 — Bonds | السندات</h2>
+        <table class="ps-table">
+          <thead><tr style="background:#fff8d6;">
+            <th class="ps-num">#</th><th>Question</th><th class="ps-given">Given</th>
+            <th>Your Answer</th><th class="ps-result">Result</th>
+          </tr></thead>
+          <tbody id="tb4"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="t5">
+      <div class="ps-chapter">
+        <h2 style="color:#c0392b;">Chapter 5 — Stocks | الأسهم</h2>
+        <table class="ps-table">
+          <thead><tr style="background:#ffe5e5;">
+            <th class="ps-num">#</th><th>Question</th><th class="ps-given">Given</th>
+            <th>Your Answer</th><th class="ps-result">Result</th>
+          </tr></thead>
+          <tbody id="tb5"></tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tmcq">
+      <div class="ps-chapter">
+        <h2 style="color:#6c63ff;">MCQ Practice — All Chapters | أسئلة اختيار من متعدد</h2>
+        <div id="mcq-container"></div>
+      </div>
+    </div>
+
+  </div><!-- end practice-section -->
+
+  <script>
+  const ch2 = [
+    { q:"FV: Invest $1,000 at 8% for 5 years → FV = ?",        given:"PV=1000, r=8%, n=5",  ans:1469.33, tol:1,    hint:"=FV(8%,5,0,-1000)" },
+    { q:"FV: Invest $2,500 at 6% for 10 years → FV = ?",       given:"PV=2500, r=6%, n=10", ans:4477.12, tol:1,    hint:"=FV(6%,10,0,-2500)" },
+    { q:"PV: Want $5,000 in 4 years, r=10% → PV = ?",          given:"FV=5000, r=10%, n=4", ans:3415.07, tol:1,    hint:"=PV(10%,4,0,5000)" },
+    { q:"PV: Want $8,000 in 6 years, r=7% → PV = ?",           given:"FV=8000, r=7%, n=6",  ans:5303.55, tol:1,    hint:"=PV(7%,6,0,8000)" },
+    { q:"RATE: PV=$1,000, FV=$1,331, n=3 → Rate (%) = ?",      given:"PV=1000, FV=1331, n=3",ans:10.00,  tol:0.1,  hint:"=RATE(3,0,-1000,1331)*100" },
+    { q:"RATE: PV=$500, FV=$800, n=5 → Rate (%) = ?",          given:"PV=500, FV=800, n=5",  ans:9.86,   tol:0.1,  hint:"=RATE(5,0,-500,800)*100" },
+    { q:"NPER: PV=$1,000, FV=$2,000, r=10% → n = ?",           given:"PV=1000, FV=2000, r=10%",ans:7.27, tol:0.1,  hint:"=NPER(10%,0,-1000,2000)" },
+    { q:"NPER: PV=$3,000, FV=$6,000, r=8% → n = ?",            given:"PV=3000, FV=6000, r=8%", ans:9.01, tol:0.1,  hint:"=NPER(8%,0,-3000,6000)" },
+  ];
+  const ch3 = [
+    { q:"PMT: Loan=$10,000, r=6%/yr, 3yr monthly → monthly pmt?", given:"PV=10000, r=0.5%/mo, n=36", ans:304.22, tol:1,   hint:"=PMT(0.5%,36,-10000)" },
+    { q:"PMT: Loan=$25,000, r=8%/yr, 5yr monthly → monthly pmt?", given:"PV=25000, r≈0.667%/mo, n=60",ans:506.91, tol:1,   hint:"=PMT(8%/12,60,-25000)" },
+    { q:"PV of Annuity: PMT=$500/yr, r=8%, 5 yrs → PV = ?",       given:"PMT=500, r=8%, n=5",         ans:1996.36,tol:1,   hint:"=PV(8%,5,500)" },
+    { q:"PV of Annuity: PMT=$1,200/yr, r=6%, 8 yrs → PV = ?",     given:"PMT=1200, r=6%, n=8",        ans:7433.45,tol:1,   hint:"=PV(6%,8,1200)" },
+    { q:"FV of Annuity: PMT=$300/mo, r=6%/yr, 3 yrs → FV = ?",    given:"PMT=300, r=0.5%/mo, n=36",  ans:11114.58,tol:1,  hint:"=FV(0.5%,36,-300)" },
+    { q:"EAR: APR=12%, compounded monthly → EAR (%) = ?",          given:"APR=12%, m=12",              ans:12.68,  tol:0.05,hint:"=EFFECT(12%,12)*100" },
+    { q:"EAR: APR=9%, compounded quarterly → EAR (%) = ?",         given:"APR=9%, m=4",                ans:9.31,   tol:0.05,hint:"=EFFECT(9%,4)*100" },
+    { q:"RATE: Loan=$5,000, PMT=$150/mo, 36 months → rate/mo (%)?",given:"PV=5000, PMT=150, n=36",    ans:1.84,   tol:0.05,hint:"=RATE(36,150,-5000)*100" },
+  ];
+  const ch4 = [
+    { q:"Bond Price: FV=$1,000, coupon=8%, 5yr, r=10%",        given:"coupon=8%, r=10%",  ans:924.18,  tol:1,    hint:"=PV(10%,5,80,1000)" },
+    { q:"Bond Price: FV=$1,000, coupon=8%, 5yr, r=6%",         given:"coupon=8%, r=6%",   ans:1084.25, tol:1,    hint:"=PV(6%,5,80,1000)" },
+    { q:"Bond Price: FV=$1,000, coupon=8%, 5yr, r=8%",         given:"coupon=8%, r=8%",   ans:1000.00, tol:1,    hint:"=PV(8%,5,80,1000)" },
+    { q:"Bond Price: FV=$1,000, coupon=10%, 10yr, r=8%",       given:"coupon=10%, r=8%",  ans:1134.20, tol:1,    hint:"=PV(8%,10,100,1000)" },
+    { q:"Bond Price: FV=$5,000, coupon=6%, 3yr, r=9%",         given:"coupon=6%, r=9%",   ans:4621.81, tol:1,    hint:"=PV(9%,3,300,5000)" },
+    { q:"Bond Yield: FV=$1,000, coupon=$80/yr, Price=$950, 5yr → YTM (%)?", given:"Price=950, n=5", ans:9.19, tol:0.1, hint:"=RATE(5,80,-950,1000)*100" },
+    { q:"Bond Yield: FV=$1,000, coupon=$60/yr, Price=$1,050, 4yr → YTM (%)?",given:"Price=1050, n=4",ans:4.56,tol:0.1, hint:"=RATE(4,60,-1050,1000)*100" },
+    { q:"Bond Q1: coupon=8%, required=10% → type P, D, or N?", given:"coupon<required",   ans:"D",     tol:0,    hint:"Coupon 8% < Required 10% → Discount" },
+  ];
+  const ch5 = [
+    { q:"Zero Growth: D=$3, r=12% → Stock Price = ?",          given:"D=3, r=12%",        ans:25.00,   tol:0.1,  hint:"P=D/r=3/0.12" },
+    { q:"Zero Growth: D=$5, r=10% → Stock Price = ?",          given:"D=5, r=10%",        ans:50.00,   tol:0.1,  hint:"P=D/r=5/0.10" },
+    { q:"Constant Growth: D₁=$2, r=10%, g=5%",                 given:"D₁=2, r=10%, g=5%", ans:40.00,   tol:0.1,  hint:"P=2/(0.10−0.05)" },
+    { q:"Constant Growth: D₁=$3, r=12%, g=4%",                 given:"D₁=3, r=12%, g=4%", ans:37.50,   tol:0.1,  hint:"P=3/(0.12−0.04)" },
+    { q:"Constant Growth: D₁=$1.5, r=9%, g=3%",               given:"D₁=1.5, r=9%, g=3%",ans:25.00,   tol:0.1,  hint:"P=1.5/(0.09−0.03)" },
+    { q:"P/E: EPS=$4, P/E=15 → Stock Price = ?",               given:"EPS=4, P/E=15",     ans:60.00,   tol:0.1,  hint:"P=P/E×EPS=15×4" },
+    { q:"SGR: ROE=20%, Payout=40% → SGR (%) = ?",              given:"ROE=20%, b=60%",     ans:12.00,   tol:0.05, hint:"SGR=20%×(1−40%)" },
+    { q:"SGR: ROE=15%, Retention=70% → SGR (%) = ?",           given:"ROE=15%, b=70%",     ans:10.50,   tol:0.05, hint:"SGR=15%×70%" },
+  ];
+  const mcqs = [
+    {ch:"Ch2",q:"Compounded interest is calculated on:",opts:["A) Principal only","B) Principal + accumulated interest","C) Interest only","D) None"],ans:"B"},
+    {ch:"Ch2",q:"Which Excel function finds number of periods?",opts:["A) =FV()","B) =PV()","C) =RATE()","D) =NPER()"],ans:"D"},
+    {ch:"Ch2",q:"Discounting is the _____ of compounding.",opts:["A) Same","B) Reverse","C) Double","D) Sum"],ans:"B"},
+    {ch:"Ch2",q:"FV increases when:",opts:["A) Rate decreases","B) Time decreases","C) Rate increases","D) PV decreases"],ans:"C"},
+    {ch:"Ch3",q:"Ordinary annuity payments are made at:",opts:["A) Beginning","B) End of period","C) Middle","D) Any time"],ans:"B"},
+    {ch:"Ch3",q:"APR=12% monthly → EAR = ?",opts:["A) 12.00%","B) 12.36%","C) 12.68%","D) 13.00%"],ans:"C"},
+    {ch:"Ch3",q:"In Excel, annuity due uses type =",opts:["A) 0","B) 1","C) 2","D) -1"],ans:"B"},
+    {ch:"Ch3",q:"EAR > APR when:",opts:["A) m=1","B) m>1","C) m<1","D) Always"],ans:"B"},
+    {ch:"Ch4",q:"Coupon rate > Required return → bond sells at:",opts:["A) Discount","B) Par","C) Premium","D) Zero"],ans:"C"},
+    {ch:"Ch4",q:"Bond prices and yields move:",opts:["A) Together","B) Inversely","C) Randomly","D) Same"],ans:"B"},
+    {ch:"Ch4",q:"Fisher Effect: (1+n) =",opts:["A) (1+r)+(1+i)","B) (1+r)×(1+i)","C) r+i","D) r×i"],ans:"B"},
+    {ch:"Ch4",q:"Zero-coupon bonds:",opts:["A) Pay monthly","B) Pay annually","C) Only pay face value at maturity","D) No face value"],ans:"C"},
+    {ch:"Ch5",q:"Gordon model requires:",opts:["A) r<g","B) r>g","C) r=g","D) g=0"],ans:"B"},
+    {ch:"Ch5",q:"SGR = ?",opts:["A) ROE×payout","B) ROE×retention","C) EPS/Price","D) D/r"],ans:"B"},
+    {ch:"Ch5",q:"Cumulative voting benefits:",opts:["A) Majority","B) Board","C) Minority shareholders","D) Creditors"],ans:"C"},
+    {ch:"Ch5",q:"Zero growth stock: P =",opts:["A) D₁/(r-g)","B) D/r","C) EPS×P/E","D) FV/(1+r)"],ans:"B"},
+  ];
+
+  let correct=0,wrong=0;
+
+  function buildTable(tbodyId,data){
+    const tb=document.getElementById(tbodyId);
+    data.forEach((item,i)=>{
+      const isText=typeof item.ans==="string";
+      const tr=document.createElement("tr");
+      tr.innerHTML=`
+        <td class="ps-num">${i+1}</td>
+        <td class="ps-q">${item.q}<div class="ps-hint">💡 ${item.hint}</div></td>
+        <td class="ps-given">${item.given}</td>
+        <td class="ps-inp"><input type="text" placeholder="${isText?"P/D/N":"0.00"}"
+          onkeydown="if(event.key==='Enter')checkNum(this,${JSON.stringify(item.ans)},${item.tol},'${tbodyId}_${i}')"/></td>
+        <td class="ps-result" id="${tbodyId}_${i}"><span class="res-empty">—</span></td>`;
+      tb.appendChild(tr);
+    });
+  }
+
+  function checkNum(input,ans,tol,resultId){
+    const cell=document.getElementById(resultId);
+    const prev=cell.dataset.state||"";
+    const raw=input.value.trim().replace(/[$,%]/g,"");
+    if(!raw){cell.innerHTML='<span class="res-empty">—</span>';cell.dataset.state="";return;}
+    let ok=false;
+    if(typeof ans==="string"){ok=raw.toUpperCase()===ans.toUpperCase();}
+    else{const val=parseFloat(raw);ok=!isNaN(val)&&Math.abs(val-ans)<=tol;}
+    cell.innerHTML=ok
+      ?'<span class="res-correct">✅ Correct!</span>'
+      :'<span class="res-wrong">❌ Try Again <button onclick="this.parentElement.innerHTML=\'<b>Answer: '+ans+'</b>\'" style="margin-left:6px;padding:2px 8px;font-size:.75rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show Answer</button></span>';
+    cell.dataset.state=ok?"correct":"wrong";
+    updateScore(ok,prev);
+  }
+
+  function buildMCQ(){
+    const container=document.getElementById("mcq-container");
+    let currentCh="";
+    mcqs.forEach((item,i)=>{
+      if(item.ch!==currentCh){currentCh=item.ch;const label=document.createElement("h3");label.textContent="── "+item.ch+" ──";label.style.cssText="color:#6c63ff;margin:20px 0 8px;font-size:.95rem;";container.appendChild(label);}
+      const div=document.createElement("div");
+      div.style.cssText="margin-bottom:16px;padding:12px;background:#fafaff;border-radius:12px;border:1px solid #e6e8f3;";
+      const qDiv=document.createElement("div");qDiv.style.cssText="font-weight:600;margin-bottom:8px;";qDiv.textContent=(i+1)+". "+item.q;div.appendChild(qDiv);
+      const optsDiv=document.createElement("div");optsDiv.className="mcq-opts";
+      item.opts.forEach(opt=>{
+        const letter=opt.charAt(0);
+        const btn=document.createElement("button");btn.className="mcq-opt";btn.textContent=opt;btn.dataset.letter=letter;
+        btn.onclick=()=>selectMCQ(btn,optsDiv,item.ans,i);optsDiv.appendChild(btn);
+      });
+      div.appendChild(optsDiv);
+      const fb=document.createElement("div");fb.id="mcq-fb-"+i;fb.style.cssText="margin-top:6px;font-size:.82rem;";div.appendChild(fb);
+      container.appendChild(div);
+    });
+  }
+
+  function selectMCQ(btn,optsDiv,ans,idx){
+    const fb=document.getElementById("mcq-fb-"+idx);
+    const prev=optsDiv.dataset.state||"";
+    const ok=btn.dataset.letter===ans;
+    optsDiv.querySelectorAll(".mcq-opt").forEach(b=>b.classList.remove("selected","correct-opt","wrong-opt"));
+    btn.classList.add(ok?"correct-opt":"wrong-opt");
+    optsDiv.dataset.state=ok?"correct":"wrong";
+    fb.innerHTML=ok?'<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>':'<span style="color:#c0392b;font-weight:700;">❌ Correct: '+ans+'</span>';
+    updateScore(ok,prev);
+  }
+
+  function showTab(id,btn){
+    document.querySelectorAll(".tab-pane").forEach(p=>p.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    btn.classList.add("active");
+  }
+
+  buildTable("tb2",ch2);
+  buildTable("tb3",ch3);
+  buildTable("tb4",ch4);
+  buildTable("tb5",ch5);
+  buildMCQ();
+
+  // ── DARK MODE ──────────────────────────────────
+  function printCheatSheet(){
+    const cs = document.getElementById("cheatsheet-section");
+    const win = window.open('','_blank');
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>FIN 200 Cheat Sheet</title><style>
+      body{font-family:"Segoe UI",sans-serif;margin:20px;color:#23263a;}
+      h2{text-align:center;color:#6c63ff;margin-bottom:20px;font-size:1.4rem;}
+      .cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+      .cs-card{border:1.5px solid #dde1f6;border-radius:12px;padding:14px;}
+      .cs-title{font-weight:800;color:#6c63ff;font-size:.88rem;margin-bottom:10px;border-bottom:1px solid #eef;padding-bottom:6px;}
+      .cs-row{display:flex;justify-content:space-between;font-size:.82rem;padding:4px 0;border-bottom:1px dashed #eee;}
+      .cs-key{font-weight:600;color:#23263a;}
+      .cs-val{color:#4c5268;font-family:monospace;}
+      @media print{body{margin:10px;}}
+    </style></head><body>`);
+    win.document.write('<h2>📄 FIN 200 Formula Sheet | ورقة المعادلات</h2>');
+    win.document.write(cs.querySelector('.cs-grid').outerHTML);
+    win.document.write('</body></html>');
+    win.document.close();
+    win.focus();
+    setTimeout(()=>win.print(),300);
+  }
+
+  function toggleDark(){
+    document.body.classList.toggle("dark");
+    const isDark=document.body.classList.contains("dark");
+    document.getElementById("dark-btn").textContent=isDark?"☀️ Light Mode":"🌙 Dark Mode";
+    localStorage.setItem("fin200-dark",isDark?"1":"0");
+  }
+  if(localStorage.getItem("fin200-dark")==="1"){document.body.classList.add("dark");document.getElementById("dark-btn").textContent="☀️ Light Mode";}
+
+  // ── SCROLL NAV ─────────────────────────────────
+  function scrollToId(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+
+  // ── TIMER ──────────────────────────────────────
+  let timerInterval=null,timerSeconds=300;
+  function timerStart(){
+    if(timerInterval)return;
+    timerInterval=setInterval(()=>{
+      timerSeconds--;
+      const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+      const d=document.getElementById("timer-display");
+      d.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+      d.className="timer-display"+(timerSeconds<=60?" danger":timerSeconds<=120?" warning":"");
+      if(timerSeconds<=0){clearInterval(timerInterval);timerInterval=null;d.textContent="⏰ Time!";}
+    },1000);
+  }
+  function timerStop(){clearInterval(timerInterval);timerInterval=null;}
+  function timerReset(){
+    timerStop();
+    timerSeconds=parseInt(document.getElementById("timer-select").value);
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    document.getElementById("timer-display").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+    document.getElementById("timer-display").className="timer-display";
+  }
+
+  // ── FIREBASE ───────────────────────────────────
+  firebase.initializeApp({
+    apiKey:"AIzaSyCzQsIL_l95pIfwKVt4BQmbP84naNV9TNo",
+    authDomain:"fin200-a1da7.firebaseapp.com",
+    projectId:"fin200-a1da7",
+    storageBucket:"fin200-a1da7.firebasestorage.app",
+    messagingSenderId:"285692194241",
+    appId:"1:285692194241:web:97391e51b39c17484d5340"
+  });
+  const auth=firebase.auth();
+  const db=firebase.firestore();
+  let currentUser=null;
+
+  auth.onAuthStateChanged(async user=>{
+    if(user){
+      currentUser=user;
+      document.getElementById("auth-overlay").style.display="none";
+      const name=user.displayName||user.email.split("@")[0];
+      document.getElementById("user-name").textContent=name;
+      document.getElementById("user-avatar").textContent=name.charAt(0).toUpperCase();
+      document.getElementById("user-info").style.display="flex";
+      await loadUserData();
+    } else {
+      currentUser=null;
+      document.getElementById("auth-overlay").style.display="flex";
+      document.getElementById("user-info").style.display="none";
+    }
+  });
+
+  function authTab(tab){
+    const isLogin=tab==="login";
+    document.getElementById("tab-login").style.cssText=isLogin?"background:#6c63ff;color:#fff;border:none;":"background:#fff;color:#6c63ff;border:2px solid #e6e8f3;";
+    document.getElementById("tab-register").style.cssText=!isLogin?"background:#6c63ff;color:#fff;border:none;":"background:#fff;color:#6c63ff;border:2px solid #e6e8f3;";
+    document.getElementById("auth-name-wrap").style.display=isLogin?"none":"block";
+    document.getElementById("auth-submit").textContent=isLogin?"دخول":"إنشاء حساب";
+    document.getElementById("auth-submit").dataset.mode=tab;
+    document.getElementById("auth-err").textContent="";
+  }
+
+  async function authSubmit(){
+    const mode=document.getElementById("auth-submit").dataset.mode||"login";
+    const email=document.getElementById("auth-email").value.trim();
+    const pass=document.getElementById("auth-pass").value;
+    const name=document.getElementById("auth-name").value.trim();
+    const err=document.getElementById("auth-err");
+    if(!email||!pass){err.textContent="الرجاء تعبئة جميع الحقول";return;}
+    if(mode==="register"&&!name){err.textContent="الرجاء كتابة اسمك";return;}
+    document.getElementById("auth-submit").textContent="...";
+    try{
+      if(mode==="login"){
+        await auth.signInWithEmailAndPassword(email,pass);
+      } else {
+        const cred=await auth.createUserWithEmailAndPassword(email,pass);
+        await cred.user.updateProfile({displayName:name});
+      }
+      err.textContent="";
+    } catch(e){
+      err.textContent=e.message.replace("Firebase: ","").replace(/ \(auth\/.*\)/,"");
+      document.getElementById("auth-submit").textContent=mode==="login"?"دخول":"إنشاء حساب";
+    }
+  }
+
+  function doSignOut(){auth.signOut();}
+
+  function skipAuth(){
+    document.getElementById("auth-overlay").style.display="none";
+    document.getElementById("user-info").style.display="flex";
+    document.getElementById("user-name").textContent="Guest";
+    document.getElementById("user-avatar").textContent="👤";
+  }
+
+  async function saveToCloud(key,value){
+    if(!currentUser)return;
+    try{await db.collection("users").doc(currentUser.uid).set({[key]:value},{merge:true});}catch(e){}
+  }
+
+  async function loadUserData(){
+    if(!currentUser)return;
+    try{
+      const doc=await db.collection("users").doc(currentUser.uid).get();
+      if(doc.exists){
+        const data=doc.data();
+        if(data.score){
+          correct=data.score.correct||0;wrong=data.score.wrong||0;
+          const t=correct+wrong;
+          document.getElementById("sc-correct").textContent=correct;
+          document.getElementById("sc-wrong").textContent=wrong;
+          document.getElementById("sc-pct").textContent=t?Math.round(correct/t*100)+"%":"0%";
+        }
+        if(data.plan)localStorage.setItem("fin200-plan",JSON.stringify(data.plan));
+        if(data.leaderboard)localStorage.setItem("fin200-lb",JSON.stringify(data.leaderboard));
+        renderLeaderboard();
+      }
+    }catch(e){}
+  }
+
+  // ── SCORE PERSISTENCE ──────────────────────────
+  function updateScore(wasCorrect,prev){
+    if(prev==="correct")correct--;else if(prev==="wrong")wrong--;
+    if(wasCorrect)correct++;else wrong++;
+    const total=correct+wrong;
+    document.getElementById("sc-correct").textContent=correct;
+    document.getElementById("sc-wrong").textContent=wrong;
+    document.getElementById("sc-pct").textContent=total?Math.round(correct/total*100)+"%":"0%";
+    saveToCloud("score",{correct,wrong});
+  }
+
+  // ── FLASH CARDS ────────────────────────────────
+  const flashData = {
+    fc2:[
+      {q:"Formula for Future Value?",a:"FV = PV × (1+r)^t",h:"=FV(rate,nper,0,-pv)"},
+      {q:"Formula for Present Value?",a:"PV = FV / (1+r)^t",h:"=PV(rate,nper,0,fv)"},
+      {q:"How to find interest Rate?",a:"=RATE(nper, 0, -pv, fv)",h:"Result × 100 = %"},
+      {q:"How to find Number of Periods?",a:"=NPER(rate, 0, -pv, fv)",h:"Use in years"},
+      {q:"Simple vs Compound Interest?",a:"Simple: PV×r×t | Compound: PV×(1+r)^t",h:"Course uses compound"},
+      {q:"What happens to FV if rate increases?",a:"FV increases ↑",h:"FV = PV×(1+r)^t"},
+    ],
+    fc3:[
+      {q:"PMT formula in Excel?",a:"=PMT(rate, nper, -pv)",h:"Monthly: rate=APR/12"},
+      {q:"PV of Annuity formula?",a:"=PV(rate, nper, pmt)",h:"Regular equal payments"},
+      {q:"Ordinary vs Annuity Due?",a:"Ordinary: end | Due: beginning",h:"Excel type: 0 or 1"},
+      {q:"EAR formula?",a:"(1 + APR/m)^m − 1",h:"=EFFECT(apr, m)"},
+      {q:"APR vs EAR — which is bigger?",a:"EAR > APR when m > 1",h:"More compounding = higher EAR"},
+      {q:"Amortization: each payment =?",a:"Interest portion + Principal portion",h:"Ratio changes over time"},
+    ],
+    fc4:[
+      {q:"Bond Price formula?",a:"PV of coupons + PV of face value",h:"=PV(req_return, years, coupon, FV)"},
+      {q:"Premium bond condition?",a:"Coupon Rate > Required Return",h:"Price > Face Value"},
+      {q:"Discount bond condition?",a:"Coupon Rate < Required Return",h:"Price < Face Value"},
+      {q:"Fisher Effect formula?",a:"(1+nominal) = (1+real)×(1+inflation)",h:"real ≈ nominal − inflation"},
+      {q:"Bond price & yield relationship?",a:"They move INVERSELY ↕",h:"Price↑ = Yield↓"},
+      {q:"Zero-coupon bond pays what?",a:"Only Face Value at maturity",h:"No periodic coupons"},
+    ],
+    fc5:[
+      {q:"Zero Growth stock price?",a:"P = D / r",h:"Constant dividend forever"},
+      {q:"Constant Growth (Gordon) formula?",a:"P = D₁ / (r − g)",h:"D₁ = D₀ × (1+g)"},
+      {q:"Gordon Model requirement?",a:"r must be > g",h:"Otherwise undefined"},
+      {q:"P/E Valuation formula?",a:"Price = P/E × EPS",h:"Industry multiple"},
+      {q:"SGR formula?",a:"SGR = ROE × retention ratio",h:"b = 1 − payout ratio"},
+      {q:"Cumulative vs Straight voting?",a:"Cumulative = minority protected | Straight = majority wins",h:"FIN200 exam topic"},
+    ]
+  };
+
+  function buildFlashCards(){
+    for(const[id,cards] of Object.entries(flashData)){
+      const grid=document.getElementById(id);
+      if(!grid)continue;
+      cards.forEach(card=>{
+        const div=document.createElement("div");div.className="flash-card";
+        div.innerHTML=`<div class="flash-inner"><div class="flash-front"><div class="f-label">Question</div><div class="f-q">${card.q}</div></div><div class="flash-back"><div class="f-ans">${card.a}</div><div class="f-hint">${card.h}</div></div></div>`;
+        div.onclick=()=>div.classList.toggle("flipped");
+        grid.appendChild(div);
+      });
+    }
+  }
+  buildFlashCards();
+
+  // ── EXAM QUESTIONS ─────────────────────────────
+  const examQs=[
+    {year:"Exam Style",diff:"medium",q:"You deposit OMR 5,000 in a bank offering 6.5% compounded annually. How much will you have after 7 years? (Round to 2 decimal places.)",ans:7712.82,tol:2,hint:"=FV(6.5%,7,0,-5000)"},
+    {year:"Exam Style",diff:"hard",q:"A bond has face value $1,000, coupon rate 9%, 8 years to maturity, required return 11%. What is the bond price? (Round to 2 decimal places.)",ans:895.78,tol:2,hint:"=PV(11%,8,90,1000)"},
+    {year:"Exam Style",diff:"medium",q:"A stock pays D₁=$2.50, required return=13%, growth=5%. What is the stock price? (Round to 2 decimal places.)",ans:31.25,tol:0.5,hint:"P=D₁/(r-g)=2.50/(0.13-0.05)"},
+    {year:"Exam Style",diff:"easy",q:"Loan=$8,000, APR=9%, monthly payments, 2 years. What is the monthly payment? (Round to 2 decimal places.)",ans:365.84,tol:1,hint:"=PMT(0.75%,24,-8000)"},
+    {year:"Exam Style",diff:"hard",q:"APR=15% compounded daily (365 days). What is the EAR? Express as %, round to 4 decimal places.",ans:16.1798,tol:0.05,hint:"=EFFECT(15%,365)*100"},
+    {year:"Exam Style",diff:"medium",q:"ROE=25%, payout ratio=60%. What is the Sustainable Growth Rate (SGR) in %? Round to 2 decimal places.",ans:10.00,tol:0.1,hint:"SGR=25%×(1-60%)=25%×40%"},
+  ];
+
+  function buildExamQs(){
+    const c=document.getElementById("exam-questions-container");
+    examQs.forEach((q,i)=>{
+      const diff=q.diff==="easy"?"🟢 Easy":q.diff==="hard"?"🔴 Hard":"🟡 Medium";
+      const div=document.createElement("div");div.className="exam-q";
+      div.innerHTML=`
+        <div class="eq-header">
+          <span class="eq-year">${q.year}</span>
+          <span class="diff-badge diff-${q.diff}">${diff}</span>
+        </div>
+        <div class="eq-text">${q.text||q.q}</div>
+        <div class="eq-inp">
+          <input class="eq-input" type="text" placeholder="Your answer" id="eq-inp-${i}"
+            onkeydown="if(event.key==='Enter')checkEQ(${i},${JSON.stringify(q.ans)},${q.tol})"/>
+          <button class="eq-check" onclick="checkEQ(${i},${JSON.stringify(q.ans)},${q.tol})">Check ✓</button>
+          <div class="eq-result" id="eq-res-${i}"></div>
+        </div>
+        <div style="font-size:.78rem;color:#888;margin-top:6px;font-style:italic;">💡 ${q.hint}</div>
+      `;
+      c.appendChild(div);
+    });
+  }
+
+  function showEQAnswer(idx,ans){
+    document.getElementById("eq-res-"+idx).innerHTML='<b style="color:#6c63ff">Answer: '+ans+'</b>';
+  }
+  function checkEQ(idx,ans,tol){
+    const raw=document.getElementById("eq-inp-"+idx).value.trim().replace(/[$,%OMR ]/g,"");
+    const res=document.getElementById("eq-res-"+idx);
+    if(!raw){res.textContent="";return;}
+    const val=parseFloat(raw);
+    const ok=typeof ans==="string"?raw.toUpperCase()===ans.toUpperCase():(!isNaN(val)&&Math.abs(val-ans)<=tol);
+    if(ok){
+      res.innerHTML='<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>';
+    } else {
+      res.innerHTML='<span style="color:#c0392b;font-weight:700;">❌ Try Again </span><button onclick="showEQAnswer('+idx+','+JSON.stringify(ans)+')" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show Answer</button>';
+    }
+  }
+  window.addEventListener('load', function(){ buildExamQs(); });
+
+  // ═══════════════════════════════════════════════════════════════
+  // CONFETTI
+  // ═══════════════════════════════════════════════════════════════
+  function confetti(x,y){
+    const colors=["#6c63ff","#ffd700","#ff6b6b","#4ecdc4","#45b7d1","#96ceb4"];
+    for(let i=0;i<30;i++){
+      const p=document.createElement("div");p.className="confetti-piece";
+      p.style.left=(x||50)+"%";p.style.top=(y||30)+"%";
+      p.style.background=colors[i%colors.length];
+      p.style.transform=`translate(${(Math.random()-0.5)*300}px,${(Math.random()-0.5)*200}px)`;
+      document.body.appendChild(p);setTimeout(()=>p.remove(),1400);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // QUIZ MODE
+  // ═══════════════════════════════════════════════════════════════
+  const allQuizQ=[
+    // Chapter 2
+    {ch:"Ch2",q:"FV of $1,000 at 8% for 5 years?",opts:["$1,400","$1,469.33","$1,500","$1,350"],ans:1},
+    {ch:"Ch2",q:"PV of $2,000 in 6 years at 10%?",opts:["$1,000","$1,200","$1,128.95","$1,350"],ans:2},
+    {ch:"Ch2",q:"Which Excel function finds the number of periods?",opts:["=FV()","=PV()","=RATE()","=NPER()"],ans:3},
+    {ch:"Ch2",q:"Simple interest vs compound: which grows faster?",opts:["Simple","Compound","Same","Depends on rate"],ans:1},
+    {ch:"Ch2",q:"If rate increases, what happens to FV?",opts:["FV decreases","FV stays same","FV increases","Cannot determine"],ans:2},
+    // Chapter 3
+    {ch:"Ch3",q:"Payments at the END of each period are called?",opts:["Annuity Due","Ordinary Annuity","Perpetuity","Lump Sum"],ans:1},
+    {ch:"Ch3",q:"APR=12% monthly compounding. EAR=?",opts:["12.00%","12.68%","12.36%","13.00%"],ans:1},
+    {ch:"Ch3",q:"In Excel, annuity DUE uses type=?",opts:["0","1","2","-1"],ans:1},
+    {ch:"Ch3",q:"Which function calculates loan payment?",opts:["=PV()","=RATE()","=PMT()","=NPER()"],ans:2},
+    {ch:"Ch3",q:"EAR is always __ APR when compounding > once/year?",opts:["Less than","Equal to","Greater than","Half of"],ans:2},
+    // Chapter 4
+    {ch:"Ch4",q:"Bond with 8% coupon, 10% required return sells at?",opts:["Premium","Par","Discount","Cannot tell"],ans:2},
+    {ch:"Ch4",q:"Bond prices and yields move?",opts:["Same direction","Opposite directions","Independently","Only with inflation"],ans:1},
+    {ch:"Ch4",q:"Fisher Effect formula?",opts:["n=r+π","(1+n)=(1+r)(1+π)","n=r×π","n=r-π"],ans:1},
+    {ch:"Ch4",q:"Zero-coupon bond pays?",opts:["Only coupons","Coupons + face","Only face value at maturity","Monthly dividends"],ans:2},
+    {ch:"Ch4",q:"Which is investment-grade? ",opts:["BB","CCC","AAA","D"],ans:2},
+    // Chapter 5
+    {ch:"Ch5",q:"Gordon Model stock price formula?",opts:["P=D/r","P=D₁/(r-g)","P=EPS×P/E","P=ROE×b"],ans:1},
+    {ch:"Ch5",q:"SGR = ROE × ?",opts:["Payout ratio","Retention ratio","Dividend yield","P/E ratio"],ans:1},
+    {ch:"Ch5",q:"Gordon model requires?",opts:["r=g","r<g","r>g","g=0"],ans:2},
+    {ch:"Ch5",q:"Cumulative voting helps?",opts:["Majority shareholders","Minority shareholders","The board only","Bondholders"],ans:1},
+    {ch:"Ch5",q:"Zero-growth stock: D=$4, r=8%. Price=?",opts:["$32","$50","$40","$48"],ans:1},
+  ];
+
+  let quizQs=[], quizIdx=0, quizCorrect=0, quizWrong=0, quizStartTime=0, quizTimerInt=null, quizAnswered=false;
+
+  function showQuizStart(){
+    document.getElementById("quiz-start-screen").style.display="";
+    document.getElementById("quiz-game-screen").style.display="none";
+    document.getElementById("quiz-result-screen").style.display="none";
+    clearInterval(quizTimerInt);
+    renderLeaderboard();
+  }
+
+  function startQuiz(){
+    const filter=document.querySelector("input[name=quiz-filter]:checked").value;
+    const count=parseInt(document.getElementById("quiz-count").value);
+    let pool=filter==="all"?allQuizQ:allQuizQ.filter(q=>q.ch.toLowerCase()===filter);
+    pool=[...pool].sort(()=>Math.random()-0.5).slice(0,Math.min(count,pool.length));
+    quizQs=pool; quizIdx=0; quizCorrect=0; quizWrong=0; quizAnswered=false;
+    quizStartTime=Date.now();
+    document.getElementById("quiz-start-screen").style.display="none";
+    document.getElementById("quiz-game-screen").style.display="";
+    document.getElementById("quiz-result-screen").style.display="none";
+    clearInterval(quizTimerInt);
+    quizTimerInt=setInterval(()=>{
+      const s=Math.floor((Date.now()-quizStartTime)/1000);
+      document.getElementById("quiz-timer-display").textContent="⏱ "+Math.floor(s/60)+":"+(s%60<10?"0":"")+s%60;
+    },1000);
+    renderQuizQ();
+  }
+
+  function renderQuizQ(){
+    if(quizIdx>=quizQs.length){endQuiz();return;}
+    const q=quizQs[quizIdx]; quizAnswered=false;
+    const pct=Math.round(quizIdx/quizQs.length*100);
+    document.getElementById("qpf").style.width=pct+"%";
+    document.getElementById("q-counter").textContent="Question "+(quizIdx+1)+" / "+quizQs.length;
+    document.getElementById("quiz-chapter-tag").textContent=q.ch;
+    document.getElementById("quiz-q-text").textContent=q.q;
+    document.getElementById("quiz-feedback").innerHTML="";
+    document.getElementById("quiz-next-btn").style.display="none";
+    const opts=document.getElementById("quiz-opts"); opts.innerHTML="";
+    q.opts.forEach((o,i)=>{
+      const btn=document.createElement("button");btn.textContent=o;
+      btn.onclick=()=>answerQuiz(i,q.ans,btn);
+      opts.appendChild(btn);
+    });
+  }
+
+  function answerQuiz(chosen,correct,btn){
+    if(quizAnswered)return; quizAnswered=true;
+    const opts=document.querySelectorAll(".quiz-opts button");
+    opts[correct].classList.add("correct-opt");
+    if(chosen!==correct){btn.classList.add("wrong-opt");quizWrong++;}
+    else{quizCorrect++;confetti(50,40);}
+    document.getElementById("quiz-feedback").innerHTML=
+      chosen===correct?'<span style="color:#1f8f5f">✅ Correct!</span>':'<span style="color:#c0392b">❌ Wrong — see green for correct answer</span>';
+    document.getElementById("quiz-next-btn").style.display="";
+    quizIdx++;
+  }
+
+  function nextQuizQ(){renderQuizQ();}
+
+  function endQuiz(){
+    clearInterval(quizTimerInt);
+    const elapsed=Math.floor((Date.now()-quizStartTime)/1000);
+    const total=quizCorrect+quizWrong;
+    const pct=total?Math.round(quizCorrect/total*100):0;
+    document.getElementById("quiz-game-screen").style.display="none";
+    document.getElementById("quiz-result-screen").style.display="";
+    document.getElementById("quiz-final-score").textContent=pct+"%";
+    document.getElementById("quiz-final-label").textContent=quizCorrect+" correct out of "+total+" questions";
+    document.getElementById("res-correct").textContent=quizCorrect;
+    document.getElementById("res-wrong").textContent=quizWrong;
+    const m=Math.floor(elapsed/60),s=elapsed%60;
+    document.getElementById("res-time").textContent=m+":"+(s<10?"0":"")+s;
+    document.getElementById("quiz-confetti-msg").textContent=pct>=90?"🏆 Outstanding!":pct>=70?"🎉 Great job!":pct>=50?"💪 Keep practicing!":"📚 Study more!";
+    if(pct>=90)confetti(50,30);
+    saveLeaderboard(pct,elapsed);
+  }
+
+  function saveLeaderboard(pct,elapsed){
+    const lb=JSON.parse(localStorage.getItem("fin200-lb")||"[]");
+    lb.push({pct,elapsed,date:new Date().toLocaleDateString()});
+    lb.sort((a,b)=>b.pct-a.pct||(a.elapsed-b.elapsed));
+    lb.splice(10);
+    localStorage.setItem("fin200-lb",JSON.stringify(lb));
+    saveToCloud("leaderboard",lb);
+  }
+
+  function renderLeaderboard(){
+    const lb=JSON.parse(localStorage.getItem("fin200-lb")||"[]");
+    const tbody=document.getElementById("lb-body"); tbody.innerHTML="";
+    if(!lb.length){tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">No scores yet — play a quiz!</td></tr>';return;}
+    lb.forEach((r,i)=>{
+      const medals=["🥇","🥈","🥉"];
+      const tr=document.createElement("tr");
+      tr.innerHTML=`<td>${medals[i]||i+1}</td><td>${r.pct}%</td><td>${Math.floor(r.elapsed/60)}:${(r.elapsed%60<10?"0":"")+r.elapsed%60}</td><td>${r.date}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  window.addEventListener('load', function(){ renderLeaderboard(); });
+
+  // ═══════════════════════════════════════════════════════════════
+  // FORMULA CALCULATOR
+  // ═══════════════════════════════════════════════════════════════
+  function switchCalc(id,btn){
+    document.querySelectorAll(".calc-panel").forEach(p=>p.classList.remove("active"));
+    document.querySelectorAll(".calc-tab").forEach(b=>b.classList.remove("active"));
+    document.getElementById("calc-"+id).classList.add("active");
+    btn.classList.add("active");
+  }
+  function showCalcResult(id,label,val,formula){
+    document.getElementById(id+"-result").style.display="";
+    document.getElementById(id+"-val").textContent=val;
+    document.getElementById(id+"-formula").textContent=formula;
+    document.getElementById(id+"-err").textContent="";
+  }
+  function showCalcErr(id,msg){
+    document.getElementById(id+"-result").style.display="none";
+    document.getElementById(id+"-err").textContent=msg;
+  }
+  function g(id){return parseFloat(document.getElementById(id).value);}
+
+  function calcFV(){
+    const r=g("fv-rate")/100,n=g("fv-nper"),pv=g("fv-pv"),pmt=g("fv-pmt")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(pv)){showCalcErr("fv","Please fill Rate, NPER, and PV.");return;}
+    let fv;
+    if(r===0)fv=pv+pmt*n;
+    else fv=pv*Math.pow(1+r,n)+pmt*((Math.pow(1+r,n)-1)/r);
+    showCalcResult("fv","FV","$"+fv.toFixed(2),"=FV("+g("fv-rate")+"%,"+n+","+(pmt?-pmt:0)+","+-pv+")");
+  }
+  function calcPV(){
+    const r=g("pv-rate")/100,n=g("pv-nper"),fv=g("pv-fv"),pmt=g("pv-pmt")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(fv)){showCalcErr("pv","Please fill Rate, NPER, and FV.");return;}
+    let pv;
+    if(r===0)pv=fv+pmt*n;
+    else pv=fv/Math.pow(1+r,n)+pmt*((1-Math.pow(1+r,-n))/r);
+    showCalcResult("pv","PV","$"+pv.toFixed(2),"=PV("+g("pv-rate")+"%,"+n+","+(pmt?-pmt:0)+","+fv+")");
+  }
+  function calcPMT(){
+    const r=g("pmt-rate")/100,n=g("pmt-nper"),pv=g("pmt-pv"),fv=g("pmt-fv")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(pv)){showCalcErr("pmt","Please fill Rate, NPER, and PV.");return;}
+    let pmt;
+    if(r===0)pmt=-(pv+fv)/n;
+    else pmt=-(pv*Math.pow(1+r,n)+fv)*r/((Math.pow(1+r,n)-1));
+    showCalcResult("pmt","PMT","$"+Math.abs(pmt).toFixed(2)+" / period","=PMT("+g("pmt-rate")+"%,"+n+","+-pv+","+(fv||0)+")");
+  }
+  function calcRATE(){
+    const n=g("rate-nper"),pv=g("rate-pv"),fv=g("rate-fv"),pmt=g("rate-pmt")||0;
+    if(isNaN(n)||isNaN(pv)||isNaN(fv)){showCalcErr("rate","Please fill NPER, PV, and FV.");return;}
+    // Newton-Raphson
+    let r=0.1;
+    for(let i=0;i<100;i++){
+      const er=Math.pow(1+r,n);
+      const f=pv*er+pmt*(er-1)/r+fv;
+      const df=pv*n*Math.pow(1+r,n-1)+pmt*((n*r*Math.pow(1+r,n-1)*(r)-(er-1))/(r*r));
+      const nr=r-f/df; if(Math.abs(nr-r)<1e-10){r=nr;break;} r=nr;
+    }
+    showCalcResult("rate","RATE",(r*100).toFixed(4)+"%","=RATE("+n+",0,"+-pv+","+fv+") per period");
+  }
+  function calcNPER(){
+    const r=g("nper-rate")/100,pv=g("nper-pv"),fv=g("nper-fv"),pmt=g("nper-pmt")||0;
+    if(isNaN(r)||isNaN(pv)||isNaN(fv)){showCalcErr("nper","Please fill Rate, PV, and FV.");return;}
+    let n;
+    if(r===0)n=-(pv+fv)/(pmt||1);
+    else n=Math.log(fv/pv)/Math.log(1+r);
+    showCalcResult("nper","NPER",n.toFixed(4)+" periods","=NPER("+g("nper-rate")+"%,0,"+-pv+","+fv+")");
+  }
+  function calcEAR(){
+    const apr=g("ear-apr")/100,m=g("ear-m");
+    if(isNaN(apr)||isNaN(m)||m<=0){showCalcErr("ear","Please fill APR and compounding periods.");return;}
+    const ear=(Math.pow(1+apr/m,m)-1)*100;
+    showCalcResult("ear","EAR",ear.toFixed(4)+"%","=EFFECT("+g("ear-apr")+"%,"+m+")");
+  }
+  function calcBond(){
+    const fv=g("bond-fv"),cr=g("bond-cr")/100,yr=g("bond-yr"),rr=g("bond-rr")/100;
+    if(isNaN(fv)||isNaN(cr)||isNaN(yr)||isNaN(rr)){showCalcErr("bond","Please fill all fields.");return;}
+    const cpn=fv*cr;
+    const price=cpn*((1-Math.pow(1+rr,-yr))/rr)+fv/Math.pow(1+rr,yr);
+    showCalcResult("bond","Price","$"+price.toFixed(2),"=PV("+g("bond-rr")+"%,"+yr+","+cpn.toFixed(0)+","+fv+")");
+    const badge=document.getElementById("bond-type-badge");
+    if(cr>rr)badge.innerHTML='<span style="color:#1f8f5f">📈 Premium Bond — Price > Face Value (coupon > yield)</span>';
+    else if(cr<rr)badge.innerHTML='<span style="color:#c0392b">📉 Discount Bond — Price < Face Value (coupon < yield)</span>';
+    else badge.innerHTML='<span style="color:#6c63ff">⚖️ Par Bond — Price ≈ Face Value</span>';
+  }
+  function toggleStockModel(){
+    const m=document.getElementById("stock-model").value;
+    document.getElementById("stock-zero-fields").style.display=m==="zero"?"grid":"none";
+    document.getElementById("stock-gordon-fields").style.display=m==="gordon"?"grid":"none";
+    document.getElementById("stock-pe-fields").style.display=m==="pe"?"grid":"none";
+    document.getElementById("stock-result").style.display="none";
+  }
+  function calcStock(){
+    const m=document.getElementById("stock-model").value;
+    if(m==="zero"){
+      const d=g("sz-d"),r=g("sz-r")/100;
+      if(isNaN(d)||isNaN(r)||r<=0){showCalcErr("stock","Please fill D and r.");return;}
+      showCalcResult("stock","P","$"+(d/r).toFixed(2),"P = D/r = "+d+"/"+(g("sz-r")/100).toFixed(2));
+    } else if(m==="gordon"){
+      const d1=g("sg-d1"),r=g("sg-r")/100,gv=g("sg-g")/100;
+      if(isNaN(d1)||isNaN(r)||isNaN(gv)){showCalcErr("stock","Please fill D₁, r, and g.");return;}
+      if(r<=gv){showCalcErr("stock","Error: r must be greater than g.");return;}
+      showCalcResult("stock","P","$"+(d1/(r-gv)).toFixed(2),"P = D₁/(r−g) = "+d1+"/("+g("sg-r")+"% − "+g("sg-g")+"%)");
+    } else {
+      const pe=g("spe-pe"),eps=g("spe-eps");
+      if(isNaN(pe)||isNaN(eps)){showCalcErr("stock","Please fill P/E and EPS.");return;}
+      showCalcResult("stock","P","$"+(pe*eps).toFixed(2),"P = P/E × EPS = "+pe+" × "+eps);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // GLOSSARY
+  // ═══════════════════════════════════════════════════════════════
+  const glossaryTerms=[
+    {en:"Future Value (FV)",ar:"القيمة المستقبلية",def:"The value of an investment at a future date after earning interest."},
+    {en:"Present Value (PV)",ar:"القيمة الحالية",def:"The current worth of a future sum of money discounted at a given rate."},
+    {en:"Interest Rate (r)",ar:"معدل الفائدة",def:"The percentage charged on borrowed money or earned on investments."},
+    {en:"Compounding",ar:"التراكم / الفائدة المركبة",def:"Earning interest on both principal and previously accumulated interest."},
+    {en:"Discounting",ar:"الخصم",def:"The process of finding the present value of future cash flows."},
+    {en:"Annuity",ar:"الدفعات المتساوية",def:"A series of equal, periodic cash flows over a specified time."},
+    {en:"Ordinary Annuity",ar:"الدفعات العادية",def:"Payments made at the END of each period."},
+    {en:"Annuity Due",ar:"الدفعات المقدمة",def:"Payments made at the BEGINNING of each period (type=1 in Excel)."},
+    {en:"Perpetuity",ar:"الدفعات الدائمة",def:"An annuity that continues forever. PV = D/r."},
+    {en:"APR",ar:"معدل الفائدة السنوي الاسمي",def:"Annual Percentage Rate — the nominal rate before compounding adjustment."},
+    {en:"EAR",ar:"معدل الفائدة السنوي الفعلي",def:"Effective Annual Rate — the real rate after compounding. EAR ≥ APR."},
+    {en:"Amortization",ar:"الاستهلاك / إطفاء الدين",def:"Gradual repayment of a loan through regular payments of interest and principal."},
+    {en:"Bond",ar:"السند",def:"A debt security where the issuer borrows money and pays coupons plus face value."},
+    {en:"Face Value",ar:"القيمة الاسمية",def:"The principal amount of a bond, typically $1,000, paid at maturity."},
+    {en:"Coupon Rate",ar:"معدل الكوبون",def:"The annual interest rate stated on the bond, applied to face value."},
+    {en:"Coupon Payment",ar:"دفعة الكوبون",def:"Periodic interest payment = Coupon Rate × Face Value."},
+    {en:"Yield to Maturity (YTM)",ar:"العائد حتى الاستحقاق",def:"The total return expected if the bond is held until maturity."},
+    {en:"Premium Bond",ar:"سند فوق الاسمية",def:"A bond priced ABOVE face value — when coupon rate > required return."},
+    {en:"Discount Bond",ar:"سند دون الاسمية",def:"A bond priced BELOW face value — when coupon rate < required return."},
+    {en:"Par Bond",ar:"سند عند الاسمية",def:"A bond priced AT face value — when coupon rate = required return."},
+    {en:"Zero-Coupon Bond",ar:"سند عديم الكوبون",def:"Bond with no periodic coupons; pays only face value at maturity."},
+    {en:"Fisher Effect",ar:"أثر فيشر",def:"(1+nominal) = (1+real) × (1+inflation). Links nominal and real rates."},
+    {en:"Yield Curve",ar:"منحنى العائد",def:"A graph showing yields of bonds vs. their maturities."},
+    {en:"Credit Rating",ar:"التصنيف الائتماني",def:"Assessment of a bond issuer's ability to repay debt (AAA is highest)."},
+    {en:"Common Stock",ar:"الأسهم العادية",def:"Equity ownership in a company with voting rights and residual claim."},
+    {en:"Dividend",ar:"توزيعات الأرباح",def:"A share of company profits distributed to shareholders."},
+    {en:"Gordon Growth Model",ar:"نموذج نمو جوردون",def:"P = D₁ / (r − g). Values stock with constant dividend growth."},
+    {en:"Sustainable Growth Rate (SGR)",ar:"معدل النمو المستدام",def:"Maximum growth rate without external financing. SGR = ROE × b."},
+    {en:"ROE",ar:"العائد على حقوق الملكية",def:"Return on Equity = Net Income / Equity. Measures profitability."},
+    {en:"Retention Ratio (b)",ar:"نسبة الاحتجاز",def:"b = 1 − Payout ratio. Fraction of earnings reinvested in the company."},
+    {en:"P/E Ratio",ar:"مضاعف الربحية",def:"Price-to-Earnings ratio. Used to value stocks relative to earnings."},
+    {en:"Cumulative Voting",ar:"التصويت التراكمي",def:"Voting method allowing minority shareholders to concentrate votes on one director."},
+    {en:"Straight Voting",ar:"التصويت المباشر",def:"Each share = one vote per director election. Favors majority shareholders."},
+    {en:"Time Value of Money",ar:"القيمة الزمنية للنقود",def:"A dollar today is worth more than a dollar in the future."},
+    {en:"Inflation",ar:"التضخم",def:"General increase in prices, reducing the purchasing power of money."},
+  ];
+
+  function buildGlossary(){
+    const grid=document.getElementById("glossary-grid");
+    glossaryTerms.forEach((t,i)=>{
+      const div=document.createElement("div");div.className="glossary-item";div.dataset.idx=i;
+      div.innerHTML=`<div class="glossary-en">${t.en}</div><div class="glossary-ar">${t.ar}</div><div class="glossary-def">${t.def}</div>`;
+      grid.appendChild(div);
+    });
+  }
+  window.addEventListener('load', function(){ buildGlossary(); });
+
+  function filterGlossary(val){
+    const q=val.toLowerCase();
+    document.querySelectorAll(".glossary-item").forEach(el=>{
+      const i=parseInt(el.dataset.idx);
+      const t=glossaryTerms[i];
+      const match=t.en.toLowerCase().includes(q)||t.ar.includes(val)||t.def.toLowerCase().includes(q);
+      el.classList.toggle("hidden",!match);
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // STUDY PLAN
+  // ═══════════════════════════════════════════════════════════════
+  const studyPlan=[
+    {day:"Day 1 — Ch2 Basics",tasks:["Read Chapter 2 notes","Understand FV formula","Understand PV formula","Practice =FV() in calculator","Practice =PV() in calculator","Do Ch2 flashcards"]},
+    {day:"Day 2 — Ch2 Advanced",tasks:["Learn =RATE() function","Learn =NPER() function","Solve Ch2 practice questions","Review Ch2 common mistakes","Do 5 quiz questions (Ch2)"]},
+    {day:"Day 3 — Ch3",tasks:["Read Chapter 3 notes","Understand ordinary vs due annuity","Learn =PMT() function","Calculate EAR from APR","Do Ch3 flashcards","Solve Ch3 practice questions"]},
+    {day:"Day 4 — Ch4",tasks:["Read Chapter 4 notes","Understand bond pricing formula","Learn premium vs discount bond","Fisher Effect formula","Do Ch4 flashcards","Solve Ch4 practice questions"]},
+    {day:"Day 5 — Ch5",tasks:["Read Chapter 5 notes","Zero growth stock formula","Gordon Model formula","SGR calculation","Do Ch5 flashcards","Solve Ch5 practice questions"]},
+    {day:"Day 6 — Review",tasks:["Full quiz (all chapters)","Review wrong answers","Practice formula calculator","Study cheat sheet","Review common mistakes","Redo weak flashcards"]},
+    {day:"Day 7 — Exam Prep",tasks:["Timed exam questions (30 min)","Review all formulas","Check cheat sheet","Get 80%+ on full quiz","Rest and sleep well 😴"]},
+  ];
+
+  function buildStudyPlan(){
+    const grid=document.getElementById("plan-grid");
+    const saved=JSON.parse(localStorage.getItem("fin200-plan")||"{}");
+    studyPlan.forEach((day,di)=>{
+      const card=document.createElement("div");card.className="plan-day";
+      let tasksHTML="";
+      day.tasks.forEach((t,ti)=>{
+        const key="d"+di+"t"+ti;
+        const checked=saved[key]?"checked":"";
+        const doneClass=saved[key]?" done":"";
+        tasksHTML+=`<label class="plan-task"><input type="checkbox" ${checked} onchange="savePlan('${key}',this.checked,this)"> <span class="t-span${doneClass}">${t}</span></label>`;
+      });
+      const done=day.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length;
+      const pct=Math.round(done/day.tasks.length*100);
+      card.innerHTML=`<div class="plan-day-title">${day.day}</div>${tasksHTML}<div class="plan-progress"><div class="plan-progress-fill" id="pp${di}" style="width:${pct}%"></div></div><div style="font-size:.75rem;color:var(--muted);margin-top:4px;">${done}/${day.tasks.length} complete</div>`;
+      grid.appendChild(card);
+    });
+    updateOverallPlan(saved);
+  }
+
+  function savePlan(key,checked,checkbox){
+    const saved=JSON.parse(localStorage.getItem("fin200-plan")||"{}");
+    saved[key]=checked;
+    localStorage.setItem("fin200-plan",JSON.stringify(saved));
+    saveToCloud("plan",saved);
+    const span=checkbox.nextElementSibling;
+    if(checked){span.classList.add("done");confetti(50,50);}
+    else span.classList.remove("done");
+    // update bar
+    const di=parseInt(key.match(/d(\d+)/)[1]);
+    const day=studyPlan[di];
+    const done=day.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length;
+    const pct=Math.round(done/day.tasks.length*100);
+    document.getElementById("pp"+di).style.width=pct+"%";
+    updateOverallPlan(saved);
+  }
+
+  function updateOverallPlan(saved){
+    const total=studyPlan.reduce((s,d)=>s+d.tasks.length,0);
+    const done=studyPlan.reduce((s,d,di)=>s+d.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length,0);
+    const pct=Math.round(done/total*100);
+    document.getElementById("plan-overall").innerHTML=`
+      <div style="display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px;"><span>Overall progress</span><span>${done}/${total} tasks (${pct}%)</span></div>
+      <div style="height:12px;background:#e0e0e0;border-radius:999px;overflow:hidden;"><div style="height:100%;background:linear-gradient(90deg,#6c63ff,#a89cff);border-radius:999px;width:${pct}%;transition:width .3s;"></div></div>`;
+  }
+  window.addEventListener('load', function(){ buildStudyPlan(); });
+
+  </script>
+    <!-- ── PAST EXAM QUESTIONS ── -->
+    <section class="chapter" id="exam-section">
+      <h2>📝 Exam-Style Questions | أسئلة على نمط الامتحان</h2>
+      <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">اكتب إجابتك واضغط Enter أو Check ✓</p>
+      <div id="exam-questions-container"></div>
+    </section>
+
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         QUIZ MODE SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="quiz-section">
+      <h2>🎯 Quiz Mode | وضع الاختبار</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Test yourself with random questions from all chapters. Your best scores are saved!</p>
+      <div class="quiz-wrap">
+        <div id="quiz-start-screen">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;">
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="all" checked> All Chapters
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch2"> Chapter 2
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch3"> Chapter 3
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch4"> Chapter 4
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch5"> Chapter 5
+            </label>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;">
+            <label style="font-weight:600;">Number of questions:</label>
+            <select id="quiz-count" style="padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font-size:.95rem;">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20 (All)</option>
+            </select>
+          </div>
+          <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()" style="padding:14px 32px;font-size:1rem;">Start Quiz 🚀</button>
+          <div id="leaderboard-section" style="margin-top:28px;">
+            <h3 style="margin-bottom:12px;">🏆 Leaderboard | أفضل النتائج</h3>
+            <table class="leaderboard-table">
+              <thead><tr><th>#</th><th>Score</th><th>Time</th><th>Date</th></tr></thead>
+              <tbody id="lb-body"></tbody>
+            </table></div>
+          </div>
+        </div>
+        <div id="quiz-game-screen" style="display:none;">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qpf" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:14px;font-size:.85rem;color:var(--muted);">
+            <span id="q-counter">Question 1 / 10</span>
+            <span id="quiz-timer-display">⏱ 0:00</span>
+          </div>
+          <div class="quiz-card">
+            <div class="quiz-q-num" id="quiz-chapter-tag"></div>
+            <div class="quiz-q-text" id="quiz-q-text"></div>
+            <div class="quiz-opts" id="quiz-opts"></div>
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-btn quiz-btn-primary" id="quiz-next-btn" onclick="nextQuizQ()" style="display:none;">Next →</button>
+            <button class="quiz-btn quiz-btn-secondary" onclick="endQuiz()">End Quiz</button>
+          </div>
+        </div>
+        <div id="quiz-result-screen" style="display:none;">
+          <div class="quiz-card quiz-result-card">
+            <div id="quiz-confetti-msg" style="font-size:2rem;margin-bottom:8px;"></div>
+            <div class="quiz-score-big" id="quiz-final-score"></div>
+            <div class="quiz-score-label" id="quiz-final-label"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;">
+              <div style="background:var(--accent-soft);border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:var(--accent)" id="res-correct">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Correct</div>
+              </div>
+              <div style="background:#fde8e8;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:#c0392b" id="res-wrong">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Wrong</div>
+              </div>
+              <div style="background:#d4edda;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:#1f8f5f" id="res-time">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Time</div>
+              </div>
+            </div>
+            <div class="quiz-actions" style="justify-content:center;">
+              <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()">Play Again 🔄</button>
+              <button class="quiz-btn quiz-btn-secondary" onclick="showQuizStart()">Back to Menu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FORMULA CALCULATOR SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="calc-section">
+      <h2>🔢 Formula Calculator | حاسبة المعادلات</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Enter the values and press Calculate. Matches Excel functions exactly.</p>
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="switchCalc('fv',this)">FV</button>
+        <button class="calc-tab" onclick="switchCalc('pv',this)">PV</button>
+        <button class="calc-tab" onclick="switchCalc('pmt',this)">PMT</button>
+        <button class="calc-tab" onclick="switchCalc('rate',this)">RATE</button>
+        <button class="calc-tab" onclick="switchCalc('nper',this)">NPER</button>
+        <button class="calc-tab" onclick="switchCalc('ear',this)">EAR</button>
+        <button class="calc-tab" onclick="switchCalc('bond',this)">Bond Price</button>
+        <button class="calc-tab" onclick="switchCalc('stock',this)">Stock Price</button>
+      </div>
+
+      <div id="calc-fv" class="calc-panel active">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="fv-rate" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="fv-nper" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="fv-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Payment per period (0 if lump sum)</label><input id="fv-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcFV()">Calculate FV</button>
+        <div class="calc-result" id="fv-result" style="display:none">
+          <div class="calc-result-label">Future Value (FV)</div>
+          <div class="calc-result-value" id="fv-val"></div>
+          <div class="calc-result-formula" id="fv-formula"></div>
+        </div>
+        <div class="calc-error" id="fv-err"></div>
+      </div>
+
+      <div id="calc-pv" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="pv-rate" type="number" placeholder="e.g. 10" step="any"></div>
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="pv-nper" type="number" placeholder="e.g. 6" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="pv-fv" type="number" placeholder="e.g. 2000" step="any"></div>
+          <div class="calc-field"><label>Payment per period (0 if lump sum)</label><input id="pv-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcPV()">Calculate PV</button>
+        <div class="calc-result" id="pv-result" style="display:none">
+          <div class="calc-result-label">Present Value (PV)</div>
+          <div class="calc-result-value" id="pv-val"></div>
+          <div class="calc-result-formula" id="pv-formula"></div>
+        </div>
+        <div class="calc-error" id="pv-err"></div>
+      </div>
+
+      <div id="calc-pmt" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period (APR/periods)</label><input id="pmt-rate" type="number" placeholder="e.g. 0.5 (monthly)" step="any"></div>
+          <div class="calc-field"><label>Number of Periods</label><input id="pmt-nper" type="number" placeholder="e.g. 36" step="any"></div>
+          <div class="calc-field"><label>Present Value (loan amount)</label><input id="pmt-pv" type="number" placeholder="e.g. 10000" step="any"></div>
+          <div class="calc-field"><label>Future Value (0 for most loans)</label><input id="pmt-fv" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcPMT()">Calculate PMT</button>
+        <div class="calc-result" id="pmt-result" style="display:none">
+          <div class="calc-result-label">Payment per period (PMT)</div>
+          <div class="calc-result-value" id="pmt-val"></div>
+          <div class="calc-result-formula" id="pmt-formula"></div>
+        </div>
+        <div class="calc-error" id="pmt-err"></div>
+      </div>
+
+      <div id="calc-rate" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="rate-nper" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="rate-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="rate-fv" type="number" placeholder="e.g. 1469" step="any"></div>
+          <div class="calc-field"><label>Payment (0 if lump sum)</label><input id="rate-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcRATE()">Calculate RATE</button>
+        <div class="calc-result" id="rate-result" style="display:none">
+          <div class="calc-result-label">Interest Rate per period</div>
+          <div class="calc-result-value" id="rate-val"></div>
+          <div class="calc-result-formula" id="rate-formula"></div>
+        </div>
+        <div class="calc-error" id="rate-err"></div>
+      </div>
+
+      <div id="calc-nper" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="nper-rate" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="nper-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="nper-fv" type="number" placeholder="e.g. 2000" step="any"></div>
+          <div class="calc-field"><label>Payment (0 if lump sum)</label><input id="nper-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcNPER()">Calculate NPER</button>
+        <div class="calc-result" id="nper-result" style="display:none">
+          <div class="calc-result-label">Number of Periods (NPER)</div>
+          <div class="calc-result-value" id="nper-val"></div>
+          <div class="calc-result-formula" id="nper-formula"></div>
+        </div>
+        <div class="calc-error" id="nper-err"></div>
+      </div>
+
+      <div id="calc-ear" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>APR (%) — Nominal Rate</label><input id="ear-apr" type="number" placeholder="e.g. 12" step="any"></div>
+          <div class="calc-field"><label>Compounding periods per year (m)</label><input id="ear-m" type="number" placeholder="12=monthly, 365=daily" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcEAR()">Calculate EAR</button>
+        <div class="calc-result" id="ear-result" style="display:none">
+          <div class="calc-result-label">Effective Annual Rate (EAR)</div>
+          <div class="calc-result-value" id="ear-val"></div>
+          <div class="calc-result-formula" id="ear-formula"></div>
+        </div>
+        <div class="calc-error" id="ear-err"></div>
+      </div>
+
+      <div id="calc-bond" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Face Value ($)</label><input id="bond-fv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Coupon Rate (%) annual</label><input id="bond-cr" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Years to Maturity</label><input id="bond-yr" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Required Return (%) annual</label><input id="bond-rr" type="number" placeholder="e.g. 10" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcBond()">Calculate Bond Price</button>
+        <div class="calc-result" id="bond-result" style="display:none">
+          <div class="calc-result-label">Bond Price</div>
+          <div class="calc-result-value" id="bond-val"></div>
+          <div class="calc-result-formula" id="bond-formula"></div>
+        </div>
+        <div id="bond-type-badge" style="margin-top:12px;font-weight:700;font-size:1rem;"></div>
+        <div class="calc-error" id="bond-err"></div>
+      </div>
+
+      <div id="calc-stock" class="calc-panel">
+        <div style="margin-bottom:14px;">
+          <label style="font-weight:600;">Stock Model:</label>
+          <select id="stock-model" onchange="toggleStockModel()" style="margin-left:10px;padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);">
+            <option value="zero">Zero Growth (P = D/r)</option>
+            <option value="gordon">Constant Growth — Gordon Model</option>
+            <option value="pe">P/E Valuation</option>
+          </select>
+        </div>
+        <div id="stock-zero-fields" class="calc-grid">
+          <div class="calc-field"><label>Annual Dividend (D)</label><input id="sz-d" type="number" placeholder="e.g. 3" step="any"></div>
+          <div class="calc-field"><label>Required Return r (%)</label><input id="sz-r" type="number" placeholder="e.g. 10" step="any"></div>
+        </div>
+        <div id="stock-gordon-fields" class="calc-grid" style="display:none">
+          <div class="calc-field"><label>Next Dividend D₁</label><input id="sg-d1" type="number" placeholder="e.g. 2.50" step="any"></div>
+          <div class="calc-field"><label>Required Return r (%)</label><input id="sg-r" type="number" placeholder="e.g. 13" step="any"></div>
+          <div class="calc-field"><label>Growth Rate g (%)</label><input id="sg-g" type="number" placeholder="e.g. 5" step="any"></div>
+        </div>
+        <div id="stock-pe-fields" class="calc-grid" style="display:none">
+          <div class="calc-field"><label>P/E Ratio (multiple)</label><input id="spe-pe" type="number" placeholder="e.g. 15" step="any"></div>
+          <div class="calc-field"><label>EPS (Earnings per Share)</label><input id="spe-eps" type="number" placeholder="e.g. 3.50" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcStock()">Calculate Stock Price</button>
+        <div class="calc-result" id="stock-result" style="display:none">
+          <div class="calc-result-label">Estimated Stock Price</div>
+          <div class="calc-result-value" id="stock-val"></div>
+          <div class="calc-result-formula" id="stock-formula"></div>
+        </div>
+        <div class="calc-error" id="stock-err"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         STUDY PLAN SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="plan-section">
+      <h2>🗺️ Study Roadmap | خطة المذاكرة</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Check off tasks as you complete them. Progress is saved automatically.</p>
+      <div id="plan-overall" style="margin-bottom:20px;"></div>
+      <div class="plan-grid" id="plan-grid"></div>
+    </section>
+
+
+  </div>
+</body>
+</html>

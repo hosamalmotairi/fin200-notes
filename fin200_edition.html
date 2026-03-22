@@ -236,7 +236,8 @@
     .mcq-options li { margin: 4px 0; padding: 4px 8px; border-radius: 8px; }
     .mcq-options li.correct { background: #d4f5e2; font-weight: 700; color: #1a6e42; }
 
-    .ref-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.92rem; }
+    .ref-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .ref-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.92rem; min-width: 400px; }
     .ref-table th {
       background: var(--accent);
       color: white;
@@ -1161,7 +1162,7 @@
 
       <div class="section">
         <h3>Excel Functions Summary | ملخص دوال Excel</h3>
-        <table class="ref-table">
+        <div class="ref-table-wrap"><table class="ref-table">
           <thead>
             <tr>
               <th>Function</th>
@@ -1179,12 +1180,12 @@
             <tr><td>=NPV()</td><td>Net Present Value / صافي القيمة الحالية</td><td>rate, values</td><td>=NPV(10%,B1:B5)</td></tr>
             <tr><td>=EFFECT()</td><td>EAR from APR / المعدل الفعلي</td><td>apr, nper</td><td>=EFFECT(12%,12)</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="section">
         <h3>APR vs EAR | مقارنة APR و EAR</h3>
-        <table class="ref-table">
+        <div class="ref-table-wrap"><table class="ref-table">
           <thead>
             <tr><th>Feature</th><th>APR</th><th>EAR</th></tr>
           </thead>
@@ -1196,12 +1197,12 @@
             <tr><td>When m = 1</td><td colspan="2">APR = EAR</td></tr>
             <tr><td>When m &gt; 1</td><td colspan="2">EAR &gt; APR</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="section">
         <h3>Bond Types | أنواع السندات</h3>
-        <table class="ref-table">
+        <div class="ref-table-wrap"><table class="ref-table">
           <thead>
             <tr><th>Type</th><th>Condition</th><th>Price vs Face Value</th></tr>
           </thead>
@@ -1210,12 +1211,12 @@
             <tr><td>Par / عند التعادل</td><td>Coupon Rate = Required Return</td><td>Price = Face Value</td></tr>
             <tr><td>Discount / مخصوم</td><td>Coupon Rate &lt; Required Return</td><td>Price &lt; Face Value</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
 
       <div class="section">
         <h3>Stock Valuation Models | نماذج تقييم الأسهم</h3>
-        <table class="ref-table">
+        <div class="ref-table-wrap"><table class="ref-table">
           <thead>
             <tr><th>Model</th><th>Condition</th><th>Formula</th></tr>
           </thead>
@@ -1225,7 +1226,7 @@
             <tr><td>Nonconstant / نمو غير ثابت</td><td>g changes</td><td>PV each period then terminal value</td></tr>
             <tr><td>P/E Multiple</td><td>No dividends / لا توزيعات</td><td>P = P/E × EPS</td></tr>
           </tbody>
-        </table>
+        </table></div>
       </div>
     </section>
 
@@ -1544,7 +1545,7 @@
             <th>Your Answer</th><th class="ps-result">Result</th>
           </tr></thead>
           <tbody id="tb2"></tbody>
-        </table>
+        </table></div>
       </div>
     </div>
 
@@ -1557,7 +1558,7 @@
             <th>Your Answer</th><th class="ps-result">Result</th>
           </tr></thead>
           <tbody id="tb3"></tbody>
-        </table>
+        </table></div>
       </div>
     </div>
 
@@ -1570,7 +1571,7 @@
             <th>Your Answer</th><th class="ps-result">Result</th>
           </tr></thead>
           <tbody id="tb4"></tbody>
-        </table>
+        </table></div>
       </div>
     </div>
 
@@ -1583,7 +1584,7 @@
             <th>Your Answer</th><th class="ps-result">Result</th>
           </tr></thead>
           <tbody id="tb5"></tbody>
-        </table>
+        </table></div>
       </div>
     </div>
 
@@ -2419,7 +2420,7 @@
             <table class="leaderboard-table">
               <thead><tr><th>#</th><th>Score</th><th>Time</th><th>Date</th></tr></thead>
               <tbody id="lb-body"></tbody>
-            </table>
+            </table></div>
           </div>
         </div>
         <div id="quiz-game-screen" style="display:none;">

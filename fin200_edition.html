@@ -468,8 +468,41 @@
     body.dark .cs-card, body.dark .glossary-item, body.dark .plan-day { background:#1e2130; border-color:#3a3d54; }
 
   </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <style>
+    #auth-overlay{position:fixed;inset:0;background:rgba(15,17,30,0.95);z-index:99999;display:flex;align-items:center;justify-content:center;}
+    #auth-box{background:#fff;border-radius:24px;padding:40px;width:90%;max-width:420px;box-shadow:0 24px 64px rgba(0,0,0,0.4);}
+    body.dark #auth-box{background:#1a1d2e;color:#e8eaf6;}
+    .auth-tab-btn{flex:1;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;font-size:.95rem;transition:.2s;}
+    .auth-inp{width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid #e6e8f3;font-size:.95rem;box-sizing:border-box;margin-bottom:12px;background:#fff;color:#23263a;}
+    body.dark .auth-inp{background:#12152a;border-color:#3730a3;color:#e8eaf6;}
+    #user-info{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;}
+    #user-avatar{width:28px;height:28px;border-radius:50%;background:#6c63ff;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.82rem;}
+    .signout-btn{padding:5px 12px;border-radius:999px;border:1.5px solid #e6e8f3;background:none;cursor:pointer;font-size:.78rem;font-weight:700;color:#c0392b;}
+  </style>
 </head>
 <body>
+  <!-- Auth Modal -->
+  <div id="auth-overlay">
+    <div id="auth-box">
+      <h2 style="text-align:center;color:#6c63ff;margin:0 0 6px;">🎯 FIN 200</h2>
+      <p style="text-align:center;color:#888;margin:0 0 24px;font-size:.88rem;">سجّل دخولك لحفظ تقدمك من أي جهاز</p>
+      <div style="display:flex;gap:8px;margin-bottom:20px;">
+        <button id="tab-login" class="auth-tab-btn" onclick="authTab('login')" style="background:#6c63ff;color:#fff;border:none;">دخول</button>
+        <button id="tab-register" class="auth-tab-btn" onclick="authTab('register')" style="background:#fff;color:#6c63ff;border:2px solid #e6e8f3;">حساب جديد</button>
+      </div>
+      <div id="auth-name-wrap" style="display:none;">
+        <input id="auth-name" class="auth-inp" type="text" placeholder="اسمك (مثال: Hosam)">
+      </div>
+      <input id="auth-email" class="auth-inp" type="email" placeholder="البريد الإلكتروني">
+      <input id="auth-pass" class="auth-inp" type="password" placeholder="كلمة السر">
+      <div id="auth-err" style="color:#c0392b;font-size:.82rem;text-align:center;min-height:18px;margin-bottom:10px;"></div>
+      <button id="auth-submit" onclick="authSubmit()" style="width:100%;padding:13px;border-radius:12px;border:none;background:#6c63ff;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">دخول</button>
+    </div>
+  </div>
   <div class="top-bar" id="top-bar">
     <div class="top-bar-left">
       <a class="nav-link active" onclick="scrollTo(0,0)">📖 Notes</a>
@@ -484,6 +517,11 @@
       <a class="nav-link" onclick="scrollToId('plan-section')">📅 Study Plan</a>
     </div>
     <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
+    <div id="user-info" style="display:none;">
+      <div id="user-avatar">?</div>
+      <span id="user-name"></span>
+      <button class="signout-btn" onclick="doSignOut()">Sign out</button>
+    </div>
   </div>
   <div class="page">
     <section class="hero">
@@ -1729,6 +1767,95 @@
     document.getElementById("timer-display").className="timer-display";
   }
 
+  // ── FIREBASE ───────────────────────────────────
+  firebase.initializeApp({
+    apiKey:"AIzaSyCzQsIL_l95pIfwKVt4BQmbP84naNV9TNo",
+    authDomain:"fin200-a1da7.firebaseapp.com",
+    projectId:"fin200-a1da7",
+    storageBucket:"fin200-a1da7.firebasestorage.app",
+    messagingSenderId:"285692194241",
+    appId:"1:285692194241:web:97391e51b39c17484d5340"
+  });
+  const auth=firebase.auth();
+  const db=firebase.firestore();
+  let currentUser=null;
+
+  auth.onAuthStateChanged(async user=>{
+    if(user){
+      currentUser=user;
+      document.getElementById("auth-overlay").style.display="none";
+      const name=user.displayName||user.email.split("@")[0];
+      document.getElementById("user-name").textContent=name;
+      document.getElementById("user-avatar").textContent=name.charAt(0).toUpperCase();
+      document.getElementById("user-info").style.display="flex";
+      await loadUserData();
+    } else {
+      currentUser=null;
+      document.getElementById("auth-overlay").style.display="flex";
+      document.getElementById("user-info").style.display="none";
+    }
+  });
+
+  function authTab(tab){
+    const isLogin=tab==="login";
+    document.getElementById("tab-login").style.cssText=isLogin?"background:#6c63ff;color:#fff;border:none;":"background:#fff;color:#6c63ff;border:2px solid #e6e8f3;";
+    document.getElementById("tab-register").style.cssText=!isLogin?"background:#6c63ff;color:#fff;border:none;":"background:#fff;color:#6c63ff;border:2px solid #e6e8f3;";
+    document.getElementById("auth-name-wrap").style.display=isLogin?"none":"block";
+    document.getElementById("auth-submit").textContent=isLogin?"دخول":"إنشاء حساب";
+    document.getElementById("auth-submit").dataset.mode=tab;
+    document.getElementById("auth-err").textContent="";
+  }
+
+  async function authSubmit(){
+    const mode=document.getElementById("auth-submit").dataset.mode||"login";
+    const email=document.getElementById("auth-email").value.trim();
+    const pass=document.getElementById("auth-pass").value;
+    const name=document.getElementById("auth-name").value.trim();
+    const err=document.getElementById("auth-err");
+    if(!email||!pass){err.textContent="الرجاء تعبئة جميع الحقول";return;}
+    if(mode==="register"&&!name){err.textContent="الرجاء كتابة اسمك";return;}
+    document.getElementById("auth-submit").textContent="...";
+    try{
+      if(mode==="login"){
+        await auth.signInWithEmailAndPassword(email,pass);
+      } else {
+        const cred=await auth.createUserWithEmailAndPassword(email,pass);
+        await cred.user.updateProfile({displayName:name});
+      }
+      err.textContent="";
+    } catch(e){
+      err.textContent=e.message.replace("Firebase: ","").replace(/ \(auth\/.*\)/,"");
+      document.getElementById("auth-submit").textContent=mode==="login"?"دخول":"إنشاء حساب";
+    }
+  }
+
+  function doSignOut(){auth.signOut();}
+
+  async function saveToCloud(key,value){
+    if(!currentUser)return;
+    try{await db.collection("users").doc(currentUser.uid).set({[key]:value},{merge:true});}catch(e){}
+  }
+
+  async function loadUserData(){
+    if(!currentUser)return;
+    try{
+      const doc=await db.collection("users").doc(currentUser.uid).get();
+      if(doc.exists){
+        const data=doc.data();
+        if(data.score){
+          correct=data.score.correct||0;wrong=data.score.wrong||0;
+          const t=correct+wrong;
+          document.getElementById("sc-correct").textContent=correct;
+          document.getElementById("sc-wrong").textContent=wrong;
+          document.getElementById("sc-pct").textContent=t?Math.round(correct/t*100)+"%":"0%";
+        }
+        if(data.plan)localStorage.setItem("fin200-plan",JSON.stringify(data.plan));
+        if(data.leaderboard)localStorage.setItem("fin200-lb",JSON.stringify(data.leaderboard));
+        renderLeaderboard();
+      }
+    }catch(e){}
+  }
+
   // ── SCORE PERSISTENCE ──────────────────────────
   function updateScore(wasCorrect,prev){
     if(prev==="correct")correct--;else if(prev==="wrong")wrong--;
@@ -1737,12 +1864,8 @@
     document.getElementById("sc-correct").textContent=correct;
     document.getElementById("sc-wrong").textContent=wrong;
     document.getElementById("sc-pct").textContent=total?Math.round(correct/total*100)+"%":"0%";
-    localStorage.setItem("fin200-score",JSON.stringify({correct,wrong}));
+    saveToCloud("score",{correct,wrong});
   }
-  (function loadScore(){
-    const saved=localStorage.getItem("fin200-score");
-    if(saved){const d=JSON.parse(saved);correct=d.correct||0;wrong=d.wrong||0;const t=correct+wrong;document.getElementById("sc-correct").textContent=correct;document.getElementById("sc-wrong").textContent=wrong;document.getElementById("sc-pct").textContent=t?Math.round(correct/t*100)+"%":"0%";}
-  })();
 
   // ── FLASH CARDS ────────────────────────────────
   const flashData = {
@@ -1972,6 +2095,7 @@
     lb.sort((a,b)=>b.pct-a.pct||(a.elapsed-b.elapsed));
     lb.splice(10);
     localStorage.setItem("fin200-lb",JSON.stringify(lb));
+    saveToCloud("leaderboard",lb);
   }
 
   function renderLeaderboard(){
@@ -2193,6 +2317,7 @@
     const saved=JSON.parse(localStorage.getItem("fin200-plan")||"{}");
     saved[key]=checked;
     localStorage.setItem("fin200-plan",JSON.stringify(saved));
+    saveToCloud("plan",saved);
     const span=checkbox.nextElementSibling;
     if(checked){span.classList.add("done");confetti(50,50);}
     else span.classList.remove("done");

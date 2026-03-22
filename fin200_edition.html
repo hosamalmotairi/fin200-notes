@@ -473,7 +473,7 @@
   <div class="top-bar" id="top-bar">
     <div class="top-bar-left">
       <a class="nav-link active" onclick="scrollTo(0,0)">📖 Notes</a>
-      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Cheat Sheet</a>
+      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Formula Sheet</a>
       <a class="nav-link" onclick="scrollToId('flash-section')">🃏 Flash Cards</a>
       <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
       <a class="nav-link" onclick="scrollToId('glossary-section')">📖 Glossary</a>
@@ -523,9 +523,9 @@
          CHEAT SHEET SECTION
     ═══════════════════════════════════════════════════════════════ -->
     <section class="chapter" id="cheatsheet-section">
-      <h2>📄 Cheat Sheet | ورقة المعادلات</h2>
+      <h2>📄 Formula Sheet | ورقة المعادلات</h2>
       <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
-      <button class="print-btn" onclick="window.print()">🖨️ Print Cheat Sheet</button>
+      <button class="print-btn" onclick="window.print()">🖨️ Print Formula Sheet</button>
       <div class="cs-grid">
         <div class="cs-card">
           <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>
@@ -1690,7 +1690,7 @@
       .cs-val{color:#4c5268;font-family:monospace;}
       @media print{body{margin:10px;}}
     </style></head><body>`);
-    win.document.write('<h2>📄 FIN 200 Cheat Sheet | ورقة المعادلات</h2>');
+    win.document.write('<h2>📄 FIN 200 Formula Sheet | ورقة المعادلات</h2>');
     win.document.write(cs.querySelector('.cs-grid').outerHTML);
     win.document.write('</body></html>');
     win.document.close();

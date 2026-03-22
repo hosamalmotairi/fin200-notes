@@ -1657,6 +1657,28 @@
   buildMCQ();
 
   // ── DARK MODE ──────────────────────────────────
+  function printCheatSheet(){
+    const cs = document.getElementById("cheatsheet-section");
+    const win = window.open('','_blank');
+    win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>FIN 200 Cheat Sheet</title><style>
+      body{font-family:"Segoe UI",sans-serif;margin:20px;color:#23263a;}
+      h2{text-align:center;color:#6c63ff;margin-bottom:20px;font-size:1.4rem;}
+      .cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+      .cs-card{border:1.5px solid #dde1f6;border-radius:12px;padding:14px;}
+      .cs-title{font-weight:800;color:#6c63ff;font-size:.88rem;margin-bottom:10px;border-bottom:1px solid #eef;padding-bottom:6px;}
+      .cs-row{display:flex;justify-content:space-between;font-size:.82rem;padding:4px 0;border-bottom:1px dashed #eee;}
+      .cs-key{font-weight:600;color:#23263a;}
+      .cs-val{color:#4c5268;font-family:monospace;}
+      @media print{body{margin:10px;}}
+    </style></head><body>`);
+    win.document.write('<h2>📄 FIN 200 Cheat Sheet | ورقة المعادلات</h2>');
+    win.document.write(cs.querySelector('.cs-grid').outerHTML);
+    win.document.write('</body></html>');
+    win.document.close();
+    win.focus();
+    setTimeout(()=>win.print(),300);
+  }
+
   function toggleDark(){
     document.body.classList.toggle("dark");
     const isDark=document.body.classList.contains("dark");
@@ -2433,7 +2455,7 @@
     <section class="chapter" id="cheatsheet-section">
       <h2>📄 Cheat Sheet | ورقة المعادلات</h2>
       <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
-      <button class="print-btn" onclick="window.print()">🖨️ Print Cheat Sheet</button>
+      <button class="print-btn" onclick="printCheatSheet()">🖨️ Print Cheat Sheet</button>
       <div class="cs-grid">
         <div class="cs-card">
           <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>

@@ -371,10 +371,10 @@
     }
 
     @media print {
-      .topnav, .hero, .notice, .chapter:not(#cheatsheet-section),
+      .top-bar, .hero, .notice, .chapter:not(#cheatsheet-section),
       #flash-section, #mistakes-section, #exam-section,
       #practice-section, #quiz-section, #calc-section,
-      #glossary-section, #plan-section, .page > div:first-child {
+      #glossary-section, #plan-section, .page > div {
         display: none !important;
       }
       #cheatsheet-section {
@@ -476,7 +476,7 @@
       <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Formula Sheet</a>
       <a class="nav-link" onclick="scrollToId('flash-section')">🃏 Flash Cards</a>
       <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
-      <a class="nav-link" onclick="scrollToId('glossary-section')">📖 Glossary</a>
+      <a class="nav-link" onclick="scrollToId('glossary-section')">📚 Glossary</a>
       <a class="nav-link" onclick="scrollToId('practice-section')">🧮 Practice</a>
       <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
       <a class="nav-link" onclick="scrollToId('quiz-section')">🎯 Quiz</a>
@@ -1300,7 +1300,7 @@
          GLOSSARY SECTION
     ═══════════════════════════════════════════════════════════════ -->
     <section class="chapter" id="glossary-section">
-      <h2>📖 Glossary | المصطلحات</h2>
+      <h2>📚 Glossary | المصطلحات</h2>
       <input class="glossary-search" id="glossary-search" type="text" placeholder="Search term... / ابحث عن مصطلح" oninput="filterGlossary(this.value)">
       <div class="glossary-grid" id="glossary-grid"></div>
     </section>

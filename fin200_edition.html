@@ -361,8 +361,27 @@
     /* ── MOBILE ── */
     @media(max-width:600px){
       .flash-grid{grid-template-columns:1fr 1fr;}
-      .top-bar{padding:6px 12px;}
-      .nav-link{padding:5px 10px;font-size:.75rem;}
+      .top-bar{padding:6px 10px;gap:6px;}
+      .top-bar-left{gap:4px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px;}
+      .top-bar-left::-webkit-scrollbar{display:none;}
+      .nav-link{padding:5px 9px;font-size:.72rem;white-space:nowrap;flex-shrink:0;}
+      .dark-toggle{font-size:.72rem;padding:5px 9px;white-space:nowrap;}
+      #user-info{font-size:.72rem;}
+      .hero{padding:18px;}
+      .hero h1{font-size:1.6rem;}
+      .cover-meta{grid-template-columns:1fr;}
+      .page{padding:14px 12px 60px;}
+      .chapter,.toc,.notice{padding:14px;}
+      .cs-grid{grid-template-columns:1fr;}
+      .glossary-grid{grid-template-columns:1fr;}
+      .plan-grid{grid-template-columns:1fr;}
+      .timer-bar{gap:6px;}
+      .ps-table{font-size:.78rem;}
+      .ps-given,.ps-hint{display:none;}
+      .ps-inp input{width:70px;}
+      .quiz-card{padding:18px;}
+      .calc-grid{grid-template-columns:1fr;}
+      #auth-box{padding:24px 18px;}
     }
 
     @page {

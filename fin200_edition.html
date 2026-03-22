@@ -549,24 +549,24 @@
   </div>
   <div class="page">
     <section class="hero" id="notes-section">
-      <div class="tag">FIN 200 • Midterm Review Notes</div>
-      <h1>🎯 FIN 200 Midterm Review Notes</h1>
-      <p>Everything you need to ace FIN 200 — notes, formulas, practice, and more.</p>
+      <div class="tag">FIN 200 • Midterm Study Hub</div>
+      <h1>🎯 FIN 200 Midterm Study Hub</h1>
+      <p>كل اللي تحتاجه للميدترم في مكان واحد — نوتس، معادلات، فلاش كاردز، تدريب، واختبارات تفاعلية.</p>
       <div class="cover-meta">
         <div class="cover-box">
           <span class="cover-label">Course</span>
           <span class="cover-value">FIN 200</span>
         </div>
         <div class="cover-box">
-          <span class="cover-label">Document Type</span>
-          <span class="cover-value">Midterm Study Notes</span>
-        </div>
-        <div class="cover-box">
           <span class="cover-label">Coverage</span>
           <span class="cover-value">Chapters 2, 3, 4, and 5</span>
         </div>
+        <div class="cover-box">
+          <span class="cover-label">Features</span>
+          <span class="cover-value">9 Study Tools</span>
+        </div>
       </div>
-      <p class="print-note">📚 Notes &nbsp;|&nbsp; 🧮 Practice &nbsp;|&nbsp; 🃏 Flash Cards &nbsp;|&nbsp; 🎯 Quiz &nbsp;|&nbsp; 📄 Formula Sheet</p>
+      <p class="print-note">📚 Notes &nbsp;|&nbsp; 📄 Formula Sheet &nbsp;|&nbsp; 🃏 Flash Cards &nbsp;|&nbsp; ⚠️ Common Mistakes &nbsp;|&nbsp; 🧮 Practice &nbsp;|&nbsp; 📝 Exam Q &nbsp;|&nbsp; 🎯 Quiz &nbsp;|&nbsp; 🔢 Calculator &nbsp;|&nbsp; 🗺️ Study Roadmap</p>
     </section>
 
     <div style="background:linear-gradient(135deg,#fff3cd,#ffeaa0);border:2px solid #f5a623;border-radius:18px;padding:20px 24px;margin-bottom:18px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 4px 16px rgba(245,166,35,0.2);">
@@ -640,6 +640,32 @@
           <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
           <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
           <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
+          <div class="cs-row"><span class="cs-key">=IRR()</span><span class="cs-val">Internal Rate of Return</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">🔄 IRR — معدل العائد الداخلي</div>
+          <div class="cs-row"><span class="cs-key">Formula</span><span class="cs-val">=IRR(values, guess)</span></div>
+          <div class="cs-row"><span class="cs-key">الهدف</span><span class="cs-val">معدل العائد على مشروع</span></div>
+          <div class="cs-row"><span class="cs-key">مثال</span><span class="cs-val">=IRR({-100000,30000,30000,30000,30000})</span></div>
+          <div class="cs-row"><span class="cs-key">تنبيه</span><span class="cs-val">أول قيمة لازم تكون سالبة</span></div>
+          <div class="cs-row"><span class="cs-key">خطأ NUM!</span><span class="cs-val">أضف guess=0.1</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚡ القواعد الذهبية للإشارات</div>
+          <div class="cs-row"><span class="cs-key">فلوس تطلع منك ➜</span><span class="cs-val">سالب (−)</span></div>
+          <div class="cs-row"><span class="cs-key">استثمار / دفع أقساط</span><span class="cs-val">سالب (−)</span></div>
+          <div class="cs-row"><span class="cs-key">فلوس تدخل لك ➜</span><span class="cs-val">موجب (+)</span></div>
+          <div class="cs-row"><span class="cs-key">استلام / أرباح</span><span class="cs-val">موجب (+)</span></div>
+          <div class="cs-row"><span class="cs-key">PV نتيجة</span><span class="cs-val">دائماً سالبة</span></div>
+          <div class="cs-row"><span class="cs-key">NPER نتيجة</span><span class="cs-val">دائماً موجبة</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚠️ أخطاء شائعة — تجنبها!</div>
+          <div class="cs-row"><span class="cs-key">لا تنسى</span><span class="cs-val">= قبل الدالة دائماً</span></div>
+          <div class="cs-row"><span class="cs-key">الأرقام</span><span class="cs-val">نقطة . وليس فاصلة ،</span></div>
+          <div class="cs-row"><span class="cs-key">بين المتغيرات</span><span class="cs-val">فاصلة , وليس ;</span></div>
+          <div class="cs-row"><span class="cs-key">RATE خطأ NUM!</span><span class="cs-val">أضف guess=0.1</span></div>
+          <div class="cs-row"><span class="cs-key">PV دائماً</span><span class="cs-val">اكتبها سالبة (−PV)</span></div>
         </div>
       </div>
     </section>

@@ -271,6 +271,100 @@
 
     @media (max-width: 600px) { .formula-grid { grid-template-columns: 1fr; } }
 
+
+    /* ── DARK MODE ── */
+    body.dark { --bg:#0f1117;--paper:#1a1d2e;--ink:#e8eaf6;--muted:#9da3c0;--accent:#a78bfa;--accent-soft:#2d2b4e;--line:#2e3150;--good:#34d399; }
+    body.dark .hero { background:linear-gradient(135deg,#3730a3,#5b21b6); }
+    body.dark .toc,body.dark .notice,body.dark .chapter,body.dark .formula-sheet { background:#1a1d2e;border-color:#2e3150; }
+    body.dark .bilingual { background:#12152a;border-color:#2e3150; }
+    body.dark .formula { background:#12152a;border-color:#3730a3; }
+    body.dark .summary-box { background:#1e213a;border-color:#3730a3; }
+    body.dark .example-box { background:#0d2a1f;border-color:#065f46; }
+    body.dark .mcq-box { background:#2a2200;border-color:#92400e; }
+    body.dark .formula-card { background:#12152a;border-color:#3730a3; }
+    body.dark .ref-table tr:nth-child(even) td { background:#12152a; }
+    body.dark .ref-table th { background:#4c1d95; }
+    body.dark input[type=text] { background:#12152a!important;color:#e8eaf6!important;border-color:#6c63ff!important; }
+    body.dark .ps-chapter { background:#1a1d2e;border-color:#2e3150; }
+    body.dark .mcq-opt { border-color:#3730a3;color:#c4b5fd; }
+    body.dark .mcq-opt:hover { background:#2d2b4e; }
+    body.dark .tab-btn { background:#1a1d2e;color:#a78bfa;border-color:#3730a3; }
+    body.dark .tab-btn.active { background:#6c63ff;color:#fff; }
+
+    /* ── TOP NAV BAR ── */
+    .top-bar { position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px; }
+    body.dark .top-bar { background:rgba(26,29,46,0.95); }
+    .top-bar-left { display:flex;gap:8px;flex-wrap:wrap; }
+    .nav-link { padding:6px 14px;border-radius:999px;font-size:.82rem;font-weight:700;text-decoration:none;color:var(--accent);border:1.5px solid var(--accent-soft);transition:all .2s;cursor:pointer; }
+    .nav-link:hover,.nav-link.active { background:var(--accent);color:#fff; }
+    .dark-toggle { padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);background:none;cursor:pointer;font-size:.82rem;font-weight:700;color:var(--ink);transition:all .2s; }
+    .dark-toggle:hover { border-color:var(--accent);color:var(--accent); }
+
+    /* ── FLASH CARDS ── */
+    .flash-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px; }
+    .flash-card { height:140px;perspective:800px;cursor:pointer; }
+    .flash-inner { position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d; }
+    .flash-card.flipped .flash-inner { transform:rotateY(180deg); }
+    .flash-front,.flash-back { position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;text-align:center; }
+    .flash-front { background:linear-gradient(135deg,#6c63ff,#a78bfa);color:#fff;box-shadow:0 6px 20px rgba(108,99,255,.25); }
+    .flash-back { background:#fff;border:2px solid #6c63ff;transform:rotateY(180deg);color:#23263a; }
+    body.dark .flash-back { background:#1a1d2e;color:#e8eaf6; }
+    .flash-front .f-label { font-size:.72rem;opacity:.8;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em; }
+    .flash-front .f-q { font-size:.92rem;font-weight:700; }
+    .flash-back .f-ans { font-family:monospace;font-size:1rem;font-weight:800;color:#6c63ff; }
+    .flash-back .f-hint { font-size:.75rem;color:#888;margin-top:6px; }
+    .flash-tip { text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:8px; }
+
+    /* ── TIMER ── */
+    .timer-bar { display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.12);border-radius:12px;padding:10px 16px;margin-top:12px;flex-wrap:wrap; }
+    .timer-display { font-size:1.4rem;font-weight:800;color:#fff;min-width:70px; }
+    .timer-display.warning { color:#fbbf24; }
+    .timer-display.danger { color:#f87171; }
+    .timer-btn { padding:5px 14px;border-radius:8px;border:none;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .15s; }
+    .timer-btn.start { background:#10b981;color:#fff; }
+    .timer-btn.stop { background:#ef4444;color:#fff; }
+    .timer-btn.reset { background:rgba(255,255,255,.2);color:#fff; }
+
+    /* ── DIFFICULTY BADGES ── */
+    .diff-badge { display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;font-weight:700;margin-right:6px; }
+    .diff-easy { background:#d1fae5;color:#065f46; }
+    .diff-medium { background:#fef3c7;color:#92400e; }
+    .diff-hard { background:#fee2e2;color:#991b1b; }
+    body.dark .diff-easy { background:#064e3b;color:#34d399; }
+    body.dark .diff-medium { background:#451a03;color:#fbbf24; }
+    body.dark .diff-hard { background:#450a0a;color:#f87171; }
+
+    /* ── COMMON MISTAKES ── */
+    .mistake-item { background:#fff8f0;border:1.5px solid #fed7aa;border-radius:12px;padding:12px 16px;margin-bottom:10px; }
+    body.dark .mistake-item { background:#1c1209;border-color:#78350f; }
+    .mistake-item .m-wrong { color:#c0392b;font-weight:700;font-size:.9rem; }
+    .mistake-item .m-right { color:#1f8f5f;font-weight:700;font-size:.9rem;margin-top:6px; }
+    .mistake-item .m-note { color:var(--muted);font-size:.82rem;margin-top:4px; }
+
+    /* ── EXAM QUESTIONS ── */
+    .exam-q { background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:12px; }
+    body.dark .exam-q { background:#1a1d2e; }
+    .exam-q .eq-header { display:flex;align-items:center;gap:8px;margin-bottom:8px; }
+    .exam-q .eq-year { font-size:.75rem;font-weight:700;color:#fff;background:#6c63ff;padding:2px 8px;border-radius:999px; }
+    .exam-q .eq-text { font-size:.88rem;color:var(--ink);line-height:1.6;margin-bottom:10px; }
+    .exam-q .eq-inp { display:flex;gap:8px;align-items:center;flex-wrap:wrap; }
+    .exam-q .eq-input { padding:6px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:.88rem;outline:none;width:160px; }
+    .exam-q .eq-input:focus { border-color:#6c63ff; }
+    .exam-q .eq-check { padding:6px 14px;background:#6c63ff;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.82rem;cursor:pointer; }
+    .exam-q .eq-result { font-size:.85rem;font-weight:700;margin-top:6px; }
+
+    /* ── SCORE BADGE ── */
+    .score-display { display:flex;gap:12px;flex-wrap:wrap;margin-top:10px; }
+    .score-pill { background:rgba(255,255,255,0.15);border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:700;color:#fff; }
+    .score-pill span { opacity:.8;font-weight:400;margin-right:4px; }
+
+    /* ── MOBILE ── */
+    @media(max-width:600px){
+      .flash-grid{grid-template-columns:1fr 1fr;}
+      .top-bar{padding:6px 12px;}
+      .nav-link{padding:5px 10px;font-size:.75rem;}
+    }
+
     @page {
       size: A4;
       margin: 16mm 14mm 18mm 14mm;
@@ -341,6 +435,16 @@
   </style>
 </head>
 <body>
+  <div class="top-bar" id="top-bar">
+    <div class="top-bar-left">
+      <a class="nav-link active" onclick="scrollTo(0,0)">📖 Notes</a>
+      <a class="nav-link" onclick="scrollToId('flash-section')">🃏 Flash Cards</a>
+      <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
+      <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
+      <a class="nav-link" onclick="scrollToId('practice-section')">🧮 Practice</a>
+    </div>
+    <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
+  </div>
   <div class="page">
     <section class="hero">
       <div class="tag">FIN 200 • Midterm Review Notes</div>
@@ -1007,6 +1111,84 @@
       </div>
     </section>
 
+    <!-- ── FLASH CARDS ── -->
+    <section class="chapter" id="flash-section">
+      <h2>🃏 Flash Cards | بطاقات المراجعة السريعة</h2>
+      <p class="flash-tip">اضغط على أي بطاقة لتظهر الإجابة | Click any card to reveal the answer</p>
+
+      <h3 style="margin-top:16px;color:#6c63ff;">Chapter 2 — Time Value</h3>
+      <div class="flash-grid" id="fc2"></div>
+
+      <h3 style="margin-top:20px;color:#1f8f5f;">Chapter 3 — Annuities & Loans</h3>
+      <div class="flash-grid" id="fc3"></div>
+
+      <h3 style="margin-top:20px;color:#b07d00;">Chapter 4 — Bonds</h3>
+      <div class="flash-grid" id="fc4"></div>
+
+      <h3 style="margin-top:20px;color:#c0392b;">Chapter 5 — Stocks</h3>
+      <div class="flash-grid" id="fc5"></div>
+    </section>
+
+    <!-- ── COMMON MISTAKES ── -->
+    <section class="chapter" id="mistakes-section">
+      <h2>⚠️ Common Mistakes | أخطاء شائعة</h2>
+
+      <h3 style="margin-top:12px;">Chapter 2</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using simple interest instead of compound: FV = PV × (1 + r×t)</div>
+        <div class="m-right">✅ Correct: FV = PV × (1 + r)^t</div>
+        <div class="m-note">الفائدة المركبة تُطبّق الأُس — لا تضرب فقط</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Forgetting the negative sign in Excel: =FV(8%,5,0,1000)</div>
+        <div class="m-right">✅ Correct: =FV(8%,5,0,-1000) — PV must be negative</div>
+        <div class="m-note">في Excel، القيمة الحالية تكون سالبة (مدفوعة)</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 3</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using annual rate directly for monthly payments: =PMT(6%,36,-10000)</div>
+        <div class="m-right">✅ Correct: =PMT(6%/12, 36, -10000) — divide rate by 12</div>
+        <div class="m-note">لما الأقساط شهرية، قسّم المعدل على 12</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Confusing APR with EAR — they are NOT the same when m > 1</div>
+        <div class="m-right">✅ EAR = (1 + APR/m)^m − 1 | Always use EAR for comparisons</div>
+        <div class="m-note">APR ≠ EAR إلا لو التراكم سنوي فقط</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 4</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Thinking high coupon rate = high bond price (always)</div>
+        <div class="m-right">✅ Bond price depends on required return vs coupon rate</div>
+        <div class="m-note">السعر يعتمد على الفرق بين معدل الكوبون والعائد المطلوب</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Forgetting that bond price and yield move INVERSELY</div>
+        <div class="m-right">✅ Price ↑ → Yield ↓ | Price ↓ → Yield ↑</div>
+        <div class="m-note">السعر والعائد يتحركان عكسياً دائماً</div>
+      </div>
+
+      <h3 style="margin-top:16px;">Chapter 5</h3>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using D₀ instead of D₁ in Gordon Model: P = D₀/(r-g)</div>
+        <div class="m-right">✅ Correct: P = D₁/(r-g) where D₁ = D₀ × (1+g)</div>
+        <div class="m-note">نموذج Gordon يستخدم التوزيع القادم D₁ وليس الحالي D₀</div>
+      </div>
+      <div class="mistake-item">
+        <div class="m-wrong">❌ Using Gordon Model when r ≤ g</div>
+        <div class="m-right">✅ Gordon Model only works when r > g</div>
+        <div class="m-note">النموذج لا يعمل إذا كان معدل النمو أكبر من العائد المطلوب</div>
+      </div>
+    </section>
+
+    <!-- ── PAST EXAM QUESTIONS ── -->
+    <section class="chapter" id="exam-section">
+      <h2>📝 Exam-Style Questions | أسئلة على نمط الامتحان</h2>
+      <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">اكتب إجابتك واضغط Enter أو Check ✓</p>
+      <div id="exam-questions-container"></div>
+    </section>
+
   <!-- ═══════════════════════════════════════════════════════
        INTERACTIVE PRACTICE SPREADSHEET
        ═══════════════════════════════════════════════════════ -->
@@ -1016,11 +1198,23 @@
       <div style="display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,0.15);font-weight:800;font-size:.85rem;margin-bottom:10px;">🧮 Interactive Practice</div>
       <h1 style="margin:0 0 8px;font-size:2rem;">Practice Spreadsheet</h1>
       <p style="margin:0;opacity:.9;">Type your answer in the yellow box → get instant feedback | اكتب إجابتك في المربع الأصفر واحصل على تقييم فوري</p>
-      <div id="score-bar" style="margin-top:16px;background:rgba(255,255,255,0.12);border-radius:12px;padding:12px 16px;display:flex;gap:24px;flex-wrap:wrap;">
-        <span>✅ Correct: <strong id="sc-correct">0</strong></span>
-        <span>❌ Wrong: <strong id="sc-wrong">0</strong></span>
-        <span>📝 Total Attempted: <strong id="sc-total">0</strong></span>
-        <span>🎯 Score: <strong id="sc-pct">0%</strong></span>
+      <div class="score-display">
+        <div class="score-pill"><span>✅</span><strong id="sc-correct">0</strong> Correct</div>
+        <div class="score-pill"><span>❌</span><strong id="sc-wrong">0</strong> Wrong</div>
+        <div class="score-pill"><span>🎯</span><strong id="sc-pct">0%</strong> Score</div>
+      </div>
+      <div class="timer-bar">
+        <div>⏱️ Timer:</div>
+        <div class="timer-display" id="timer-display">05:00</div>
+        <button class="timer-btn start" onclick="timerStart()">Start</button>
+        <button class="timer-btn stop" onclick="timerStop()">Pause</button>
+        <button class="timer-btn reset" onclick="timerReset()">Reset</button>
+        <select id="timer-select" onchange="timerReset()" style="background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:8px;padding:4px 8px;font-size:.82rem;">
+          <option value="300">5 min</option>
+          <option value="600">10 min</option>
+          <option value="900">15 min</option>
+          <option value="1800">30 min</option>
+        </select>
       </div>
     </div>
 
@@ -1288,6 +1482,148 @@
   buildTable("tb4",ch4);
   buildTable("tb5",ch5);
   buildMCQ();
+
+  // ── DARK MODE ──────────────────────────────────
+  function toggleDark(){
+    document.body.classList.toggle("dark");
+    const isDark=document.body.classList.contains("dark");
+    document.getElementById("dark-btn").textContent=isDark?"☀️ Light Mode":"🌙 Dark Mode";
+    localStorage.setItem("fin200-dark",isDark?"1":"0");
+  }
+  if(localStorage.getItem("fin200-dark")==="1"){document.body.classList.add("dark");document.getElementById("dark-btn").textContent="☀️ Light Mode";}
+
+  // ── SCROLL NAV ─────────────────────────────────
+  function scrollToId(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+
+  // ── TIMER ──────────────────────────────────────
+  let timerInterval=null,timerSeconds=300;
+  function timerStart(){
+    if(timerInterval)return;
+    timerInterval=setInterval(()=>{
+      timerSeconds--;
+      const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+      const d=document.getElementById("timer-display");
+      d.textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+      d.className="timer-display"+(timerSeconds<=60?" danger":timerSeconds<=120?" warning":"");
+      if(timerSeconds<=0){clearInterval(timerInterval);timerInterval=null;d.textContent="⏰ Time!";}
+    },1000);
+  }
+  function timerStop(){clearInterval(timerInterval);timerInterval=null;}
+  function timerReset(){
+    timerStop();
+    timerSeconds=parseInt(document.getElementById("timer-select").value);
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    document.getElementById("timer-display").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+    document.getElementById("timer-display").className="timer-display";
+  }
+
+  // ── SCORE PERSISTENCE ──────────────────────────
+  function updateScore(wasCorrect,prev){
+    if(prev==="correct")correct--;else if(prev==="wrong")wrong--;
+    if(wasCorrect)correct++;else wrong++;
+    const total=correct+wrong;
+    document.getElementById("sc-correct").textContent=correct;
+    document.getElementById("sc-wrong").textContent=wrong;
+    document.getElementById("sc-pct").textContent=total?Math.round(correct/total*100)+"%":"0%";
+    localStorage.setItem("fin200-score",JSON.stringify({correct,wrong}));
+  }
+  (function loadScore(){
+    const saved=localStorage.getItem("fin200-score");
+    if(saved){const d=JSON.parse(saved);correct=d.correct||0;wrong=d.wrong||0;const t=correct+wrong;document.getElementById("sc-correct").textContent=correct;document.getElementById("sc-wrong").textContent=wrong;document.getElementById("sc-pct").textContent=t?Math.round(correct/t*100)+"%":"0%";}
+  })();
+
+  // ── FLASH CARDS ────────────────────────────────
+  const flashData = {
+    fc2:[
+      {q:"Formula for Future Value?",a:"FV = PV × (1+r)^t",h:"=FV(rate,nper,0,-pv)"},
+      {q:"Formula for Present Value?",a:"PV = FV / (1+r)^t",h:"=PV(rate,nper,0,fv)"},
+      {q:"How to find interest Rate?",a:"=RATE(nper, 0, -pv, fv)",h:"Result × 100 = %"},
+      {q:"How to find Number of Periods?",a:"=NPER(rate, 0, -pv, fv)",h:"Use in years"},
+      {q:"Simple vs Compound Interest?",a:"Simple: PV×r×t | Compound: PV×(1+r)^t",h:"Course uses compound"},
+      {q:"What happens to FV if rate increases?",a:"FV increases ↑",h:"FV = PV×(1+r)^t"},
+    ],
+    fc3:[
+      {q:"PMT formula in Excel?",a:"=PMT(rate, nper, -pv)",h:"Monthly: rate=APR/12"},
+      {q:"PV of Annuity formula?",a:"=PV(rate, nper, pmt)",h:"Regular equal payments"},
+      {q:"Ordinary vs Annuity Due?",a:"Ordinary: end | Due: beginning",h:"Excel type: 0 or 1"},
+      {q:"EAR formula?",a:"(1 + APR/m)^m − 1",h:"=EFFECT(apr, m)"},
+      {q:"APR vs EAR — which is bigger?",a:"EAR > APR when m > 1",h:"More compounding = higher EAR"},
+      {q:"Amortization: each payment =?",a:"Interest portion + Principal portion",h:"Ratio changes over time"},
+    ],
+    fc4:[
+      {q:"Bond Price formula?",a:"PV of coupons + PV of face value",h:"=PV(req_return, years, coupon, FV)"},
+      {q:"Premium bond condition?",a:"Coupon Rate > Required Return",h:"Price > Face Value"},
+      {q:"Discount bond condition?",a:"Coupon Rate < Required Return",h:"Price < Face Value"},
+      {q:"Fisher Effect formula?",a:"(1+nominal) = (1+real)×(1+inflation)",h:"real ≈ nominal − inflation"},
+      {q:"Bond price & yield relationship?",a:"They move INVERSELY ↕",h:"Price↑ = Yield↓"},
+      {q:"Zero-coupon bond pays what?",a:"Only Face Value at maturity",h:"No periodic coupons"},
+    ],
+    fc5:[
+      {q:"Zero Growth stock price?",a:"P = D / r",h:"Constant dividend forever"},
+      {q:"Constant Growth (Gordon) formula?",a:"P = D₁ / (r − g)",h:"D₁ = D₀ × (1+g)"},
+      {q:"Gordon Model requirement?",a:"r must be > g",h:"Otherwise undefined"},
+      {q:"P/E Valuation formula?",a:"Price = P/E × EPS",h:"Industry multiple"},
+      {q:"SGR formula?",a:"SGR = ROE × retention ratio",h:"b = 1 − payout ratio"},
+      {q:"Cumulative vs Straight voting?",a:"Cumulative = minority protected | Straight = majority wins",h:"FIN200 exam topic"},
+    ]
+  };
+
+  function buildFlashCards(){
+    for(const[id,cards] of Object.entries(flashData)){
+      const grid=document.getElementById(id);
+      if(!grid)continue;
+      cards.forEach(card=>{
+        const div=document.createElement("div");div.className="flash-card";
+        div.innerHTML=`<div class="flash-inner"><div class="flash-front"><div class="f-label">Question</div><div class="f-q">${card.q}</div></div><div class="flash-back"><div class="f-ans">${card.a}</div><div class="f-hint">${card.h}</div></div></div>`;
+        div.onclick=()=>div.classList.toggle("flipped");
+        grid.appendChild(div);
+      });
+    }
+  }
+  buildFlashCards();
+
+  // ── EXAM QUESTIONS ─────────────────────────────
+  const examQs=[
+    {year:"Exam Style",diff:"medium",q:"You deposit OMR 5,000 in a bank offering 6.5% compounded annually. How much will you have after 7 years? (Round to 2 decimal places.)",ans:7712.82,tol:2,hint:"=FV(6.5%,7,0,-5000)"},
+    {year:"Exam Style",diff:"hard",q:"A bond has face value $1,000, coupon rate 9%, 8 years to maturity, required return 11%. What is the bond price? (Round to 2 decimal places.)",ans:895.78,tol:2,hint:"=PV(11%,8,90,1000)"},
+    {year:"Exam Style",diff:"medium",q:"A stock pays D₁=$2.50, required return=13%, growth=5%. What is the stock price? (Round to 2 decimal places.)",ans:31.25,tol:0.5,hint:"P=D₁/(r-g)=2.50/(0.13-0.05)"},
+    {year:"Exam Style",diff:"easy",q:"Loan=$8,000, APR=9%, monthly payments, 2 years. What is the monthly payment? (Round to 2 decimal places.)",ans:365.84,tol:1,hint:"=PMT(0.75%,24,-8000)"},
+    {year:"Exam Style",diff:"hard",q:"APR=15% compounded daily (365 days). What is the EAR? Express as %, round to 4 decimal places.",ans:16.1798,tol:0.05,hint:"=EFFECT(15%,365)*100"},
+    {year:"Exam Style",diff:"medium",q:"ROE=25%, payout ratio=60%. What is the Sustainable Growth Rate (SGR) in %? Round to 2 decimal places.",ans:10.00,tol:0.1,hint:"SGR=25%×(1-60%)=25%×40%"},
+  ];
+
+  function buildExamQs(){
+    const c=document.getElementById("exam-questions-container");
+    examQs.forEach((q,i)=>{
+      const diff=q.diff==="easy"?"🟢 Easy":q.diff==="hard"?"🔴 Hard":"🟡 Medium";
+      const div=document.createElement("div");div.className="exam-q";
+      div.innerHTML=`
+        <div class="eq-header">
+          <span class="eq-year">${q.year}</span>
+          <span class="diff-badge diff-${q.diff}">${diff}</span>
+        </div>
+        <div class="eq-text">${q.text||q.q}</div>
+        <div class="eq-inp">
+          <input class="eq-input" type="text" placeholder="Your answer" id="eq-inp-${i}"
+            onkeydown="if(event.key==='Enter')checkEQ(${i},${JSON.stringify(q.ans)},${q.tol})"/>
+          <button class="eq-check" onclick="checkEQ(${i},${JSON.stringify(q.ans)},${q.tol})">Check ✓</button>
+          <div class="eq-result" id="eq-res-${i}"></div>
+        </div>
+        <div style="font-size:.78rem;color:#888;margin-top:6px;font-style:italic;">💡 ${q.hint}</div>
+      `;
+      c.appendChild(div);
+    });
+  }
+
+  function checkEQ(idx,ans,tol){
+    const raw=document.getElementById("eq-inp-"+idx).value.trim().replace(/[$,%OMR ]/g,"");
+    const res=document.getElementById("eq-res-"+idx);
+    if(!raw){res.textContent="";return;}
+    const val=parseFloat(raw);
+    const ok=typeof ans==="string"?raw.toUpperCase()===ans.toUpperCase():(!isNaN(val)&&Math.abs(val-ans)<=tol);
+    res.innerHTML=ok?'<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>':'<span style="color:#c0392b;font-weight:700;">❌ Try Again <button onclick="document.getElementById(\'eq-res-'+idx+\').innerHTML=\'<b>Answer: '+ans+'</b>\';" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show</button></span>';
+  }
+  buildExamQs();
   </script>
 
   </div>

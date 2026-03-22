@@ -432,6 +432,89 @@
         text-decoration: none;
       }
     }
+  
+    /* ── QUIZ MODE ── */
+    .quiz-wrap { max-width:700px; margin:0 auto; }
+    .quiz-progress-bar { height:10px; background:#e0e0e0; border-radius:999px; margin-bottom:20px; overflow:hidden; }
+    .quiz-progress-fill { height:100%; background:linear-gradient(90deg,#6c63ff,#a89cff); border-radius:999px; transition:width .4s; }
+    .quiz-card { background:var(--paper); border-radius:20px; padding:28px; box-shadow:var(--shadow); border:1px solid var(--line); }
+    .quiz-q-num { font-size:.82rem; color:var(--muted); margin-bottom:8px; }
+    .quiz-q-text { font-size:1.1rem; font-weight:600; margin-bottom:20px; line-height:1.5; }
+    .quiz-opts button { display:block; width:100%; text-align:left; padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; cursor:pointer; transition:.2s; }
+    .quiz-opts button:hover { border-color:var(--accent); background:var(--accent-soft); }
+    .quiz-opts button.correct-opt { background:#d4edda; border-color:#1f8f5f; color:#1f8f5f; font-weight:700; }
+    .quiz-opts button.wrong-opt { background:#fde8e8; border-color:#c0392b; color:#c0392b; }
+    .quiz-feedback { margin-top:14px; font-weight:700; font-size:1rem; min-height:24px; }
+    .quiz-actions { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .quiz-btn { padding:11px 24px; border-radius:12px; border:none; font-weight:700; font-size:.95rem; cursor:pointer; }
+    .quiz-btn-primary { background:var(--accent); color:#fff; }
+    .quiz-btn-secondary { background:var(--accent-soft); color:var(--accent); }
+    .quiz-result-card { text-align:center; padding:36px; }
+    .quiz-score-big { font-size:3.5rem; font-weight:900; color:var(--accent); }
+    .quiz-score-label { font-size:1rem; color:var(--muted); margin-bottom:20px; }
+    .leaderboard-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .leaderboard-table th, .leaderboard-table td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.9rem; }
+    .leaderboard-table th { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+    .leaderboard-table tr:first-child td { font-weight:700; }
+    .medal { font-size:1.2rem; }
+
+    /* ── FORMULA CALCULATOR ── */
+    .calc-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .calc-tab { padding:9px 18px; border-radius:999px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-weight:600; font-size:.88rem; cursor:pointer; transition:.2s; }
+    .calc-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .calc-panel { display:none; }
+    .calc-panel.active { display:block; }
+    .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+    @media(max-width:500px){ .calc-grid { grid-template-columns:1fr; } }
+    .calc-field label { display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:4px; }
+    .calc-field input { width:100%; padding:10px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; }
+    .calc-result { background:linear-gradient(135deg,#6c63ff,#a89cff); color:#fff; border-radius:16px; padding:20px; text-align:center; margin-top:4px; }
+    .calc-result-label { font-size:.82rem; opacity:.85; margin-bottom:4px; }
+    .calc-result-value { font-size:2rem; font-weight:900; }
+    .calc-result-formula { font-size:.78rem; opacity:.8; margin-top:6px; font-family:monospace; }
+    .calc-btn { width:100%; padding:12px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:1rem; font-weight:700; cursor:pointer; margin-bottom:14px; }
+    .calc-error { color:#c0392b; font-size:.88rem; text-align:center; padding:8px; }
+
+    /* ── CHEAT SHEET ── */
+    .cs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+    .cs-card { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:18px; }
+    .cs-title { font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .cs-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.9rem; }
+    .cs-row:last-child { border-bottom:none; }
+    .cs-key { font-weight:600; }
+    .cs-val { font-family:monospace; font-size:.82rem; color:var(--accent); }
+    .print-btn { display:inline-block; padding:10px 22px; background:var(--accent); color:#fff; border-radius:10px; font-weight:700; cursor:pointer; border:none; margin-bottom:16px; font-size:.9rem; }
+
+    /* ── GLOSSARY ── */
+    .glossary-search { width:100%; padding:12px 18px; border-radius:12px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:1rem; margin-bottom:16px; }
+    .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .glossary-item { background:var(--paper); border-radius:14px; border:1px solid var(--line); padding:14px 16px; }
+    .glossary-en { font-weight:700; color:var(--ink); font-size:.95rem; }
+    .glossary-ar { direction:rtl; text-align:right; color:#4c5268; font-size:.9rem; margin-top:4px; }
+    .glossary-def { font-size:.82rem; color:var(--muted); margin-top:6px; border-top:1px dashed var(--line); padding-top:6px; }
+    .glossary-item.hidden { display:none; }
+
+    /* ── STUDY PLAN ── */
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+    .plan-day { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:16px; }
+    .plan-day-title { font-weight:700; font-size:.95rem; margin-bottom:10px; color:var(--accent); }
+    .plan-task { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:.88rem; cursor:pointer; }
+    .plan-task input[type=checkbox] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; }
+    .plan-task span.done { text-decoration:line-through; color:var(--muted); }
+    .plan-progress { height:6px; background:#e0e0e0; border-radius:999px; margin-top:10px; overflow:hidden; }
+    .plan-progress-fill { height:100%; background:var(--accent); border-radius:999px; transition:width .3s; }
+
+    /* ── CONFETTI ── */
+    .confetti-piece { position:fixed; width:10px; height:10px; border-radius:2px; pointer-events:none; z-index:9999; animation:confettiFall 1.2s ease-in forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0deg);} 100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
+
+    /* ── DARK MODE additions ── */
+    body.dark .calc-field input,
+    body.dark .glossary-search { background:#2a2d3e; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button { background:#1e2130; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button:hover { background:#2e3150; }
+    body.dark .cs-card, body.dark .glossary-item, body.dark .plan-day { background:#1e2130; border-color:#3a3d54; }
+
   </style>
 </head>
 <body>
@@ -442,6 +525,11 @@
       <a class="nav-link" onclick="scrollToId('mistakes-section')">⚠️ Common Mistakes</a>
       <a class="nav-link" onclick="scrollToId('exam-section')">📝 Exam Questions</a>
       <a class="nav-link" onclick="scrollToId('practice-section')">🧮 Practice</a>
+      <a class="nav-link" onclick="scrollToId('quiz-section')">🎯 Quiz</a>
+      <a class="nav-link" onclick="scrollToId('calc-section')">🔢 Calculator</a>
+      <a class="nav-link" onclick="scrollToId('cheatsheet-section')">📄 Cheat Sheet</a>
+      <a class="nav-link" onclick="scrollToId('glossary-section')">📖 Glossary</a>
+      <a class="nav-link" onclick="scrollToId('plan-section')">📅 Study Plan</a>
     </div>
     <button class="dark-toggle" onclick="toggleDark()" id="dark-btn">🌙 Dark Mode</button>
   </div>
@@ -1265,7 +1353,90 @@
         .ps-inp{width:90px;}
         .ps-table th:nth-child(3),.ps-table th:nth-child(4){display:none;}
       }
-    </style>
+    
+    /* ── QUIZ MODE ── */
+    .quiz-wrap { max-width:700px; margin:0 auto; }
+    .quiz-progress-bar { height:10px; background:#e0e0e0; border-radius:999px; margin-bottom:20px; overflow:hidden; }
+    .quiz-progress-fill { height:100%; background:linear-gradient(90deg,#6c63ff,#a89cff); border-radius:999px; transition:width .4s; }
+    .quiz-card { background:var(--paper); border-radius:20px; padding:28px; box-shadow:var(--shadow); border:1px solid var(--line); }
+    .quiz-q-num { font-size:.82rem; color:var(--muted); margin-bottom:8px; }
+    .quiz-q-text { font-size:1.1rem; font-weight:600; margin-bottom:20px; line-height:1.5; }
+    .quiz-opts button { display:block; width:100%; text-align:left; padding:12px 18px; margin:8px 0; border-radius:12px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; cursor:pointer; transition:.2s; }
+    .quiz-opts button:hover { border-color:var(--accent); background:var(--accent-soft); }
+    .quiz-opts button.correct-opt { background:#d4edda; border-color:#1f8f5f; color:#1f8f5f; font-weight:700; }
+    .quiz-opts button.wrong-opt { background:#fde8e8; border-color:#c0392b; color:#c0392b; }
+    .quiz-feedback { margin-top:14px; font-weight:700; font-size:1rem; min-height:24px; }
+    .quiz-actions { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .quiz-btn { padding:11px 24px; border-radius:12px; border:none; font-weight:700; font-size:.95rem; cursor:pointer; }
+    .quiz-btn-primary { background:var(--accent); color:#fff; }
+    .quiz-btn-secondary { background:var(--accent-soft); color:var(--accent); }
+    .quiz-result-card { text-align:center; padding:36px; }
+    .quiz-score-big { font-size:3.5rem; font-weight:900; color:var(--accent); }
+    .quiz-score-label { font-size:1rem; color:var(--muted); margin-bottom:20px; }
+    .leaderboard-table { width:100%; border-collapse:collapse; margin-top:16px; }
+    .leaderboard-table th, .leaderboard-table td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--line); font-size:.9rem; }
+    .leaderboard-table th { background:var(--accent-soft); color:var(--accent); font-weight:700; }
+    .leaderboard-table tr:first-child td { font-weight:700; }
+    .medal { font-size:1.2rem; }
+
+    /* ── FORMULA CALCULATOR ── */
+    .calc-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+    .calc-tab { padding:9px 18px; border-radius:999px; border:2px solid var(--line); background:var(--paper); color:var(--ink); font-weight:600; font-size:.88rem; cursor:pointer; transition:.2s; }
+    .calc-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+    .calc-panel { display:none; }
+    .calc-panel.active { display:block; }
+    .calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+    @media(max-width:500px){ .calc-grid { grid-template-columns:1fr; } }
+    .calc-field label { display:block; font-size:.82rem; font-weight:600; color:var(--muted); margin-bottom:4px; }
+    .calc-field input { width:100%; padding:10px 14px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:.95rem; }
+    .calc-result { background:linear-gradient(135deg,#6c63ff,#a89cff); color:#fff; border-radius:16px; padding:20px; text-align:center; margin-top:4px; }
+    .calc-result-label { font-size:.82rem; opacity:.85; margin-bottom:4px; }
+    .calc-result-value { font-size:2rem; font-weight:900; }
+    .calc-result-formula { font-size:.78rem; opacity:.8; margin-top:6px; font-family:monospace; }
+    .calc-btn { width:100%; padding:12px; border-radius:12px; border:none; background:var(--accent); color:#fff; font-size:1rem; font-weight:700; cursor:pointer; margin-bottom:14px; }
+    .calc-error { color:#c0392b; font-size:.88rem; text-align:center; padding:8px; }
+
+    /* ── CHEAT SHEET ── */
+    .cs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
+    .cs-card { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:18px; }
+    .cs-title { font-size:.78rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+    .cs-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed var(--line); font-size:.9rem; }
+    .cs-row:last-child { border-bottom:none; }
+    .cs-key { font-weight:600; }
+    .cs-val { font-family:monospace; font-size:.82rem; color:var(--accent); }
+    .print-btn { display:inline-block; padding:10px 22px; background:var(--accent); color:#fff; border-radius:10px; font-weight:700; cursor:pointer; border:none; margin-bottom:16px; font-size:.9rem; }
+
+    /* ── GLOSSARY ── */
+    .glossary-search { width:100%; padding:12px 18px; border-radius:12px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-size:1rem; margin-bottom:16px; }
+    .glossary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .glossary-item { background:var(--paper); border-radius:14px; border:1px solid var(--line); padding:14px 16px; }
+    .glossary-en { font-weight:700; color:var(--ink); font-size:.95rem; }
+    .glossary-ar { direction:rtl; text-align:right; color:#4c5268; font-size:.9rem; margin-top:4px; }
+    .glossary-def { font-size:.82rem; color:var(--muted); margin-top:6px; border-top:1px dashed var(--line); padding-top:6px; }
+    .glossary-item.hidden { display:none; }
+
+    /* ── STUDY PLAN ── */
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+    .plan-day { background:var(--paper); border-radius:16px; border:1px solid var(--line); padding:16px; }
+    .plan-day-title { font-weight:700; font-size:.95rem; margin-bottom:10px; color:var(--accent); }
+    .plan-task { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:.88rem; cursor:pointer; }
+    .plan-task input[type=checkbox] { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; }
+    .plan-task span.done { text-decoration:line-through; color:var(--muted); }
+    .plan-progress { height:6px; background:#e0e0e0; border-radius:999px; margin-top:10px; overflow:hidden; }
+    .plan-progress-fill { height:100%; background:var(--accent); border-radius:999px; transition:width .3s; }
+
+    /* ── CONFETTI ── */
+    .confetti-piece { position:fixed; width:10px; height:10px; border-radius:2px; pointer-events:none; z-index:9999; animation:confettiFall 1.2s ease-in forwards; }
+    @keyframes confettiFall { 0%{opacity:1;transform:translateY(0) rotate(0deg);} 100%{opacity:0;transform:translateY(100vh) rotate(720deg);} }
+
+    /* ── DARK MODE additions ── */
+    body.dark .calc-field input,
+    body.dark .glossary-search { background:#2a2d3e; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button { background:#1e2130; border-color:#3a3d54; color:#e0e4ff; }
+    body.dark .quiz-opts button:hover { background:#2e3150; }
+    body.dark .cs-card, body.dark .glossary-item, body.dark .plan-day { background:#1e2130; border-color:#3a3d54; }
+
+  </style>
 
     <!-- Tab navigation -->
     <div class="tab-nav">
@@ -1624,7 +1795,712 @@
     res.innerHTML=ok?'<span style="color:#1f8f5f;font-weight:700;">✅ Correct!</span>':'<span style="color:#c0392b;font-weight:700;">❌ Try Again <button onclick="document.getElementById(\'eq-res-'+idx+\').innerHTML=\'<b>Answer: '+ans+'</b>\';" style="margin-left:6px;padding:2px 8px;font-size:.72rem;border:1px solid #c0392b;border-radius:6px;background:#fff;color:#c0392b;cursor:pointer;">Show</button></span>';
   }
   buildExamQs();
+
+  // ═══════════════════════════════════════════════════════════════
+  // CONFETTI
+  // ═══════════════════════════════════════════════════════════════
+  function confetti(x,y){
+    const colors=["#6c63ff","#ffd700","#ff6b6b","#4ecdc4","#45b7d1","#96ceb4"];
+    for(let i=0;i<30;i++){
+      const p=document.createElement("div");p.className="confetti-piece";
+      p.style.left=(x||50)+"%";p.style.top=(y||30)+"%";
+      p.style.background=colors[i%colors.length];
+      p.style.transform=`translate(${(Math.random()-0.5)*300}px,${(Math.random()-0.5)*200}px)`;
+      document.body.appendChild(p);setTimeout(()=>p.remove(),1400);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // QUIZ MODE
+  // ═══════════════════════════════════════════════════════════════
+  const allQuizQ=[
+    // Chapter 2
+    {ch:"Ch2",q:"FV of $1,000 at 8% for 5 years?",opts:["$1,400","$1,469.33","$1,500","$1,350"],ans:1},
+    {ch:"Ch2",q:"PV of $2,000 in 6 years at 10%?",opts:["$1,000","$1,200","$1,128.95","$1,350"],ans:2},
+    {ch:"Ch2",q:"Which Excel function finds the number of periods?",opts:["=FV()","=PV()","=RATE()","=NPER()"],ans:3},
+    {ch:"Ch2",q:"Simple interest vs compound: which grows faster?",opts:["Simple","Compound","Same","Depends on rate"],ans:1},
+    {ch:"Ch2",q:"If rate increases, what happens to FV?",opts:["FV decreases","FV stays same","FV increases","Cannot determine"],ans:2},
+    // Chapter 3
+    {ch:"Ch3",q:"Payments at the END of each period are called?",opts:["Annuity Due","Ordinary Annuity","Perpetuity","Lump Sum"],ans:1},
+    {ch:"Ch3",q:"APR=12% monthly compounding. EAR=?",opts:["12.00%","12.68%","12.36%","13.00%"],ans:1},
+    {ch:"Ch3",q:"In Excel, annuity DUE uses type=?",opts:["0","1","2","-1"],ans:1},
+    {ch:"Ch3",q:"Which function calculates loan payment?",opts:["=PV()","=RATE()","=PMT()","=NPER()"],ans:2},
+    {ch:"Ch3",q:"EAR is always __ APR when compounding > once/year?",opts:["Less than","Equal to","Greater than","Half of"],ans:2},
+    // Chapter 4
+    {ch:"Ch4",q:"Bond with 8% coupon, 10% required return sells at?",opts:["Premium","Par","Discount","Cannot tell"],ans:2},
+    {ch:"Ch4",q:"Bond prices and yields move?",opts:["Same direction","Opposite directions","Independently","Only with inflation"],ans:1},
+    {ch:"Ch4",q:"Fisher Effect formula?",opts:["n=r+π","(1+n)=(1+r)(1+π)","n=r×π","n=r-π"],ans:1},
+    {ch:"Ch4",q:"Zero-coupon bond pays?",opts:["Only coupons","Coupons + face","Only face value at maturity","Monthly dividends"],ans:2},
+    {ch:"Ch4",q:"Which is investment-grade? ",opts:["BB","CCC","AAA","D"],ans:2},
+    // Chapter 5
+    {ch:"Ch5",q:"Gordon Model stock price formula?",opts:["P=D/r","P=D₁/(r-g)","P=EPS×P/E","P=ROE×b"],ans:1},
+    {ch:"Ch5",q:"SGR = ROE × ?",opts:["Payout ratio","Retention ratio","Dividend yield","P/E ratio"],ans:1},
+    {ch:"Ch5",q:"Gordon model requires?",opts:["r=g","r<g","r>g","g=0"],ans:2},
+    {ch:"Ch5",q:"Cumulative voting helps?",opts:["Majority shareholders","Minority shareholders","The board only","Bondholders"],ans:1},
+    {ch:"Ch5",q:"Zero-growth stock: D=$4, r=8%. Price=?",opts:["$32","$50","$40","$48"],ans:1},
+  ];
+
+  let quizQs=[], quizIdx=0, quizCorrect=0, quizWrong=0, quizStartTime=0, quizTimerInt=null, quizAnswered=false;
+
+  function showQuizStart(){
+    document.getElementById("quiz-start-screen").style.display="";
+    document.getElementById("quiz-game-screen").style.display="none";
+    document.getElementById("quiz-result-screen").style.display="none";
+    clearInterval(quizTimerInt);
+    renderLeaderboard();
+  }
+
+  function startQuiz(){
+    const filter=document.querySelector("input[name=quiz-filter]:checked").value;
+    const count=parseInt(document.getElementById("quiz-count").value);
+    let pool=filter==="all"?allQuizQ:allQuizQ.filter(q=>q.ch.toLowerCase()===filter);
+    pool=[...pool].sort(()=>Math.random()-0.5).slice(0,Math.min(count,pool.length));
+    quizQs=pool; quizIdx=0; quizCorrect=0; quizWrong=0; quizAnswered=false;
+    quizStartTime=Date.now();
+    document.getElementById("quiz-start-screen").style.display="none";
+    document.getElementById("quiz-game-screen").style.display="";
+    document.getElementById("quiz-result-screen").style.display="none";
+    clearInterval(quizTimerInt);
+    quizTimerInt=setInterval(()=>{
+      const s=Math.floor((Date.now()-quizStartTime)/1000);
+      document.getElementById("quiz-timer-display").textContent="⏱ "+Math.floor(s/60)+":"+(s%60<10?"0":"")+s%60;
+    },1000);
+    renderQuizQ();
+  }
+
+  function renderQuizQ(){
+    if(quizIdx>=quizQs.length){endQuiz();return;}
+    const q=quizQs[quizIdx]; quizAnswered=false;
+    const pct=Math.round(quizIdx/quizQs.length*100);
+    document.getElementById("qpf").style.width=pct+"%";
+    document.getElementById("q-counter").textContent="Question "+(quizIdx+1)+" / "+quizQs.length;
+    document.getElementById("quiz-chapter-tag").textContent=q.ch;
+    document.getElementById("quiz-q-text").textContent=q.q;
+    document.getElementById("quiz-feedback").innerHTML="";
+    document.getElementById("quiz-next-btn").style.display="none";
+    const opts=document.getElementById("quiz-opts"); opts.innerHTML="";
+    q.opts.forEach((o,i)=>{
+      const btn=document.createElement("button");btn.textContent=o;
+      btn.onclick=()=>answerQuiz(i,q.ans,btn);
+      opts.appendChild(btn);
+    });
+  }
+
+  function answerQuiz(chosen,correct,btn){
+    if(quizAnswered)return; quizAnswered=true;
+    const opts=document.querySelectorAll(".quiz-opts button");
+    opts[correct].classList.add("correct-opt");
+    if(chosen!==correct){btn.classList.add("wrong-opt");quizWrong++;}
+    else{quizCorrect++;confetti(50,40);}
+    document.getElementById("quiz-feedback").innerHTML=
+      chosen===correct?'<span style="color:#1f8f5f">✅ Correct!</span>':'<span style="color:#c0392b">❌ Wrong — see green for correct answer</span>';
+    document.getElementById("quiz-next-btn").style.display="";
+    quizIdx++;
+  }
+
+  function nextQuizQ(){renderQuizQ();}
+
+  function endQuiz(){
+    clearInterval(quizTimerInt);
+    const elapsed=Math.floor((Date.now()-quizStartTime)/1000);
+    const total=quizCorrect+quizWrong;
+    const pct=total?Math.round(quizCorrect/total*100):0;
+    document.getElementById("quiz-game-screen").style.display="none";
+    document.getElementById("quiz-result-screen").style.display="";
+    document.getElementById("quiz-final-score").textContent=pct+"%";
+    document.getElementById("quiz-final-label").textContent=quizCorrect+" correct out of "+total+" questions";
+    document.getElementById("res-correct").textContent=quizCorrect;
+    document.getElementById("res-wrong").textContent=quizWrong;
+    const m=Math.floor(elapsed/60),s=elapsed%60;
+    document.getElementById("res-time").textContent=m+":"+(s<10?"0":"")+s;
+    document.getElementById("quiz-confetti-msg").textContent=pct>=90?"🏆 Outstanding!":pct>=70?"🎉 Great job!":pct>=50?"💪 Keep practicing!":"📚 Study more!";
+    if(pct>=90)confetti(50,30);
+    saveLeaderboard(pct,elapsed);
+  }
+
+  function saveLeaderboard(pct,elapsed){
+    const lb=JSON.parse(localStorage.getItem("fin200-lb")||"[]");
+    lb.push({pct,elapsed,date:new Date().toLocaleDateString()});
+    lb.sort((a,b)=>b.pct-a.pct||(a.elapsed-b.elapsed));
+    lb.splice(10);
+    localStorage.setItem("fin200-lb",JSON.stringify(lb));
+  }
+
+  function renderLeaderboard(){
+    const lb=JSON.parse(localStorage.getItem("fin200-lb")||"[]");
+    const tbody=document.getElementById("lb-body"); tbody.innerHTML="";
+    if(!lb.length){tbody.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">No scores yet — play a quiz!</td></tr>';return;}
+    lb.forEach((r,i)=>{
+      const medals=["🥇","🥈","🥉"];
+      const tr=document.createElement("tr");
+      tr.innerHTML=`<td>${medals[i]||i+1}</td><td>${r.pct}%</td><td>${Math.floor(r.elapsed/60)}:${(r.elapsed%60<10?"0":"")+r.elapsed%60}</td><td>${r.date}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  renderLeaderboard();
+
+  // ═══════════════════════════════════════════════════════════════
+  // FORMULA CALCULATOR
+  // ═══════════════════════════════════════════════════════════════
+  function switchCalc(id,btn){
+    document.querySelectorAll(".calc-panel").forEach(p=>p.classList.remove("active"));
+    document.querySelectorAll(".calc-tab").forEach(b=>b.classList.remove("active"));
+    document.getElementById("calc-"+id).classList.add("active");
+    btn.classList.add("active");
+  }
+  function showCalcResult(id,label,val,formula){
+    document.getElementById(id+"-result").style.display="";
+    document.getElementById(id+"-val").textContent=val;
+    document.getElementById(id+"-formula").textContent=formula;
+    document.getElementById(id+"-err").textContent="";
+  }
+  function showCalcErr(id,msg){
+    document.getElementById(id+"-result").style.display="none";
+    document.getElementById(id+"-err").textContent=msg;
+  }
+  function g(id){return parseFloat(document.getElementById(id).value);}
+
+  function calcFV(){
+    const r=g("fv-rate")/100,n=g("fv-nper"),pv=g("fv-pv"),pmt=g("fv-pmt")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(pv)){showCalcErr("fv","Please fill Rate, NPER, and PV.");return;}
+    let fv;
+    if(r===0)fv=pv+pmt*n;
+    else fv=pv*Math.pow(1+r,n)+pmt*((Math.pow(1+r,n)-1)/r);
+    showCalcResult("fv","FV","$"+fv.toFixed(2),"=FV("+g("fv-rate")+"%,"+n+","+(pmt?-pmt:0)+","+-pv+")");
+  }
+  function calcPV(){
+    const r=g("pv-rate")/100,n=g("pv-nper"),fv=g("pv-fv"),pmt=g("pv-pmt")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(fv)){showCalcErr("pv","Please fill Rate, NPER, and FV.");return;}
+    let pv;
+    if(r===0)pv=fv+pmt*n;
+    else pv=fv/Math.pow(1+r,n)+pmt*((1-Math.pow(1+r,-n))/r);
+    showCalcResult("pv","PV","$"+pv.toFixed(2),"=PV("+g("pv-rate")+"%,"+n+","+(pmt?-pmt:0)+","+fv+")");
+  }
+  function calcPMT(){
+    const r=g("pmt-rate")/100,n=g("pmt-nper"),pv=g("pmt-pv"),fv=g("pmt-fv")||0;
+    if(isNaN(r)||isNaN(n)||isNaN(pv)){showCalcErr("pmt","Please fill Rate, NPER, and PV.");return;}
+    let pmt;
+    if(r===0)pmt=-(pv+fv)/n;
+    else pmt=-(pv*Math.pow(1+r,n)+fv)*r/((Math.pow(1+r,n)-1));
+    showCalcResult("pmt","PMT","$"+Math.abs(pmt).toFixed(2)+" / period","=PMT("+g("pmt-rate")+"%,"+n+","+-pv+","+(fv||0)+")");
+  }
+  function calcRATE(){
+    const n=g("rate-nper"),pv=g("rate-pv"),fv=g("rate-fv"),pmt=g("rate-pmt")||0;
+    if(isNaN(n)||isNaN(pv)||isNaN(fv)){showCalcErr("rate","Please fill NPER, PV, and FV.");return;}
+    // Newton-Raphson
+    let r=0.1;
+    for(let i=0;i<100;i++){
+      const er=Math.pow(1+r,n);
+      const f=pv*er+pmt*(er-1)/r+fv;
+      const df=pv*n*Math.pow(1+r,n-1)+pmt*((n*r*Math.pow(1+r,n-1)*(r)-(er-1))/(r*r));
+      const nr=r-f/df; if(Math.abs(nr-r)<1e-10){r=nr;break;} r=nr;
+    }
+    showCalcResult("rate","RATE",(r*100).toFixed(4)+"%","=RATE("+n+",0,"+-pv+","+fv+") per period");
+  }
+  function calcNPER(){
+    const r=g("nper-rate")/100,pv=g("nper-pv"),fv=g("nper-fv"),pmt=g("nper-pmt")||0;
+    if(isNaN(r)||isNaN(pv)||isNaN(fv)){showCalcErr("nper","Please fill Rate, PV, and FV.");return;}
+    let n;
+    if(r===0)n=-(pv+fv)/(pmt||1);
+    else n=Math.log(fv/pv)/Math.log(1+r);
+    showCalcResult("nper","NPER",n.toFixed(4)+" periods","=NPER("+g("nper-rate")+"%,0,"+-pv+","+fv+")");
+  }
+  function calcEAR(){
+    const apr=g("ear-apr")/100,m=g("ear-m");
+    if(isNaN(apr)||isNaN(m)||m<=0){showCalcErr("ear","Please fill APR and compounding periods.");return;}
+    const ear=(Math.pow(1+apr/m,m)-1)*100;
+    showCalcResult("ear","EAR",ear.toFixed(4)+"%","=EFFECT("+g("ear-apr")+"%,"+m+")");
+  }
+  function calcBond(){
+    const fv=g("bond-fv"),cr=g("bond-cr")/100,yr=g("bond-yr"),rr=g("bond-rr")/100;
+    if(isNaN(fv)||isNaN(cr)||isNaN(yr)||isNaN(rr)){showCalcErr("bond","Please fill all fields.");return;}
+    const cpn=fv*cr;
+    const price=cpn*((1-Math.pow(1+rr,-yr))/rr)+fv/Math.pow(1+rr,yr);
+    showCalcResult("bond","Price","$"+price.toFixed(2),"=PV("+g("bond-rr")+"%,"+yr+","+cpn.toFixed(0)+","+fv+")");
+    const badge=document.getElementById("bond-type-badge");
+    if(cr>rr)badge.innerHTML='<span style="color:#1f8f5f">📈 Premium Bond — Price > Face Value (coupon > yield)</span>';
+    else if(cr<rr)badge.innerHTML='<span style="color:#c0392b">📉 Discount Bond — Price < Face Value (coupon < yield)</span>';
+    else badge.innerHTML='<span style="color:#6c63ff">⚖️ Par Bond — Price ≈ Face Value</span>';
+  }
+  function toggleStockModel(){
+    const m=document.getElementById("stock-model").value;
+    document.getElementById("stock-zero-fields").style.display=m==="zero"?"grid":"none";
+    document.getElementById("stock-gordon-fields").style.display=m==="gordon"?"grid":"none";
+    document.getElementById("stock-pe-fields").style.display=m==="pe"?"grid":"none";
+    document.getElementById("stock-result").style.display="none";
+  }
+  function calcStock(){
+    const m=document.getElementById("stock-model").value;
+    if(m==="zero"){
+      const d=g("sz-d"),r=g("sz-r")/100;
+      if(isNaN(d)||isNaN(r)||r<=0){showCalcErr("stock","Please fill D and r.");return;}
+      showCalcResult("stock","P","$"+(d/r).toFixed(2),"P = D/r = "+d+"/"+(g("sz-r")/100).toFixed(2));
+    } else if(m==="gordon"){
+      const d1=g("sg-d1"),r=g("sg-r")/100,gv=g("sg-g")/100;
+      if(isNaN(d1)||isNaN(r)||isNaN(gv)){showCalcErr("stock","Please fill D₁, r, and g.");return;}
+      if(r<=gv){showCalcErr("stock","Error: r must be greater than g.");return;}
+      showCalcResult("stock","P","$"+(d1/(r-gv)).toFixed(2),"P = D₁/(r−g) = "+d1+"/("+g("sg-r")+"% − "+g("sg-g")+"%)");
+    } else {
+      const pe=g("spe-pe"),eps=g("spe-eps");
+      if(isNaN(pe)||isNaN(eps)){showCalcErr("stock","Please fill P/E and EPS.");return;}
+      showCalcResult("stock","P","$"+(pe*eps).toFixed(2),"P = P/E × EPS = "+pe+" × "+eps);
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // GLOSSARY
+  // ═══════════════════════════════════════════════════════════════
+  const glossaryTerms=[
+    {en:"Future Value (FV)",ar:"القيمة المستقبلية",def:"The value of an investment at a future date after earning interest."},
+    {en:"Present Value (PV)",ar:"القيمة الحالية",def:"The current worth of a future sum of money discounted at a given rate."},
+    {en:"Interest Rate (r)",ar:"معدل الفائدة",def:"The percentage charged on borrowed money or earned on investments."},
+    {en:"Compounding",ar:"التراكم / الفائدة المركبة",def:"Earning interest on both principal and previously accumulated interest."},
+    {en:"Discounting",ar:"الخصم",def:"The process of finding the present value of future cash flows."},
+    {en:"Annuity",ar:"الدفعات المتساوية",def:"A series of equal, periodic cash flows over a specified time."},
+    {en:"Ordinary Annuity",ar:"الدفعات العادية",def:"Payments made at the END of each period."},
+    {en:"Annuity Due",ar:"الدفعات المقدمة",def:"Payments made at the BEGINNING of each period (type=1 in Excel)."},
+    {en:"Perpetuity",ar:"الدفعات الدائمة",def:"An annuity that continues forever. PV = D/r."},
+    {en:"APR",ar:"معدل الفائدة السنوي الاسمي",def:"Annual Percentage Rate — the nominal rate before compounding adjustment."},
+    {en:"EAR",ar:"معدل الفائدة السنوي الفعلي",def:"Effective Annual Rate — the real rate after compounding. EAR ≥ APR."},
+    {en:"Amortization",ar:"الاستهلاك / إطفاء الدين",def:"Gradual repayment of a loan through regular payments of interest and principal."},
+    {en:"Bond",ar:"السند",def:"A debt security where the issuer borrows money and pays coupons plus face value."},
+    {en:"Face Value",ar:"القيمة الاسمية",def:"The principal amount of a bond, typically $1,000, paid at maturity."},
+    {en:"Coupon Rate",ar:"معدل الكوبون",def:"The annual interest rate stated on the bond, applied to face value."},
+    {en:"Coupon Payment",ar:"دفعة الكوبون",def:"Periodic interest payment = Coupon Rate × Face Value."},
+    {en:"Yield to Maturity (YTM)",ar:"العائد حتى الاستحقاق",def:"The total return expected if the bond is held until maturity."},
+    {en:"Premium Bond",ar:"سند فوق الاسمية",def:"A bond priced ABOVE face value — when coupon rate > required return."},
+    {en:"Discount Bond",ar:"سند دون الاسمية",def:"A bond priced BELOW face value — when coupon rate < required return."},
+    {en:"Par Bond",ar:"سند عند الاسمية",def:"A bond priced AT face value — when coupon rate = required return."},
+    {en:"Zero-Coupon Bond",ar:"سند عديم الكوبون",def:"Bond with no periodic coupons; pays only face value at maturity."},
+    {en:"Fisher Effect",ar:"أثر فيشر",def:"(1+nominal) = (1+real) × (1+inflation). Links nominal and real rates."},
+    {en:"Yield Curve",ar:"منحنى العائد",def:"A graph showing yields of bonds vs. their maturities."},
+    {en:"Credit Rating",ar:"التصنيف الائتماني",def:"Assessment of a bond issuer's ability to repay debt (AAA is highest)."},
+    {en:"Common Stock",ar:"الأسهم العادية",def:"Equity ownership in a company with voting rights and residual claim."},
+    {en:"Dividend",ar:"توزيعات الأرباح",def:"A share of company profits distributed to shareholders."},
+    {en:"Gordon Growth Model",ar:"نموذج نمو جوردون",def:"P = D₁ / (r − g). Values stock with constant dividend growth."},
+    {en:"Sustainable Growth Rate (SGR)",ar:"معدل النمو المستدام",def:"Maximum growth rate without external financing. SGR = ROE × b."},
+    {en:"ROE",ar:"العائد على حقوق الملكية",def:"Return on Equity = Net Income / Equity. Measures profitability."},
+    {en:"Retention Ratio (b)",ar:"نسبة الاحتجاز",def:"b = 1 − Payout ratio. Fraction of earnings reinvested in the company."},
+    {en:"P/E Ratio",ar:"مضاعف الربحية",def:"Price-to-Earnings ratio. Used to value stocks relative to earnings."},
+    {en:"Cumulative Voting",ar:"التصويت التراكمي",def:"Voting method allowing minority shareholders to concentrate votes on one director."},
+    {en:"Straight Voting",ar:"التصويت المباشر",def:"Each share = one vote per director election. Favors majority shareholders."},
+    {en:"Time Value of Money",ar:"القيمة الزمنية للنقود",def:"A dollar today is worth more than a dollar in the future."},
+    {en:"Inflation",ar:"التضخم",def:"General increase in prices, reducing the purchasing power of money."},
+  ];
+
+  function buildGlossary(){
+    const grid=document.getElementById("glossary-grid");
+    glossaryTerms.forEach((t,i)=>{
+      const div=document.createElement("div");div.className="glossary-item";div.dataset.idx=i;
+      div.innerHTML=`<div class="glossary-en">${t.en}</div><div class="glossary-ar">${t.ar}</div><div class="glossary-def">${t.def}</div>`;
+      grid.appendChild(div);
+    });
+  }
+  buildGlossary();
+
+  function filterGlossary(val){
+    const q=val.toLowerCase();
+    document.querySelectorAll(".glossary-item").forEach(el=>{
+      const i=parseInt(el.dataset.idx);
+      const t=glossaryTerms[i];
+      const match=t.en.toLowerCase().includes(q)||t.ar.includes(val)||t.def.toLowerCase().includes(q);
+      el.classList.toggle("hidden",!match);
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // STUDY PLAN
+  // ═══════════════════════════════════════════════════════════════
+  const studyPlan=[
+    {day:"Day 1 — Ch2 Basics",tasks:["Read Chapter 2 notes","Understand FV formula","Understand PV formula","Practice =FV() in calculator","Practice =PV() in calculator","Do Ch2 flashcards"]},
+    {day:"Day 2 — Ch2 Advanced",tasks:["Learn =RATE() function","Learn =NPER() function","Solve Ch2 practice questions","Review Ch2 common mistakes","Do 5 quiz questions (Ch2)"]},
+    {day:"Day 3 — Ch3",tasks:["Read Chapter 3 notes","Understand ordinary vs due annuity","Learn =PMT() function","Calculate EAR from APR","Do Ch3 flashcards","Solve Ch3 practice questions"]},
+    {day:"Day 4 — Ch4",tasks:["Read Chapter 4 notes","Understand bond pricing formula","Learn premium vs discount bond","Fisher Effect formula","Do Ch4 flashcards","Solve Ch4 practice questions"]},
+    {day:"Day 5 — Ch5",tasks:["Read Chapter 5 notes","Zero growth stock formula","Gordon Model formula","SGR calculation","Do Ch5 flashcards","Solve Ch5 practice questions"]},
+    {day:"Day 6 — Review",tasks:["Full quiz (all chapters)","Review wrong answers","Practice formula calculator","Study cheat sheet","Review common mistakes","Redo weak flashcards"]},
+    {day:"Day 7 — Exam Prep",tasks:["Timed exam questions (30 min)","Review all formulas","Check cheat sheet","Get 80%+ on full quiz","Rest and sleep well 😴"]},
+  ];
+
+  function buildStudyPlan(){
+    const grid=document.getElementById("plan-grid");
+    const saved=JSON.parse(localStorage.getItem("fin200-plan")||"{}");
+    studyPlan.forEach((day,di)=>{
+      const card=document.createElement("div");card.className="plan-day";
+      let tasksHTML="";
+      day.tasks.forEach((t,ti)=>{
+        const key="d"+di+"t"+ti;
+        const checked=saved[key]?"checked":"";
+        const doneClass=saved[key]?" done":"";
+        tasksHTML+=`<label class="plan-task"><input type="checkbox" ${checked} onchange="savePlan('${key}',this.checked,this)"> <span class="t-span${doneClass}">${t}</span></label>`;
+      });
+      const done=day.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length;
+      const pct=Math.round(done/day.tasks.length*100);
+      card.innerHTML=`<div class="plan-day-title">${day.day}</div>${tasksHTML}<div class="plan-progress"><div class="plan-progress-fill" id="pp${di}" style="width:${pct}%"></div></div><div style="font-size:.75rem;color:var(--muted);margin-top:4px;">${done}/${day.tasks.length} complete</div>`;
+      grid.appendChild(card);
+    });
+    updateOverallPlan(saved);
+  }
+
+  function savePlan(key,checked,checkbox){
+    const saved=JSON.parse(localStorage.getItem("fin200-plan")||"{}");
+    saved[key]=checked;
+    localStorage.setItem("fin200-plan",JSON.stringify(saved));
+    const span=checkbox.nextElementSibling;
+    if(checked){span.classList.add("done");confetti(50,50);}
+    else span.classList.remove("done");
+    // update bar
+    const di=parseInt(key.match(/d(\d+)/)[1]);
+    const day=studyPlan[di];
+    const done=day.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length;
+    const pct=Math.round(done/day.tasks.length*100);
+    document.getElementById("pp"+di).style.width=pct+"%";
+    updateOverallPlan(saved);
+  }
+
+  function updateOverallPlan(saved){
+    const total=studyPlan.reduce((s,d)=>s+d.tasks.length,0);
+    const done=studyPlan.reduce((s,d,di)=>s+d.tasks.filter((_,ti)=>saved["d"+di+"t"+ti]).length,0);
+    const pct=Math.round(done/total*100);
+    document.getElementById("plan-overall").innerHTML=`
+      <div style="display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px;"><span>Overall progress</span><span>${done}/${total} tasks (${pct}%)</span></div>
+      <div style="height:12px;background:#e0e0e0;border-radius:999px;overflow:hidden;"><div style="height:100%;background:linear-gradient(90deg,#6c63ff,#a89cff);border-radius:999px;width:${pct}%;transition:width .3s;"></div></div>`;
+  }
+  buildStudyPlan();
+
   </script>
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         QUIZ MODE SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="quiz-section">
+      <h2>🎯 Quiz Mode | وضع الاختبار</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Test yourself with random questions from all chapters. Your best scores are saved!</p>
+      <div class="quiz-wrap">
+        <div id="quiz-start-screen">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;">
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="all" checked> All Chapters
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch2"> Chapter 2
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch3"> Chapter 3
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch4"> Chapter 4
+            </label>
+            <label style="font-weight:600;display:flex;align-items:center;gap:6px;">
+              <input type="radio" name="quiz-filter" value="ch5"> Chapter 5
+            </label>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;">
+            <label style="font-weight:600;">Number of questions:</label>
+            <select id="quiz-count" style="padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);font-size:.95rem;">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20 (All)</option>
+            </select>
+          </div>
+          <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()" style="padding:14px 32px;font-size:1rem;">Start Quiz 🚀</button>
+          <div id="leaderboard-section" style="margin-top:28px;">
+            <h3 style="margin-bottom:12px;">🏆 Leaderboard | أفضل النتائج</h3>
+            <table class="leaderboard-table">
+              <thead><tr><th>#</th><th>Score</th><th>Time</th><th>Date</th></tr></thead>
+              <tbody id="lb-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="quiz-game-screen" style="display:none;">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="qpf" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:14px;font-size:.85rem;color:var(--muted);">
+            <span id="q-counter">Question 1 / 10</span>
+            <span id="quiz-timer-display">⏱ 0:00</span>
+          </div>
+          <div class="quiz-card">
+            <div class="quiz-q-num" id="quiz-chapter-tag"></div>
+            <div class="quiz-q-text" id="quiz-q-text"></div>
+            <div class="quiz-opts" id="quiz-opts"></div>
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+          </div>
+          <div class="quiz-actions">
+            <button class="quiz-btn quiz-btn-primary" id="quiz-next-btn" onclick="nextQuizQ()" style="display:none;">Next →</button>
+            <button class="quiz-btn quiz-btn-secondary" onclick="endQuiz()">End Quiz</button>
+          </div>
+        </div>
+        <div id="quiz-result-screen" style="display:none;">
+          <div class="quiz-card quiz-result-card">
+            <div id="quiz-confetti-msg" style="font-size:2rem;margin-bottom:8px;"></div>
+            <div class="quiz-score-big" id="quiz-final-score"></div>
+            <div class="quiz-score-label" id="quiz-final-label"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;">
+              <div style="background:var(--accent-soft);border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:var(--accent)" id="res-correct">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Correct</div>
+              </div>
+              <div style="background:#fde8e8;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:#c0392b" id="res-wrong">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Wrong</div>
+              </div>
+              <div style="background:#d4edda;border-radius:12px;padding:12px;text-align:center;">
+                <div style="font-size:1.4rem;font-weight:900;color:#1f8f5f" id="res-time">-</div>
+                <div style="font-size:.78rem;color:var(--muted)">Time</div>
+              </div>
+            </div>
+            <div class="quiz-actions" style="justify-content:center;">
+              <button class="quiz-btn quiz-btn-primary" onclick="startQuiz()">Play Again 🔄</button>
+              <button class="quiz-btn quiz-btn-secondary" onclick="showQuizStart()">Back to Menu</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         FORMULA CALCULATOR SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="calc-section">
+      <h2>🔢 Formula Calculator | حاسبة المعادلات</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Enter the values and press Calculate. Matches Excel functions exactly.</p>
+      <div class="calc-tabs">
+        <button class="calc-tab active" onclick="switchCalc('fv',this)">FV</button>
+        <button class="calc-tab" onclick="switchCalc('pv',this)">PV</button>
+        <button class="calc-tab" onclick="switchCalc('pmt',this)">PMT</button>
+        <button class="calc-tab" onclick="switchCalc('rate',this)">RATE</button>
+        <button class="calc-tab" onclick="switchCalc('nper',this)">NPER</button>
+        <button class="calc-tab" onclick="switchCalc('ear',this)">EAR</button>
+        <button class="calc-tab" onclick="switchCalc('bond',this)">Bond Price</button>
+        <button class="calc-tab" onclick="switchCalc('stock',this)">Stock Price</button>
+      </div>
+
+      <div id="calc-fv" class="calc-panel active">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="fv-rate" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="fv-nper" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="fv-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Payment per period (0 if lump sum)</label><input id="fv-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcFV()">Calculate FV</button>
+        <div class="calc-result" id="fv-result" style="display:none">
+          <div class="calc-result-label">Future Value (FV)</div>
+          <div class="calc-result-value" id="fv-val"></div>
+          <div class="calc-result-formula" id="fv-formula"></div>
+        </div>
+        <div class="calc-error" id="fv-err"></div>
+      </div>
+
+      <div id="calc-pv" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="pv-rate" type="number" placeholder="e.g. 10" step="any"></div>
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="pv-nper" type="number" placeholder="e.g. 6" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="pv-fv" type="number" placeholder="e.g. 2000" step="any"></div>
+          <div class="calc-field"><label>Payment per period (0 if lump sum)</label><input id="pv-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcPV()">Calculate PV</button>
+        <div class="calc-result" id="pv-result" style="display:none">
+          <div class="calc-result-label">Present Value (PV)</div>
+          <div class="calc-result-value" id="pv-val"></div>
+          <div class="calc-result-formula" id="pv-formula"></div>
+        </div>
+        <div class="calc-error" id="pv-err"></div>
+      </div>
+
+      <div id="calc-pmt" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period (APR/periods)</label><input id="pmt-rate" type="number" placeholder="e.g. 0.5 (monthly)" step="any"></div>
+          <div class="calc-field"><label>Number of Periods</label><input id="pmt-nper" type="number" placeholder="e.g. 36" step="any"></div>
+          <div class="calc-field"><label>Present Value (loan amount)</label><input id="pmt-pv" type="number" placeholder="e.g. 10000" step="any"></div>
+          <div class="calc-field"><label>Future Value (0 for most loans)</label><input id="pmt-fv" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcPMT()">Calculate PMT</button>
+        <div class="calc-result" id="pmt-result" style="display:none">
+          <div class="calc-result-label">Payment per period (PMT)</div>
+          <div class="calc-result-value" id="pmt-val"></div>
+          <div class="calc-result-formula" id="pmt-formula"></div>
+        </div>
+        <div class="calc-error" id="pmt-err"></div>
+      </div>
+
+      <div id="calc-rate" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Number of Periods (NPER)</label><input id="rate-nper" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="rate-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="rate-fv" type="number" placeholder="e.g. 1469" step="any"></div>
+          <div class="calc-field"><label>Payment (0 if lump sum)</label><input id="rate-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcRATE()">Calculate RATE</button>
+        <div class="calc-result" id="rate-result" style="display:none">
+          <div class="calc-result-label">Interest Rate per period</div>
+          <div class="calc-result-value" id="rate-val"></div>
+          <div class="calc-result-formula" id="rate-formula"></div>
+        </div>
+        <div class="calc-error" id="rate-err"></div>
+      </div>
+
+      <div id="calc-nper" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Rate (%) per period</label><input id="nper-rate" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Present Value (PV)</label><input id="nper-pv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Future Value (FV)</label><input id="nper-fv" type="number" placeholder="e.g. 2000" step="any"></div>
+          <div class="calc-field"><label>Payment (0 if lump sum)</label><input id="nper-pmt" type="number" placeholder="0" step="any" value="0"></div>
+        </div>
+        <button class="calc-btn" onclick="calcNPER()">Calculate NPER</button>
+        <div class="calc-result" id="nper-result" style="display:none">
+          <div class="calc-result-label">Number of Periods (NPER)</div>
+          <div class="calc-result-value" id="nper-val"></div>
+          <div class="calc-result-formula" id="nper-formula"></div>
+        </div>
+        <div class="calc-error" id="nper-err"></div>
+      </div>
+
+      <div id="calc-ear" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>APR (%) — Nominal Rate</label><input id="ear-apr" type="number" placeholder="e.g. 12" step="any"></div>
+          <div class="calc-field"><label>Compounding periods per year (m)</label><input id="ear-m" type="number" placeholder="12=monthly, 365=daily" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcEAR()">Calculate EAR</button>
+        <div class="calc-result" id="ear-result" style="display:none">
+          <div class="calc-result-label">Effective Annual Rate (EAR)</div>
+          <div class="calc-result-value" id="ear-val"></div>
+          <div class="calc-result-formula" id="ear-formula"></div>
+        </div>
+        <div class="calc-error" id="ear-err"></div>
+      </div>
+
+      <div id="calc-bond" class="calc-panel">
+        <div class="calc-grid">
+          <div class="calc-field"><label>Face Value ($)</label><input id="bond-fv" type="number" placeholder="e.g. 1000" step="any"></div>
+          <div class="calc-field"><label>Coupon Rate (%) annual</label><input id="bond-cr" type="number" placeholder="e.g. 8" step="any"></div>
+          <div class="calc-field"><label>Years to Maturity</label><input id="bond-yr" type="number" placeholder="e.g. 5" step="any"></div>
+          <div class="calc-field"><label>Required Return (%) annual</label><input id="bond-rr" type="number" placeholder="e.g. 10" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcBond()">Calculate Bond Price</button>
+        <div class="calc-result" id="bond-result" style="display:none">
+          <div class="calc-result-label">Bond Price</div>
+          <div class="calc-result-value" id="bond-val"></div>
+          <div class="calc-result-formula" id="bond-formula"></div>
+        </div>
+        <div id="bond-type-badge" style="margin-top:12px;font-weight:700;font-size:1rem;"></div>
+        <div class="calc-error" id="bond-err"></div>
+      </div>
+
+      <div id="calc-stock" class="calc-panel">
+        <div style="margin-bottom:14px;">
+          <label style="font-weight:600;">Stock Model:</label>
+          <select id="stock-model" onchange="toggleStockModel()" style="margin-left:10px;padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);">
+            <option value="zero">Zero Growth (P = D/r)</option>
+            <option value="gordon">Constant Growth — Gordon Model</option>
+            <option value="pe">P/E Valuation</option>
+          </select>
+        </div>
+        <div id="stock-zero-fields" class="calc-grid">
+          <div class="calc-field"><label>Annual Dividend (D)</label><input id="sz-d" type="number" placeholder="e.g. 3" step="any"></div>
+          <div class="calc-field"><label>Required Return r (%)</label><input id="sz-r" type="number" placeholder="e.g. 10" step="any"></div>
+        </div>
+        <div id="stock-gordon-fields" class="calc-grid" style="display:none">
+          <div class="calc-field"><label>Next Dividend D₁</label><input id="sg-d1" type="number" placeholder="e.g. 2.50" step="any"></div>
+          <div class="calc-field"><label>Required Return r (%)</label><input id="sg-r" type="number" placeholder="e.g. 13" step="any"></div>
+          <div class="calc-field"><label>Growth Rate g (%)</label><input id="sg-g" type="number" placeholder="e.g. 5" step="any"></div>
+        </div>
+        <div id="stock-pe-fields" class="calc-grid" style="display:none">
+          <div class="calc-field"><label>P/E Ratio (multiple)</label><input id="spe-pe" type="number" placeholder="e.g. 15" step="any"></div>
+          <div class="calc-field"><label>EPS (Earnings per Share)</label><input id="spe-eps" type="number" placeholder="e.g. 3.50" step="any"></div>
+        </div>
+        <button class="calc-btn" onclick="calcStock()">Calculate Stock Price</button>
+        <div class="calc-result" id="stock-result" style="display:none">
+          <div class="calc-result-label">Estimated Stock Price</div>
+          <div class="calc-result-value" id="stock-val"></div>
+          <div class="calc-result-formula" id="stock-formula"></div>
+        </div>
+        <div class="calc-error" id="stock-err"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         CHEAT SHEET SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="cheatsheet-section">
+      <h2>📄 Cheat Sheet | ورقة المعادلات</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">All formulas on one page. Print-friendly.</p>
+      <button class="print-btn" onclick="window.print()">🖨️ Print Cheat Sheet</button>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-title">⏳ Chapter 2 — Time Value of Money</div>
+          <div class="cs-row"><span class="cs-key">Future Value</span><span class="cs-val">=FV(rate,nper,0,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Present Value</span><span class="cs-val">=PV(rate,nper,0,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Interest Rate</span><span class="cs-val">=RATE(nper,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Periods</span><span class="cs-val">=NPER(rate,0,-pv,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">FV formula</span><span class="cs-val">PV × (1+r)^t</span></div>
+          <div class="cs-row"><span class="cs-key">PV formula</span><span class="cs-val">FV / (1+r)^t</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">💳 Chapter 3 — Annuities & Rates</div>
+          <div class="cs-row"><span class="cs-key">Loan Payment</span><span class="cs-val">=PMT(rate,nper,-pv)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity PV</span><span class="cs-val">=PV(rate,nper,pmt)</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity Due</span><span class="cs-val">type=1 in Excel</span></div>
+          <div class="cs-row"><span class="cs-key">EAR</span><span class="cs-val">=EFFECT(apr,m)</span></div>
+          <div class="cs-row"><span class="cs-key">EAR formula</span><span class="cs-val">(1+APR/m)^m − 1</span></div>
+          <div class="cs-row"><span class="cs-key">Monthly rate</span><span class="cs-val">APR / 12</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📊 Chapter 4 — Bonds</div>
+          <div class="cs-row"><span class="cs-key">Bond Price</span><span class="cs-val">=PV(req,yrs,cpn,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">YTM</span><span class="cs-val">=RATE(yrs,cpn,-price,fv)</span></div>
+          <div class="cs-row"><span class="cs-key">Coupon ($)</span><span class="cs-val">Coupon% × Face Value</span></div>
+          <div class="cs-row"><span class="cs-key">Premium bond</span><span class="cs-val">Coupon% > Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Discount bond</span><span class="cs-val">Coupon% < Yield</span></div>
+          <div class="cs-row"><span class="cs-key">Fisher Effect</span><span class="cs-val">(1+n)=(1+r)(1+π)</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">📈 Chapter 5 — Stocks</div>
+          <div class="cs-row"><span class="cs-key">Zero Growth</span><span class="cs-val">P = D / r</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon Model</span><span class="cs-val">P = D₁ / (r − g)</span></div>
+          <div class="cs-row"><span class="cs-key">D₁</span><span class="cs-val">D₀ × (1 + g)</span></div>
+          <div class="cs-row"><span class="cs-key">P/E Valuation</span><span class="cs-val">P = P/E × EPS</span></div>
+          <div class="cs-row"><span class="cs-key">SGR</span><span class="cs-val">ROE × (1 − payout)</span></div>
+          <div class="cs-row"><span class="cs-key">Dividend Yield</span><span class="cs-val">D₁ / P₀</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">⚡ Key Relationships</div>
+          <div class="cs-row"><span class="cs-key">Bond Price ↑ ⟹</span><span class="cs-val">Yield ↓</span></div>
+          <div class="cs-row"><span class="cs-key">EAR vs APR</span><span class="cs-val">EAR > APR (m > 1)</span></div>
+          <div class="cs-row"><span class="cs-key">Higher r → FV</span><span class="cs-val">Increases ↑</span></div>
+          <div class="cs-row"><span class="cs-key">Gordon: need</span><span class="cs-val">r > g</span></div>
+          <div class="cs-row"><span class="cs-key">Ordinary annuity</span><span class="cs-val">type = 0</span></div>
+          <div class="cs-row"><span class="cs-key">Annuity due</span><span class="cs-val">type = 1</span></div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-title">🔢 Excel Quick Reference</div>
+          <div class="cs-row"><span class="cs-key">=FV()</span><span class="cs-val">Future Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PV()</span><span class="cs-val">Present Value</span></div>
+          <div class="cs-row"><span class="cs-key">=PMT()</span><span class="cs-val">Payment/period</span></div>
+          <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
+          <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
+          <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         GLOSSARY SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="glossary-section">
+      <h2>📖 Glossary | المصطلحات</h2>
+      <input class="glossary-search" id="glossary-search" type="text" placeholder="Search term... / ابحث عن مصطلح" oninput="filterGlossary(this.value)">
+      <div class="glossary-grid" id="glossary-grid"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         STUDY PLAN SECTION
+    ═══════════════════════════════════════════════════════════════ -->
+    <section class="chapter" id="plan-section">
+      <h2>📅 Study Plan | خطة المذاكرة</h2>
+      <p style="color:var(--muted);margin-bottom:16px;">Check off tasks as you complete them. Progress is saved automatically.</p>
+      <div id="plan-overall" style="margin-bottom:20px;"></div>
+      <div class="plan-grid" id="plan-grid"></div>
+    </section>
 
   </div>
 </body>

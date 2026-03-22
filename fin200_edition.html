@@ -1278,6 +1278,28 @@
     </section>
 
   <!-- ═══════════════════════════════════════════════════════
+       IMPORTANT NOTE BANNER (thekey.sa style)
+       ═══════════════════════════════════════════════════════ -->
+  <div style="max-width:1080px;margin:0 auto 0;padding:0 20px;">
+    <div style="background:linear-gradient(135deg,#fff3cd,#ffeaa0);border:2px solid #f5a623;border-radius:18px;padding:20px 24px;margin-bottom:18px;display:flex;align-items:flex-start;gap:16px;box-shadow:0 4px 16px rgba(245,166,35,0.18);">
+      <div style="font-size:2rem;flex-shrink:0;">⚠️</div>
+      <div>
+        <div style="font-weight:800;font-size:1.05rem;color:#7a4f00;margin-bottom:6px;">ملاحظة مهمة جداً | Very Important Note</div>
+        <div style="font-weight:700;font-size:.98rem;color:#5a3800;margin-bottom:4px;">🎯 أسئلة الـ Practice مهمة في الامتحان!</div>
+        <div style="font-size:.9rem;color:#6b4200;line-height:1.7;">
+          الامتحان الحقيقي يحتوي على أسئلة حسابية مشابهة تماماً لأسئلة الـ Practice أدناه.<br>
+          <span style="color:#8a5200;font-weight:600;">The real exam contains calculation questions identical to the Practice questions below. Master them!</span>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span style="background:#f5a623;color:#fff;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700;">📊 Spreadsheet in Exam</span>
+          <span style="background:#e67e22;color:#fff;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700;">🔢 Excel Functions Required</span>
+          <span style="background:#d35400;color:#fff;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:700;">✅ Practice = Exam Success</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
        INTERACTIVE PRACTICE SPREADSHEET
        ═══════════════════════════════════════════════════════ -->
   <div class="page" id="practice-section">
@@ -1569,15 +1591,6 @@
   ];
 
   let correct=0,wrong=0;
-  function updateScore(wasCorrect,prev){
-    if(prev==="correct")correct--;else if(prev==="wrong")wrong--;
-    if(wasCorrect)correct++;else wrong++;
-    const total=correct+wrong;
-    document.getElementById("sc-correct").textContent=correct;
-    document.getElementById("sc-wrong").textContent=wrong;
-    document.getElementById("sc-total").textContent=total;
-    document.getElementById("sc-pct").textContent=total?Math.round(correct/total*100)+"%":"0%";
-  }
 
   function buildTable(tbodyId,data){
     const tb=document.getElementById(tbodyId);
@@ -1944,7 +1957,7 @@
       tbody.appendChild(tr);
     });
   }
-  renderLeaderboard();
+  window.addEventListener('load', function(){ renderLeaderboard(); });
 
   // ═══════════════════════════════════════════════════════════════
   // FORMULA CALCULATOR
@@ -2103,7 +2116,7 @@
       grid.appendChild(div);
     });
   }
-  buildGlossary();
+  window.addEventListener('load', function(){ buildGlossary(); });
 
   function filterGlossary(val){
     const q=val.toLowerCase();
@@ -2172,7 +2185,7 @@
       <div style="display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px;"><span>Overall progress</span><span>${done}/${total} tasks (${pct}%)</span></div>
       <div style="height:12px;background:#e0e0e0;border-radius:999px;overflow:hidden;"><div style="height:100%;background:linear-gradient(90deg,#6c63ff,#a89cff);border-radius:999px;width:${pct}%;transition:width .3s;"></div></div>`;
   }
-  buildStudyPlan();
+  window.addEventListener('load', function(){ buildStudyPlan(); });
 
   </script>
 

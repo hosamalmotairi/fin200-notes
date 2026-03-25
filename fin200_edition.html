@@ -666,6 +666,7 @@
           <div class="cs-row"><span class="cs-key">=RATE()</span><span class="cs-val">Interest rate</span></div>
           <div class="cs-row"><span class="cs-key">=NPER()</span><span class="cs-val">Number of periods</span></div>
           <div class="cs-row"><span class="cs-key">=EFFECT()</span><span class="cs-val">EAR from APR</span></div>
+          <div class="cs-row"><span class="cs-key">=NOMINAL()</span><span class="cs-val">APR from EAR</span></div>
           <div class="cs-row"><span class="cs-key">=IRR()</span><span class="cs-val">Internal Rate of Return</span></div>
         </div>
         <div class="cs-card">
@@ -788,6 +789,37 @@
         </div>
         <div class="formula">Excel: =NPER(rate, 0, -pv, fv)</div>
       </div>
+
+      <!-- Rule of 72 -->
+      <div class="section">
+        <h3>⚡ Rule of 72 | قاعدة 72</h3>
+        <div class="bilingual">
+          <p class="en-line">A quick way to estimate how long it takes to double your money: divide 72 by the interest rate.</p>
+          <p class="ar-line">طريقة سريعة لتقدير الوقت اللازم لمضاعفة المال: اقسم 72 على معدل الفائدة.</p>
+        </div>
+        <div class="formula">Years to double ≈ 72 / r%</div>
+        <ul class="point-list">
+          <li>At 8% → 72 / 8 = 9 years to double — عند 8% تحتاج 9 سنوات للتضعيف</li>
+          <li>At 6% → 72 / 6 = 12 years — عند 6% تحتاج 12 سنة</li>
+          <li>This is an approximation — not exact — هذه تقريبية وليست دقيقة</li>
+          <li>For exact answer use: =NPER(rate, 0, -1, 2)</li>
+        </ul>
+      </div>
+
+      <!-- Value Appreciation -->
+      <div class="section">
+        <h3>📈 Value Appreciation | ارتفاع قيمة الأصل</h3>
+        <div class="bilingual">
+          <p class="en-line">When an asset increases in value over time at a given rate, we use FV to find its future worth.</p>
+          <p class="ar-line">عندما ترتفع قيمة أصل بمعدل ثابت سنوياً نستخدم FV لإيجاد قيمته المستقبلية.</p>
+        </div>
+        <div class="formula">FV = PV × (1 + r)^t &nbsp;|&nbsp; Excel: =FV(rate, nper, 0, -pv)</div>
+        <ul class="point-list">
+          <li>Example: A house worth $200,000 appreciates at 4% for 10 years → =FV(4%,10,0,-200000)</li>
+          <li>Same formula as future value — نفس دالة FV</li>
+        </ul>
+      </div>
+
       <!-- Chapter 2 Summary -->
       <div class="summary-box">
         <h4>📌 Chapter 2 Summary | ملخص الفصل الثاني</h4>
@@ -1158,6 +1190,28 @@
           <li>Stocks have no maturity date (perpetual life) — الأسهم لا تاريخ استحقاق لها</li>
           <li>Cumulative voting protects minority shareholders — التصويت التراكمي يحمي أقلية المساهمين</li>
         </ul>
+      </div>
+
+      <!-- Share Price with Varying Returns -->
+      <div class="section">
+        <h3>📊 Share Price with Varying Returns | سعر السهم مع نمو متغير</h3>
+        <div class="bilingual">
+          <p class="en-line">When a stock has different growth rates in different periods, we calculate dividends for each period, find the terminal price using Gordon Model, then discount everything back to today using NPV.</p>
+          <p class="ar-line">عندما يكون للسهم معدلات نمو مختلفة في فترات مختلفة، نحسب أرباح كل فترة ثم نجد السعر النهائي بنموذج Gordon ونخصم كل شيء بـ NPV.</p>
+        </div>
+        <ul class="point-list">
+          <li><strong>Step 1:</strong> Calculate dividends for each period (D₁, D₂, … Dₙ)</li>
+          <li><strong>Step 2:</strong> Calculate terminal price at last period: Pₙ = Dₙ×(1+g∞) / (r−g∞)</li>
+          <li><strong>Step 3:</strong> Use =NPV(r, D1, D2, …, Dₙ+Pₙ) to find current stock price</li>
+        </ul>
+        <div class="formula">P₀ = =NPV(r, D1, D2, D3, … Dₙ + Pₙ)</div>
+        <div class="example-box" style="margin-top:12px">
+          <h4>✏️ Example | مثال</h4>
+          <p>D₀ = $4, g₁₋₃ = 10%, g∞ = 5%, r = 12%</p>
+          <p>D1 = 4×1.10 = 4.40 &nbsp;|&nbsp; D2 = 4.40×1.10 = 4.84 &nbsp;|&nbsp; D3 = 4.84×1.10 = 5.324</p>
+          <p>P3 = 5.324×1.05 / (0.12−0.05) = 79.86</p>
+          <div class="formula">=NPV(12%, 4.40, 4.84, 5.324+79.86) = $65.78</div>
+        </div>
       </div>
 
       <!-- Chapter 5 Solved Example -->

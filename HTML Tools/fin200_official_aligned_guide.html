@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Chapter-Aligned Guide</title>
+  <style>
+    :root {
+      --bg: #f4f6ff;
+      --paper: #ffffff;
+      --ink: #242638;
+      --muted: #6d7388;
+      --accent: #6c63ff;
+      --accent-soft: #efedff;
+      --line: #e6e8f3;
+      --good: #1f8f5f;
+      --shadow: 0 18px 40px rgba(70, 80, 140, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.09), transparent 24%),
+        linear-gradient(180deg, #f8f9ff 0%, #f1f4ff 100%);
+      color: var(--ink);
+      line-height: 1.78;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 26px 16px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5f58da, #7c74ff);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4.8vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 930px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .notice,
+    .chapter,
+    .toc {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    h2, h3, h4 {
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 16px;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: 12px;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .toc ul,
+    .bullet-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .section {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #d9ddf5;
+    }
+
+    .page-ref {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background: #fafaff;
+      border: 1px solid #eceefe;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .strong {
+      color: var(--good);
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="tag">FIN 200 • Official-Aligned Guide</div>
+      <h1>FIN 200 Chapter-Aligned Study Guide</h1>
+      <p>
+        This guide was rebuilt directly from the chapter files in the workspace and organized to follow the chapter structure as closely as possible.
+        It is designed to be a source-aligned study companion, not a free-form summary.
+      </p>
+    </section>
+
+    <section class="notice">
+      <h2>Important Note</h2>
+      <p>
+        This file is intended to be much closer to the official chapter content than the earlier memo. It follows the chapter topics and sequence from:
+      </p>
+      <ul class="bullet-list">
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_2.pdf">Chapter_2.pdf</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_3.pdf">Chapter_3.pdf</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_4.pdf">Chapter_4.pdf</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_5.pdf">Chapter_5.pdf</a></li>
+      </ul>
+      <div class="note">
+        It is still a study guide, not the original slides themselves. For maximum safety before the exam, use this file together with the original PDFs.
+      </div>
+    </section>
+
+    <section class="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li>Chapter 2: Time Value of Money, Present Value, Return, and Investment Duration</li>
+        <li>Chapter 3: Multiple Cash Flows, Annuities, Loan Payments, Amortization, APR and EAR</li>
+        <li>Chapter 4: Bond Features, Bond Values and Yields, Ratings, Inflation, and Term Structure</li>
+        <li>Chapter 5: Stock Valuation, Multiples, Corporate Voting, and Stock Market Basics</li>
+      </ul>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 2</h2>
+      <p><strong>Theme:</strong> Introduction to valuation and the time value of money.</p>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-13</div>
+        <h3>Part 2.1: Determining the Future Value of an Investment</h3>
+        <ul class="bullet-list">
+          <li>Learning objective: determine the future value of an investment made today.</li>
+          <li>Future value depends on three core inputs: present value, interest rate, and time.</li>
+          <li>The chapter clearly distinguishes between <strong>simple interest</strong> and <strong>compounded interest</strong>.</li>
+          <li>The course emphasis is on <strong>compounded interest</strong>.</li>
+          <li>The slides include both <strong>single-period investment</strong> and <strong>multi-period investment</strong> examples.</li>
+          <li>Excel method shown in the chapter: <code>=FV(rate, nper, 0, -pv)</code>.</li>
+          <li>The chapter also includes a <strong>financial calculator</strong> setup for FV.</li>
+        </ul>
+        <div class="note">
+          <span class="strong">Exam-aligned reminder:</span> Chapter 2 is not only about the idea of future value. It explicitly includes simple vs. compounded interest, FV in Excel, and FV using a financial calculator.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 14-23</div>
+        <h3>Part 2.2: Determining the Present Value of Future Cash Flows</h3>
+        <ul class="bullet-list">
+          <li>Learning objective: determine the present value of cash to be received at a future date.</li>
+          <li>Topics covered: present value concept, single-period PV, multi-period PV.</li>
+          <li>Excel method shown in the chapter: <code>=PV(rate, nper, 0, fv)</code>.</li>
+          <li>The chapter also introduces the idea of a <strong>perpetuity</strong>.</li>
+          <li>Importance of present value is tied to evaluating investments and comparing cash flows.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 24-32</div>
+        <h3>Part 2.3: Finding the Return on an Investment</h3>
+        <ul class="bullet-list">
+          <li>Learning objective: find the return on an investment.</li>
+          <li>The chapter presents <strong>return on investment (ROI)</strong> as a percentage measure of gain or loss relative to the amount invested.</li>
+          <li>Excel method shown in the chapter: <code>=RATE(nper, 0, -pv, fv)</code>.</li>
+          <li>This section is directly relevant for annualized return questions.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-40</div>
+        <h3>Part 2.4: Calculating Investment Duration</h3>
+        <ul class="bullet-list">
+          <li>Learning objective: calculate how long it takes an investment to reach a desired value.</li>
+          <li>The chapter frames this as a time-to-target problem.</li>
+          <li>Excel method shown in the chapter: <code>=NPER(rate, 0, -pv, fv)</code>.</li>
+          <li>This section supports planning and timeline questions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 3</h2>
+      <p><strong>Theme:</strong> Multiple cash flows, annuities, loan calculations, amortization, and quoted rates.</p>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-12</div>
+        <h3>Part 3.1: Future and Present Value of Multiple Cash Flows</h3>
+        <ul class="bullet-list">
+          <li>The chapter begins with FV of multiple cash flows, then PV of multiple cash flows.</li>
+          <li>An example using Al-Jazira Capital appears for both FV and PV.</li>
+          <li>Excel guidance for FV: calculate the future value of each cash flow and sum them.</li>
+          <li>Excel guidance for PV: use <code>=NPV(rate, cashflow_range)</code> for the total present value.</li>
+          <li>The chapter also includes financial calculator workflows.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 13-18</div>
+        <h3>Part 3.2: Present and Future Value of Annuities</h3>
+        <ul class="bullet-list">
+          <li>The chapter defines an annuity as equal payments over a specific period.</li>
+          <li>It explicitly distinguishes between <strong>ordinary annuity</strong> and <strong>annuity due</strong>.</li>
+          <li>It notes that in Excel, annuity due uses <code>type=1</code> and ordinary annuity uses <code>type=0</code>.</li>
+          <li>The chapter includes real-world examples such as rent and car payments.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-32</div>
+        <h3>Part 3.3: Calculating Loan Payments and Finding Interest Rates</h3>
+        <ul class="bullet-list">
+          <li>The chapter covers loan payment calculation using <strong>PMT</strong>.</li>
+          <li>Example: Dar Al-Arkan real estate development company.</li>
+          <li>Excel PMT example: <code>=PMT(rate, nper, -pv)</code>.</li>
+          <li>The chapter then shows how to find an unknown interest rate using <strong>RATE</strong>.</li>
+          <li>Excel RATE example: <code>=RATE(nper, pmt, pv, 0, 0)</code>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-46</div>
+        <h3>Part 3.4: Loan Amortization</h3>
+        <ul class="bullet-list">
+          <li>The chapter explains how loans are amortized or paid off.</li>
+          <li>It uses PMT again, then builds an <strong>amortization schedule</strong>.</li>
+          <li>The schedule breaks each payment into interest, principal, and remaining balance.</li>
+          <li>The chapter includes spreadsheet creation steps for an amortization schedule.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 47-55</div>
+        <h3>Part 3.5: Quoting and Misquoting Interest Rates</h3>
+        <ul class="bullet-list">
+          <li>This section explains <strong>APR</strong> and <strong>EAR</strong>.</li>
+          <li>APR does not account for compounding within the year.</li>
+          <li>EAR does account for compounding and is more accurate for comparison.</li>
+          <li>Excel function shown in the chapter: <code>=EFFECT(apr, periods_per_year)</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 4</h2>
+      <p><strong>Theme:</strong> Bond features, pricing, yields, ratings, inflation effects, and the term structure of interest rates.</p>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-8</div>
+        <h3>Part 4.1: Bond Features and Types</h3>
+        <ul class="bullet-list">
+          <li>The chapter defines what a bond is.</li>
+          <li>Basic bond features include face value, coupon payment, coupon rate, maturity date, and issuer.</li>
+          <li>Types of bonds shown: treasury bonds, municipal bonds, corporate bonds, and zero-coupon bonds.</li>
+          <li>The chapter also introduces <strong>bonds with options</strong>, especially the <strong>call provision</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 9-20</div>
+        <h3>Part 4.2: Bond Values and Yields and Why They Fluctuate</h3>
+        <ul class="bullet-list">
+          <li>Bond price is defined as the present value of future cash flows.</li>
+          <li>Excel bond price example shown: <code>=PV(required_return, years, coupon_payment, face_value, 0)</code>.</li>
+          <li>The chapter then explains <strong>bond yield</strong> and shows how to calculate it with <strong>RATE</strong>.</li>
+          <li>It clearly distinguishes yield from coupon rate.</li>
+          <li>It covers premium bonds, discount bonds, and bonds at par.</li>
+          <li>It explains how bond prices move toward par as maturity approaches.</li>
+          <li>It covers market interest rates, inflation expectations, and other factors affecting bond prices and yields.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 21-30</div>
+        <h3>Part 4.3: Bond Ratings and What They Mean</h3>
+        <ul class="bullet-list">
+          <li>The chapter includes rating agencies: Moody's, S&amp;P, and Fitch.</li>
+          <li>It presents rating scales and the distinction between investment grade and non-investment grade (junk bonds).</li>
+          <li>It explains the meaning of ratings and factors considered by rating agencies.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 31-42</div>
+        <h3>Part 4.4: The Impact of Inflation on Interest Rates</h3>
+        <ul class="bullet-list">
+          <li>The chapter explains inflation, central bank response, and bond value effects.</li>
+          <li>It introduces the <strong>Fisher Effect</strong>.</li>
+          <li>It distinguishes between nominal interest rate, real interest rate, and inflation rate.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 43-53</div>
+        <h3>Part 4.5: Term Structure of Interest Rates and Determinants of Bond Yields</h3>
+        <ul class="bullet-list">
+          <li>The chapter explains the term structure through the yield curve.</li>
+          <li>It gives an upward-sloping yield curve example.</li>
+          <li>It covers determinants of bond yields, including interest rate risk, inflation expectations, credit risk, liquidity risk, and economic conditions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 5</h2>
+      <p><strong>Theme:</strong> Stock valuation, stock valuation multiples, corporate voting systems, and stock market operation.</p>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-10</div>
+        <h3>Part 5.1: Stock Valuation from Dividends and Dividend Growth</h3>
+        <ul class="bullet-list">
+          <li>The chapter begins with common stock valuation and explains why stock valuation is more complex than bond valuation.</li>
+          <li>It discusses uncertain cash flows, perpetual life, and required return.</li>
+          <li>It includes a one-year stock cash-flow example.</li>
+          <li>It explicitly covers:
+            <ul>
+              <li>Zero Growth Stock</li>
+              <li>Constant Growth Stock</li>
+              <li>Nonconstant Growth</li>
+              <li>Two-stage Growth Model</li>
+            </ul>
+          </li>
+          <li>The wrap-up reinforces stock value as a function of dividends and growth.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 11-18</div>
+        <h3>Part 5.2: Stock Valuation Using Multiples</h3>
+        <ul class="bullet-list">
+          <li>The chapter explains valuation when dividends are not the main method.</li>
+          <li>Multiples covered include:
+            <ul>
+              <li>Price-Earnings (P/E) Ratio</li>
+              <li>Price-Sales (P/S) Ratio</li>
+              <li>EV/EBITDA Ratio</li>
+            </ul>
+          </li>
+          <li>It also includes the <strong>Sustainable Growth Rate (SGR)</strong> and its key components such as retention ratio and ROE.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-25</div>
+        <h3>Part 5.3: Corporate Directors and Voting Systems</h3>
+        <ul class="bullet-list">
+          <li>The chapter explains different ways directors are elected.</li>
+          <li>It covers cumulative voting, straight voting, proxy voting, and staggered boards.</li>
+          <li>It explains strengths and weaknesses of each system.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 26-34</div>
+        <h3>Part 5.4: How Stock Markets Work</h3>
+        <ul class="bullet-list">
+          <li>The chapter introduces the Tadawul and market participants.</li>
+          <li>It covers types of orders: market, limit, and stop orders.</li>
+          <li>It explains market capitalization, dividend yield, earnings per share (EPS), and the price-earnings ratio.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

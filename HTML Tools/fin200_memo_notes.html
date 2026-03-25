@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Memo Notes</title>
+  <style>
+    :root {
+      --bg: #f4f6ff;
+      --paper: #ffffff;
+      --ink: #242638;
+      --muted: #6d7388;
+      --accent: #6c63ff;
+      --accent-soft: #efedff;
+      --line: #e6e8f3;
+      --good: #1f8f5f;
+      --warn: #a56a1d;
+      --shadow: 0 18px 40px rgba(70, 80, 140, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "SF Pro Text", "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 24%),
+        linear-gradient(180deg, #f8f9ff 0%, #f1f4ff 100%);
+      color: var(--ink);
+      line-height: 1.85;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5f58da, #7c74ff);
+      color: white;
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4.6vw, 3.7rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 780px;
+      color: rgba(255,255,255,0.9);
+      font-size: 1.05rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    h2, h3 {
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+
+    h2 { color: var(--accent); font-size: 1.6rem; }
+    h3 { font-size: 1.12rem; }
+    p { margin: 0 0 12px; }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .chip {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .list {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .list li {
+      background: #fafaff;
+      border: 1px solid #eceefe;
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .formula-box {
+      direction: ltr;
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 1.12rem;
+      border: 1px dashed #cfcaf8;
+      background: #f8f7ff;
+      border-radius: 16px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .example {
+      background: #f7fbff;
+      border: 1px solid #dfe7ff;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .callout {
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+
+    .good { background: #eefbf4; border: 1px solid #d5eee0; }
+    .warn { background: #fff8ef; border: 1px solid #f2dfc4; }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .timeline div {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #ffffff, #f8f9ff);
+    }
+
+    .section-block {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #d8dcf4;
+    }
+
+    .memory {
+      background: #f8f7ff;
+      border: 1px solid #e2defb;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 920px) {
+      .span-8, .span-6, .span-4 { grid-column: span 12; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="tag">FIN 200 • Bilingual Study Notes • مذكرة دراسية ثنائية اللغة</div>
+      <h1>Principles of Finance
+        <br />Structured Bilingual Study Notes
+      </h1>
+      <p>
+        صُممت هذه المذكرة لتكون مرجعًا دراسيًا واضحًا ومنظمًا لطلاب مبادئ المالية، مع عرض ثنائي اللغة يساعد على الفهم المفاهيمي
+        واكتساب المصطلحات الأكاديمية المستخدمة في المقررات والاختبارات.
+        <br />
+        These notes are designed as a clear and organized study resource for Principles of Finance students,
+        combining conceptual understanding with the academic terminology commonly used in lectures and exams.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card span-8">
+        <h2>خريطة المنهج
+          <br />Course Map
+        </h2>
+        <p>هذه الموضوعات ليست وحدات منفصلة، بل سلسلة مترابطة يبني كل فصل فيها على المفاهيم السابقة:
+          <br />These topics are not isolated units, but a connected sequence in which each chapter builds on earlier concepts.
+        </p>
+        <ul class="list">
+          <li><strong>Chapter 2:</strong> تبدأ بفكرة بسيطة جدًا: المال اليوم يمكن أن ينمو. <br />You start with a simple idea: money today can grow.</li>
+          <li><strong>Chapter 3:</strong> ثم تنتقل إلى عدة مبالغ في أوقات مختلفة. <br />Then you move to many amounts at different dates.</li>
+          <li><strong>Chapter 4:</strong> بعد ذلك تطبق نفس منطق الخصم على السندات. <br />After that, you apply the same discounting logic to bonds.</li>
+          <li><strong>Chapter 5:</strong> ثم تنتقل إلى الأسهم حيث تصبح التوزيعات والنمو أساس التقييم. <br />Then you move to stocks, where dividends and growth become the basis of value.</li>
+        </ul>
+        <div class="memory">
+          <strong>الصورة الذهنية | Mental image:</strong> المنهج كله يسأل سؤالًا واحدًا بصيغ مختلفة:
+          <br />"ما قيمة هذا المال إذا غيّرت الزمن؟"
+          <br />The entire course is asking one question in different forms:
+          <br />"What is this money worth once time changes?"
+        </div>
+      </article>
+
+      <aside class="card span-4">
+        <h2>كيف أثبت الفكرة؟
+          <br />How Do I Make the Idea Stick?
+        </h2>
+        <ul class="list">
+          <li>لا تحفظ الدالة أولًا، احفظ معنى السؤال. <br />Do not memorize the function first; memorize the meaning of the question.</li>
+          <li>السؤال المالي الجيد يُفكك إلى: مبلغ، زمن، ومعدل. <br />A sound finance question can be reduced to three elements: amount, time, and rate.</li>
+          <li>التحليل يبدأ دائمًا بتحديد نقطة الزمن المطلوبة: حاضر أم مستقبل. <br />Analysis should always begin by identifying the required time point: present or future.</li>
+          <li>عند تعدد التدفقات، يبقى الخط الزمني أداة التنظيم الأساسية. <br />When multiple cash flows exist, the timeline remains the primary organizing tool.</li>
+        </ul>
+      </aside>
+
+      <article class="card span-12">
+        <h2>الفصل 2: Future Value of an Investment</h2>
+        <p>
+          يمثل هذا الفصل الأساس النظري الذي يقوم عليه جزء كبير من التمويل. ومن دون فهمه جيدًا، تصبح الموضوعات اللاحقة أقل وضوحًا.
+          <br />This chapter provides the theoretical foundation for a large part of finance. Without understanding it well, later topics become much less clear.
+        </p>
+        <div class="formula-box">Money Today → Growth Over Time → Future Value</div>
+
+        <div class="section-block">
+          <h3>ما الفكرة فعلًا؟
+            <br />What Is the Real Idea?
+          </h3>
+          <p>
+            عندما تملك مبلغًا اليوم، فهذا المبلغ ليس ساكنًا. تستطيع أن تستثمره، وبالتالي لديه قدرة على توليد عائد.
+            لذلك 1,000 دولار اليوم لا تساوي 1,000 دولار بعد ثلاث سنوات.
+            <br />When you have money today, that money is not static. You can invest it, so it has the ability to earn a return.
+            That is why $1,000 today is not equal to $1,000 three years from now.
+          </p>
+          <div class="callout good">
+            <strong>الخلاصة الذهنية | Mental takeaway:</strong> المستقبل يعني نمو. الحاضر يعني أصل الاستثمار.
+            <br />Future means growth. Present means the investment base.
+          </div>
+        </div>
+
+        <div class="section-block two-col">
+          <div>
+            <h3>كيف تكتشف نوع السؤال؟
+              <br />How Do You Recognize This Question Type?
+            </h3>
+            <ul class="list">
+              <li>إذا قدّم السؤال مبلغًا في الزمن الحالي وطلب قيمته في تاريخ لاحق. <br />If the question presents an amount at the present time and asks for its value at a later date.</li>
+              <li>إذا قال: invest now, worth in 5 years, account grows, future amount. <br />These are classic Future Value signals.</li>
+              <li>إذا كانت الحركة الزمنية من الحاضر إلى المستقبل، فالسؤال غالبًا من نوع FV. <br />If the time movement is from the present into the future, the question is usually an FV problem.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>أين يخطئ الطلاب؟
+              <br />Where Do Students Usually Fail?
+            </h3>
+            <ul class="list">
+              <li>يحسبون النمو كأنه بسيط وليس تراكميًا. <br />They treat growth as simple, not compounding.</li>
+              <li>ينسون أن عدد السنوات يضرب الأثر بقوة. <br />They forget that years magnify the effect strongly.</li>
+              <li>يدخلون المعدل كـ 8 بدل 0.08 في Excel. <br />They enter the rate as 8 instead of 0.08 in Excel.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="example">
+          <p><strong>مثال ترسيخي | Sticky Example:</strong> تخيل أن عندك 1,000 دولار اليوم. إذا وضعتها في درج، تبقى 1,000. إذا استثمرتها، يبدأ الزمن يعمل لصالحك.
+            <br />Imagine you have $1,000 today. If you leave it in a drawer, it stays $1,000. If you invest it, time starts working in your favor.
+          </p>
+          <p>إذن الفرق بين present و future ليس الرقم فقط، بل وجود الزمن + وجود عائد.
+            <br />So the difference between present and future is not just the number. It is time plus return.
+          </p>
+        </div>
+
+        <div class="memory">
+          <strong>احفظها بهذه الجملة | Memorize this sentence:</strong>
+          <br />"If money starts today and grows forward, I am looking for Future Value."
+        </div>
+      </article>
+
+      <article class="card span-12">
+        <h2>الفصل 3: Present and Future Value of Multiple Cash Flows</h2>
+        <p>
+          يُنظر إلى هذا الفصل عادة بوصفه نقطة انتقال من المسائل البسيطة إلى المسائل المركبة، لكن جوهر الفكرة لا يتغير؛ إنما يزداد عدد التدفقات وتتنوع تواريخها.
+          <br />This chapter is often seen as the transition from simple to more complex problems, yet the core idea does not change; only the number of cash flows and their dates increase.
+        </p>
+
+        <div class="timeline">
+          <div><strong>t = 1:</strong> مبلغ أول <br />First cash flow</div>
+          <div><strong>t = 2:</strong> مبلغ ثانٍ <br />Second cash flow</div>
+          <div><strong>t = 3:</strong> مبلغ ثالث <br />Third cash flow</div>
+        </div>
+
+        <div class="section-block">
+          <h3>لماذا هذا الفصل مهم جدًا؟
+            <br />Why Is This Chapter So Important?
+          </h3>
+          <p>
+            لأنه ينقل الدراسة من حفظ صيغ منفصلة إلى فهم توقيت المال وتحليل التدفقات. وعند ترسيخ هذا المنطق، تصبح موضوعات السندات والأسهم أكثر انتظامًا ووضوحًا.
+            <br />It shifts learning from memorizing isolated formulas to understanding the timing of money and the structure of cash flows. Once this logic is mastered, bonds and stocks become more systematic and easier to interpret.
+          </p>
+        </div>
+
+        <div class="section-block two-col">
+          <div>
+            <h3>المنطق الصحيح
+              <br />The Correct Logic
+            </h3>
+            <p>
+              لا يحق لك جمع 500 في السنة الأولى مع 1200 في السنة الثالثة مباشرة، لأنهما لا يعيشان في نفس الزمن.
+              يجب أن تنقل أحدهما أو كليهما إلى نقطة زمنية مشتركة.
+              <br />You are not allowed to add 500 in year 1 to 1200 in year 3 directly, because they do not live at the same point in time.
+              You must move them to a common date.
+            </p>
+            <div class="callout good">
+              <strong>قاعدة الفصل | Chapter rule:</strong> Before adding cash flows, put them on the same timeline point.
+            </div>
+          </div>
+          <div>
+            <h3>كيف أتعامل مع السؤال؟
+              <br />How Should I Attack the Question?
+            </h3>
+            <ul class="list">
+              <li>اكتب السنوات بوضوح. <br />Write the years clearly.</li>
+              <li>ضع كل Cash Flow تحت سنته. <br />Place each cash flow under its year.</li>
+              <li>اسأل: هل أريد PV أم FV؟ <br />Ask: do I want PV or FV?</li>
+              <li>عالج كل تدفق لوحده ثم اجمع. <br />Treat each cash flow alone, then sum.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="example">
+          <p><strong>مثال ترسيخي | Sticky Example:</strong> إذا كان عندك 500 بعد سنة و700 بعد سنتين و1200 بعد ثلاث سنوات، فهذا ليس "رقمًا واحدًا كبيرًا"، بل ثلاث قصص صغيرة لكل واحدة وقتها.
+            <br />If you have 500 after one year, 700 after two years, and 1200 after three years, this is not one big number. It is three small stories, each with its own timing.
+          </p>
+        </div>
+
+        <div class="memory">
+          <strong>الجملة التي تثبت الفصل | Memory sentence:</strong>
+          <br />"Different times mean different values. Fix time first, then add."
+        </div>
+      </article>
+
+      <article class="card span-12">
+        <h2>الفصل 4: Bond Features and Types</h2>
+        <p>
+          لا يقتصر هذا الفصل على التعريفات، بل يقدم تطبيقًا مباشرًا لفكرة القيمة الحالية. فالسند يُفهم أفضل بوصفه سلسلة منظمة من التدفقات النقدية.
+          <br />This chapter is not limited to definitions; it offers a direct application of present value. A bond is best understood as an organized series of cash flows.
+        </p>
+
+        <div class="section-block two-col">
+          <div>
+            <h3>ما هو السند أصلًا؟
+              <br />What Is a Bond, Really?
+            </h3>
+            <p>
+              عندما تشتري سندًا، فأنت فعليًا تقرض الجهة المصدرة مالًا. في المقابل، تعدك الجهة بدفعات كوبون دورية، ثم تعيد لك القيمة الاسمية عند الاستحقاق.
+              <br />When you buy a bond, you are effectively lending money to the issuer. In return, the issuer promises periodic coupon payments and the face value at maturity.
+            </p>
+            <ul class="list">
+              <li><strong>Face Value:</strong> المبلغ النهائي. <br />The amount returned at maturity.</li>
+              <li><strong>Coupon:</strong> الدفعة الدورية. <br />The periodic payment.</li>
+              <li><strong>Maturity:</strong> نهاية عمر السند. <br />The end of the bond's life.</li>
+              <li><strong>YTM:</strong> العائد الذي يطلبه السوق. <br />The return required by the market.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>لماذا يتحرك سعر السند؟
+              <br />Why Does a Bond Price Move?
+            </h3>
+            <p>
+              لأن السوق دائمًا يقارن ما يقدمه السند بالعائد المطلوب الحالي. إذا كان السند كريمًا مقارنة بالسوق، يرتفع سعره. وإذا كان أقل جاذبية، ينخفض سعره.
+              <br />Because the market constantly compares what the bond pays with the return currently required. If the bond is generous relative to the market, its price rises. If it is less attractive, its price falls.
+            </p>
+            <div class="callout good">
+              <strong>العلاقة الذهبية | Golden relationship:</strong> YTM up, bond price down. YTM down, bond price up.
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3>كيف أميز بين Premium و Discount؟
+            <br />How Do I Distinguish Premium and Discount?
+          </h3>
+          <ul class="list">
+            <li>إذا كان Coupon Rate أكبر من YTM، فعادة السند فوق Face Value. <br />If the coupon rate is greater than YTM, the bond is usually above face value.</li>
+            <li>إذا كان Coupon Rate أقل من YTM، فعادة السند تحت Face Value. <br />If the coupon rate is lower than YTM, the bond is usually below face value.</li>
+            <li>إذا تساويا، يكون السعر قريبًا من Face Value. <br />If they are equal, the price is close to face value.</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <p><strong>مثال ترسيخي | Sticky Example:</strong> تخيل عندك سند يدفع 8% بينما السوق الآن يريد 10%. المستثمر سيقول: هذا السند يدفع أقل مما أريد، إذن لا أشتريه إلا بسعر أقل.
+            <br />Imagine a bond paying 8% while the market now wants 10%. An investor says: this bond pays less than I want, so I will only buy it at a lower price.
+          </p>
+        </div>
+
+        <div class="memory">
+          <strong>الجملة الحافظة | Memory sentence:</strong>
+          <br />"A bond is just discounted coupons plus discounted face value."
+        </div>
+      </article>
+
+      <article class="card span-12">
+        <h2>الفصل 5: Stock Valuation</h2>
+        <p>
+          ينتقل هذا الفصل من الأصول ذات التدفقات الأكثر وضوحًا، مثل السندات، إلى أصول تعتمد بدرجة أكبر على التوقعات، مثل الأسهم.
+          <br />This chapter moves from assets with clearer cash-flow structures, such as bonds, to assets that depend more heavily on expectations, such as stocks.
+        </p>
+
+        <div class="section-block two-col">
+          <div>
+            <h3>الفكرة الأساسية
+              <br />Core Idea
+            </h3>
+            <p>
+              قيمة السهم تأتي من النقد الذي سيصل للمستثمر في المستقبل. في النماذج المبسطة يكون هذا النقد هو التوزيعات.
+              <br />Stock value comes from the cash that will reach the investor in the future. In simple models, this cash is represented by dividends.
+            </p>
+            <p>
+              إذن السهم ليس "اسم شركة" فقط، بل توقع لسلسلة توزيعات ونمو ومخاطر.
+              <br />So a stock is not just the name of a company. It is an expectation about dividends, growth, and risk.
+            </p>
+          </div>
+          <div>
+            <h3>لماذا النمو مهم؟
+              <br />Why Does Growth Matter?
+            </h3>
+            <p>
+              لأن التوزيعات إذا كانت تنمو بمرور الوقت، فالقيمة الحالية لهذه السلسلة قد ترتفع بشكل كبير.
+              <br />Because if dividends grow over time, the present value of that stream can become much larger.
+            </p>
+            <div class="callout warn">
+              <strong>حساسية عالية | High sensitivity:</strong> كلما اقترب growth من required return، صار التقييم أكثر حساسية.
+              <br />The closer growth gets to the required return, the more sensitive the valuation becomes.
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3>كيف أتعرف على سؤال الأسهم؟
+            <br />How Do I Recognize a Stock Valuation Question?
+          </h3>
+          <ul class="list">
+            <li>وجود كلمة dividend أو next dividend أو growth rate. <br />Look for words like dividend, next dividend, or growth rate.</li>
+            <li>وجود required return أو cost of equity. <br />Look for required return or cost of equity.</li>
+            <li>إذا كان السؤال عن intrinsic value of stock، فأنت غالبًا هنا. <br />If the question asks for intrinsic value of a stock, you are probably here.</li>
+          </ul>
+        </div>
+
+        <div class="example">
+          <p><strong>مثال ترسيخي | Sticky Example:</strong> شركة ستدفع توزيعات جيدة، ويتوقع السوق أن هذه التوزيعات تكبر عامًا بعد عام. طبيعي أن يكون السهم أكثر قيمة من شركة توزيعاتها ضعيفة أو لا تنمو.
+            <br />A company is expected to pay solid dividends, and the market expects those dividends to grow year after year. Naturally, the stock may be worth more than one with weak or stagnant dividends.
+          </p>
+        </div>
+
+        <div class="memory">
+          <strong>الجملة الحافظة | Memory sentence:</strong>
+          <br />"A stock is worth the present value of what shareholders expect to receive."
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>تصنيف الأسئلة بسرعة
+          <br />Quick Question Classification
+        </h2>
+        <ul class="list">
+          <li><strong>Today to later:</strong> غالبًا FV. <br />Usually FV.</li>
+          <li><strong>Later to today:</strong> غالبًا PV. <br />Usually PV.</li>
+          <li><strong>Many dated amounts:</strong> Multiple Cash Flows. <br />Handle each amount by time.</li>
+          <li><strong>Coupons + face value:</strong> Bond question. <br />Discount the payments.</li>
+          <li><strong>Dividends + growth:</strong> Stock valuation. <br />Think dividends and required return.</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <h2>أخطاء متكررة يجب الانتباه لها
+          <br />Common Errors to Watch For
+        </h2>
+        <ul class="list">
+          <li>البدء بالدالة قبل فهم السؤال. <br />Starting with the function before understanding the question.</li>
+          <li>إهمال توقيت التدفقات النقدية. <br />Ignoring the timing of cash flows.</li>
+          <li>الخلط بين Coupon Rate و YTM. <br />Mixing up coupon rate and YTM.</li>
+          <li>الخلط بين Required Return و Growth. <br />Mixing up required return and growth.</li>
+          <li>التركيز على زر Excel أكثر من معنى الحل. <br />Focusing on the Excel button more than the meaning of the solution.</li>
+        </ul>
+      </article>
+
+      <article class="card span-12">
+        <h2>خلاصة مركزة للمراجعة النهائية
+          <br />Condensed Final Review
+        </h2>
+        <ul class="list">
+          <li>المال يتغير مع الزمن، لذلك التوقيت ليس تفصيلًا بل جوهر السؤال. <br />Money changes with time, so timing is not a detail; it is the core of the question.</li>
+          <li>أي أصل مالي يمكن النظر إليه كسلسلة Cash Flows. <br />Any financial asset can be viewed as a stream of cash flows.</li>
+          <li>السندات = تدفقات شبه معروفة، الأسهم = تدفقات أكثر اعتمادًا على التوقعات. <br />Bonds have more structured cash flows, stocks depend more on expectations.</li>
+          <li>إذا تهت: ارسم Timeline، ثم حدد PV أو FV، ثم استخدم Excel. <br />If you get lost: draw a timeline, decide PV or FV, then use Excel.</li>
+          <li>الفهم أولًا، الدالة ثانيًا. <br />Understanding first, function second.</li>
+        </ul>
+      </article>
+
+      <article class="card span-12">
+        <h2>Suggested 15-Day Review Plan
+          <br />خطة مراجعة مقترحة لمدة 15 يومًا
+        </h2>
+        <ul class="list">
+          <li><strong>اليوم 1-3 | Days 1-3:</strong> مراجعة الفصل الثاني مع تطبيقات على مسائل FV الأساسية. <br />Review Chapter 2 and practice core FV problems.</li>
+          <li><strong>اليوم 4-6 | Days 4-6:</strong> التركيز على الفصل الثالث مع تدريب منتظم على الخط الزمني. <br />Focus on Chapter 3 with regular timeline-based practice.</li>
+          <li><strong>اليوم 7-10 | Days 7-10:</strong> دراسة الفصل الرابع مع ربط YTM بسعر السند. <br />Study Chapter 4 while linking YTM to bond price behavior.</li>
+          <li><strong>اليوم 11-13 | Days 11-13:</strong> مراجعة الفصل الخامس مع التأكيد على التوزيعات والنمو. <br />Review Chapter 5 with emphasis on dividends and growth.</li>
+          <li><strong>اليوم 14-15 | Days 14-15:</strong> مراجعة شاملة تجمع الفهم النظري والتطبيق العملي. <br />Carry out a full review that combines conceptual understanding with practical application.</li>
+        </ul>
+      </article>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1652,14 +1652,16 @@
 
   <script>
   const ch2 = [
-    { q:"FV: Invest $1,000 at 8% for 5 years → FV = ?",        given:"PV=1000, r=8%, n=5",  ans:1469.33, tol:1,    hint:"=FV(8%,5,0,-1000)" },
-    { q:"FV: Invest $2,500 at 6% for 10 years → FV = ?",       given:"PV=2500, r=6%, n=10", ans:4477.12, tol:1,    hint:"=FV(6%,10,0,-2500)" },
-    { q:"PV: Want $5,000 in 4 years, r=10% → PV = ?",          given:"FV=5000, r=10%, n=4", ans:3415.07, tol:1,    hint:"=PV(10%,4,0,5000)" },
-    { q:"PV: Want $8,000 in 6 years, r=7% → PV = ?",           given:"FV=8000, r=7%, n=6",  ans:5303.55, tol:1,    hint:"=PV(7%,6,0,8000)" },
-    { q:"RATE: PV=$1,000, FV=$1,331, n=3 → Rate (%) = ?",      given:"PV=1000, FV=1331, n=3",ans:10.00,  tol:0.1,  hint:"=RATE(3,0,-1000,1331)*100" },
-    { q:"RATE: PV=$500, FV=$800, n=5 → Rate (%) = ?",          given:"PV=500, FV=800, n=5",  ans:9.86,   tol:0.1,  hint:"=RATE(5,0,-500,800)*100" },
-    { q:"NPER: PV=$1,000, FV=$2,000, r=10% → n = ?",           given:"PV=1000, FV=2000, r=10%",ans:7.27, tol:0.1,  hint:"=NPER(10%,0,-1000,2000)" },
-    { q:"NPER: PV=$3,000, FV=$6,000, r=8% → n = ?",            given:"PV=3000, FV=6000, r=8%", ans:9.01, tol:0.1,  hint:"=NPER(8%,0,-3000,6000)" },
+    { q:"Simple vs Compound: Al Rajhi Bank offers 5% compounded annually, Riyad Bank offers 5% simple interest. You deposit SAR 20,000 in each bank. How much MORE does Al Rajhi earn after 6 years? (Round to 2 decimal places)", given:"PV=20000, r=5%, n=6", ans:1288.45, tol:0.1, hint:"=FV(5%,6,0,-20000)-20000*(1+5%*6)" },
+    { q:"Future Value: You will inherit SAR 50,000 in 3 years. You plan to invest it for 5 more years at 8% per year. What is the final value? (Round to 2 decimal places)", given:"PV=50000, r=8%, n=5", ans:73466.40, tol:0.5, hint:"=FV(8%,5,0,-50000) — invest for 5 years only" },
+    { q:"Future Value: You deposit SAR 15,000 in a savings account at 6% compounded annually. What is the value after 10 years? (Round to 2 decimal places)", given:"PV=15000, r=6%, n=10", ans:26872.94, tol:0.5, hint:"=FV(6%,10,0,-15000)" },
+    { q:"Present Value: You want to have SAR 100,000 in 8 years. The interest rate is 7%. How much should you invest today? (Round to 2 decimal places)", given:"FV=100000, r=7%, n=8", ans:58201.31, tol:0.5, hint:"=PV(7%,8,0,100000) — answer is negative, enter positive" },
+    { q:"Present Value: A company will receive SAR 250,000 in 5 years. The discount rate is 9%. What is the present value? (Round to 2 decimal places)", given:"FV=250000, r=9%, n=5", ans:162484.59, tol:0.5, hint:"=PV(9%,5,0,250000)" },
+    { q:"Rate of Return: A retail store was purchased for SAR 500,000 in 2018 and sold for SAR 650,000 in 2023. What was the annual rate of return? Enter as percentage. (Round to 2 decimal places)", given:"PV=500000, FV=650000, n=5", ans:5.38, tol:0.05, hint:"=RATE(5,0,-500000,650000)*100" },
+    { q:"Negative Return: An investor bought a property for EUR 2,000,000 in 2015 and sold it for EUR 1,700,000 in 2021. What was the annual rate of return? (Negative answer, round to 2 decimal places)", given:"PV=2000000, FV=1700000, n=6", ans:-2.61, tol:0.05, hint:"=RATE(6,0,-2000000,1700000)*100" },
+    { q:"Time to Reach Goal: You invest SAR 30,000 at 6% interest rate until it becomes SAR 200,000. How many years will this take? (Round to 2 decimal places)", given:"PV=30000, r=6%, FV=200000", ans:32.56, tol:0.05, hint:"=NPER(6%,0,-30000,200000)" },
+    { q:"Time to Reach Goal: Soon after your next birthday, you invest SAR 40,000 at 10% until it becomes SAR 100,000. How many years from your next birthday? (Round to 2 decimal places)", given:"PV=40000, r=10%, FV=100000", ans:9.60, tol:0.05, hint:"=NPER(10%,0,-40000,100000)" },
+    { q:"Quadruple Money: At 3% interest, how long does it take to quadruple your money? (Round to 2 decimal places)", given:"r=3%, FV=4×PV", ans:46.90, tol:0.05, hint:"=NPER(3%,0,-1,4)" },
   ];
   const ch3 = [
     { q:"PMT: Loan=$10,000, r=6%/yr, 3yr monthly → monthly pmt?", given:"PV=10000, r=0.5%/mo, n=36", ans:304.22, tol:1,   hint:"=PMT(0.5%,36,-10000)" },

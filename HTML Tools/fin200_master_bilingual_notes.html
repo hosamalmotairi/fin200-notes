@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Midterm Notes</title>
+  <style>
+    :root {
+      --bg: #f4f6ff;
+      --paper: #ffffff;
+      --ink: #23263a;
+      --muted: #6e7488;
+      --accent: #6c63ff;
+      --accent-soft: #efedff;
+      --line: #e6e8f3;
+      --good: #1f8f5f;
+      --shadow: 0 18px 40px rgba(70, 80, 140, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 24%),
+        linear-gradient(180deg, #f8f9ff 0%, #f1f4ff 100%);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5f58da, #7c74ff);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cover-box {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+
+    .cover-label {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.88;
+      margin-bottom: 4px;
+    }
+
+    .cover-value {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 950px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .toc,
+    .notice,
+    .chapter {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    h2, h3, h4 {
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+      margin-top: 16px;
+    }
+
+    h4 {
+      font-size: 1rem;
+      margin-top: 12px;
+      color: #454b63;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed #d8dcf4;
+    }
+
+    .page-ref {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .point-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .point-list li {
+      margin: 8px 0;
+    }
+
+    .bilingual {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: #fafaff;
+      margin-top: 10px;
+    }
+
+    .en-line,
+    .ar-line {
+      margin: 0;
+    }
+
+    .en-line {
+      font-weight: 600;
+    }
+
+    .ar-line {
+      direction: rtl;
+      text-align: right;
+      color: #4c5268;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #dde1f6;
+    }
+
+    .bilingual strong {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--good);
+    }
+
+    .formula {
+      font-family: Menlo, Consolas, monospace;
+      background: #f7f8ff;
+      border: 1px dashed #ced3f5;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 8px;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    .print-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm 18mm 14mm;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        max-width: none;
+        padding: 0;
+      }
+
+      .hero,
+      .toc,
+      .notice,
+      .chapter {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+
+      .hero {
+        min-height: 220mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        page-break-after: always;
+      }
+
+      .chapter {
+        page-break-inside: avoid;
+      }
+
+      h2, h3 {
+        break-after: avoid;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="tag">FIN 200 • Midterm Notes</div>
+      <h1>FIN 200 Midterm Notes</h1>
+      <p>
+        This note set is organized for midterm preparation and covers the key theoretical concepts, practical applications, major examples, and review points needed for a complete understanding of the material.
+      </p>
+      <div class="cover-meta">
+        <div class="cover-box">
+          <span class="cover-label">Course</span>
+          <span class="cover-value">FIN 200</span>
+        </div>
+        <div class="cover-box">
+          <span class="cover-label">Document Type</span>
+          <span class="cover-value">Midterm Study Notes</span>
+        </div>
+        <div class="cover-box">
+          <span class="cover-label">Coverage</span>
+          <span class="cover-value">Chapters 2, 3, 4, and 5</span>
+        </div>
+      </div>
+      <p class="print-note">
+        Prepared as a clean academic review document suitable for screen reading and PDF printing.
+      </p>
+    </section>
+
+    <section class="notice">
+      <h2>Introduction</h2>
+      <div class="bilingual">
+        <strong>Overview</strong>
+        <p class="en-line">These notes present the core midterm topics of FIN 200 in a clear and structured format designed to support understanding, revision, and exam preparation.</p>
+        <p class="ar-line">تعرض هذه المذكرة موضوعات الميدترم الأساسية في مقرر FIN 200 بصورة واضحة ومنظمة، بما يدعم الفهم والمراجعة والاستعداد للاختبار.</p>
+      </div>
+      <h3>Midterm Coverage</h3>
+      <ul class="point-list">
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_2.pdf">Chapter 2</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_3.pdf">Chapter 3</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_4.pdf">Chapter 4</a></li>
+        <li><a href="/Users/hosam/Desktop/fin 200 exam/Chapter_5.pdf">Chapter 5</a></li>
+      </ul>
+    </section>
+
+    <section class="toc">
+      <h2>Contents</h2>
+      <ul class="point-list">
+        <li>Chapter 2: Future Value, Present Value, Return on Investment, Investment Duration</li>
+        <li>Chapter 3: Multiple Cash Flows, Annuities, PMT, RATE, Amortization, APR and EAR</li>
+        <li>Chapter 4: Bond Features, Bond Values and Yields, Ratings, Inflation, Term Structure</li>
+        <li>Chapter 5: Dividend Valuation, Multiples, Voting Systems, Stock Markets</li>
+      </ul>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 2: Time Value of Money Foundations</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-13</div>
+        <h3>Determining the Future Value of an Investment</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Future Value (FV) is the amount an investment grows to over time. It depends on three inputs: present value (PV), interest rate (r), and time (t).</p>
+          <p class="ar-line">القيمة المستقبلية هي المبلغ الذي يصل إليه الاستثمار مع مرور الزمن، وتعتمد على ثلاثة عناصر: القيمة الحالية، ومعدل الفائدة، والزمن.</p>
+        </div>
+        <h4>Simple vs. Compounded Interest</h4>
+        <ul class="point-list">
+          <li><strong>Simple interest</strong> is calculated only on the original principal.<br />تُحسب الفائدة البسيطة على أصل المبلغ فقط.</li>
+          <li><strong>Compounded interest</strong> is calculated on the principal plus accumulated interest.<br />تُحسب الفائدة المركبة على أصل المبلغ بالإضافة إلى الفوائد المتراكمة.</li>
+          <li>The chapter states that the course focuses on <strong>compounded interest</strong>.<br />الفصل يوضح أن التركيز في المقرر يكون على الفائدة المركبة.</li>
+        </ul>
+        <div class="bilingual">
+          <strong>Single vs. Multi-Period</strong>
+          <p class="en-line">Single-period investment means only one compounding period. Multi-period investment extends compounding across several periods.</p>
+          <p class="ar-line">الاستثمار لفترة واحدة يعني أن الفائدة تُحسب لفترة واحدة فقط، أما الاستثمار متعدد الفترات فيعني تكرار التراكم عبر عدة فترات.</p>
+        </div>
+        <div class="formula">Excel: =FV(rate, nper, 0, -pv, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 14-23</div>
+        <h3>Determining the Present Value of Future Cash Flows</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Present Value (PV) is the current value of a future amount of money. It reflects the time value of money by discounting future cash flows to today.</p>
+          <p class="ar-line">القيمة الحالية هي القيمة اليوم لمبلغ سيتم استلامه في المستقبل، ويتم الوصول إليها من خلال خصم التدفقات النقدية المستقبلية إلى الزمن الحالي.</p>
+        </div>
+        <ul class="point-list">
+          <li>The chapter includes <strong>single-period PV</strong> and <strong>multi-period PV</strong>.<br />الفصل يتضمن القيمة الحالية لفترة واحدة والقيمة الحالية لعدة فترات.</li>
+          <li>It also introduces <strong>perpetuity</strong> as a stream of cash flows that continues forever.<br />كما يقدم مفهوم الدفعات الدائمة بوصفها تدفقات نقدية تستمر إلى ما لا نهاية.</li>
+          <li>Present value is important for investment comparison and financial decision-making.<br />القيمة الحالية مهمة لمقارنة الاستثمارات واتخاذ القرارات المالية.</li>
+        </ul>
+        <div class="formula">Excel: =PV(rate, nper, 0, fv, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 24-32</div>
+        <h3>Finding the Return on an Investment</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Return on Investment (ROI) measures the gain or loss generated by an investment relative to the amount initially invested.</p>
+          <p class="ar-line">العائد على الاستثمار يقيس مقدار الربح أو الخسارة الناتجة عن الاستثمار مقارنةً بالمبلغ المستثمر في البداية.</p>
+        </div>
+        <ul class="point-list">
+          <li>ROI is usually expressed as a percentage.<br />يُعبَّر عن العائد عادة على شكل نسبة مئوية.</li>
+          <li>The chapter shows how to compute annualized return.<br />الفصل يوضح طريقة حساب العائد السنوي.</li>
+        </ul>
+        <div class="formula">Excel: =RATE(nper, 0, -pv, fv)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-40</div>
+        <h3>Calculating Investment Duration</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">Investment duration asks how long it takes an investment to grow from its current value to a target future value.</p>
+          <p class="ar-line">مدة الاستثمار تعني كم من الوقت يحتاج الاستثمار حتى ينتقل من قيمته الحالية إلى القيمة المستقبلية المطلوبة.</p>
+        </div>
+        <div class="formula">Excel: =NPER(rate, 0, -pv, fv)</div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 3: Cash Flows, Annuities, and Loan Calculations</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-12</div>
+        <h3>Future and Present Value of Multiple Cash Flows</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">When there are multiple cash flows at different dates, each cash flow must be valued according to its own timing before all values are added together.</p>
+          <p class="ar-line">عندما توجد تدفقات نقدية متعددة في تواريخ مختلفة، يجب تقييم كل تدفق حسب زمنه أولًا ثم جمع القيم بعد ذلك.</p>
+        </div>
+        <ul class="point-list">
+          <li>The chapter covers both FV and PV of multiple cash flows.<br />الفصل يغطي القيمة المستقبلية والقيمة الحالية للتدفقات النقدية المتعددة.</li>
+          <li>It uses an example with annual cash flows over five years.<br />ويستخدم مثالًا يتضمن تدفقات سنوية على مدى خمس سنوات.</li>
+          <li>Excel is used by valuing each cash flow and then summing, or by using NPV for PV cases.<br />ويُستخدم Excel إما بحساب قيمة كل تدفق على حدة ثم الجمع، أو باستخدام NPV في مسائل القيمة الحالية.</li>
+        </ul>
+        <div class="formula">Excel PV idea: =NPV(rate, cashflow_range)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 13-18</div>
+        <h3>Present and Future Value of Annuities</h3>
+        <ul class="point-list">
+          <li>An annuity is a series of equal payments over a specified period.<br />الدفعات السنوية أو الدورية هي سلسلة من المدفوعات المتساوية خلال فترة محددة.</li>
+          <li><strong>Ordinary annuity</strong>: payments occur at the end of each period.<br />الدفعات العادية تكون في نهاية كل فترة.</li>
+          <li><strong>Annuity due</strong>: payments occur at the beginning of each period.<br />الدفعات المستحقة مقدمًا تكون في بداية كل فترة.</li>
+          <li>In Excel, type = 0 for ordinary annuity and type = 1 for annuity due.<br />في Excel تُستخدم القيمة 0 للدفعات العادية و1 للدفعات المستحقة مقدمًا.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-32</div>
+        <h3>Loan Payments and Interest Rates</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">PMT represents the periodic loan payment. RATE is used when the payment is known but the interest rate must be found.</p>
+          <p class="ar-line">الدالة PMT تمثل القسط الدوري للقرض، أما RATE فتُستخدم عندما يكون القسط معلومًا لكن معدل الفائدة غير معلوم.</p>
+        </div>
+        <div class="formula">Excel PMT: =PMT(rate, nper, -pv, 0, 0)</div>
+        <div class="formula">Excel RATE: =RATE(nper, pmt, pv, 0, 0)</div>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 33-46</div>
+        <h3>Loan Amortization</h3>
+        <ul class="point-list">
+          <li>An amortization schedule breaks each payment into interest and principal.<br />جدول الإطفاء يقسم كل دفعة إلى جزء فائدة وجزء أصل.</li>
+          <li>It also tracks the remaining balance over time.<br />كما يتابع الرصيد المتبقي مع مرور الوقت.</li>
+          <li>The chapter shows how to build an amortization schedule in Excel.<br />ويشرح الفصل طريقة بناء جدول الإطفاء في Excel.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 47-55</div>
+        <h3>APR and EAR</h3>
+        <ul class="point-list">
+          <li><strong>APR</strong> is the annual percentage rate and does not account for within-year compounding.<br />APR هو المعدل السنوي المعلن ولا يأخذ التراكم داخل السنة في الحسبان.</li>
+          <li><strong>EAR</strong> is the effective annual rate and does account for compounding.<br />EAR هو المعدل السنوي الفعلي ويأخذ التراكم داخل السنة في الحسبان.</li>
+          <li>EAR is the better comparison tool when compounding differs.<br />ويُعد EAR أداة المقارنة الأدق عندما تختلف مرات التراكم.</li>
+        </ul>
+        <div class="formula">Excel: =EFFECT(apr, compounding_periods)</div>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 4: Bonds</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-8</div>
+        <h3>Bond Features and Types</h3>
+        <ul class="point-list">
+          <li>A bond is essentially a loan made by the investor to the issuer.<br />السند في جوهره قرض يقدمه المستثمر إلى الجهة المصدرة.</li>
+          <li>Important features: face value, coupon payment, coupon rate, maturity date, issuer.<br />أهم خصائصه: القيمة الاسمية، دفعة الكوبون، معدل الكوبون، تاريخ الاستحقاق، والجهة المصدرة.</li>
+          <li>Types of bonds in the chapter: treasury, municipal, corporate, zero-coupon.<br />ومن أنواع السندات في الفصل: الحكومية، البلدية، الشركات، والسندات عديمة الكوبون.</li>
+          <li>The chapter also covers bonds with options, especially the call provision.<br />كما يغطي الفصل السندات ذات الخيارات وخصوصًا حق الاستدعاء.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 9-20</div>
+        <h3>Bond Values and Yields</h3>
+        <div class="bilingual">
+          <strong>Core Idea</strong>
+          <p class="en-line">The price of a bond is the present value of its future cash flows: coupon payments plus face value.</p>
+          <p class="ar-line">سعر السند يساوي القيمة الحالية للتدفقات النقدية المستقبلية: الكوبونات بالإضافة إلى القيمة الاسمية.</p>
+        </div>
+        <div class="formula">Excel Price Idea: =PV(required_return, years, coupon_payment, face_value, 0)</div>
+        <div class="formula">Excel Yield Idea: =RATE(years, coupon_payment, -price, face_value)</div>
+        <ul class="point-list">
+          <li>Coupon rate is the stated rate on the bond.<br />معدل الكوبون هو المعدل المكتوب على السند.</li>
+          <li>Yield is the actual return based on market price and cash flows.<br />أما العائد فهو العائد الفعلي بناءً على سعر السوق والتدفقات النقدية.</li>
+          <li>Premium bonds sell above par, discount bonds sell below par, and par bonds sell around face value.<br />السند الممتاز يباع فوق القيمة الاسمية، والسند المخصوم دونها، والسند عند التعادل قريب من القيمة الاسمية.</li>
+          <li>Bond prices and yields move inversely.<br />أسعار السندات والعوائد تتحركان في اتجاهين متعاكسين.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 21-30</div>
+        <h3>Bond Ratings</h3>
+        <ul class="point-list">
+          <li>Major agencies: Moody’s, S&amp;P, Fitch.<br />أهم وكالات التصنيف: موديز، ستاندرد آند بورز، وفيتش.</li>
+          <li>Investment grade is higher quality; non-investment grade is lower quality or junk.<br />الدرجة الاستثمارية أعلى جودة، أما الدرجة غير الاستثمارية فأقل جودة وتسمى أحيانًا عالية المخاطر.</li>
+          <li>Ratings reflect creditworthiness and default risk.<br />والتصنيفات تعكس الجدارة الائتمانية واحتمال التعثر.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 31-42</div>
+        <h3>Inflation and Interest Rates</h3>
+        <ul class="point-list">
+          <li>Inflation reduces purchasing power.<br />التضخم يقلل القوة الشرائية.</li>
+          <li>Central banks may raise rates to control inflation.<br />وقد ترفع البنوك المركزية أسعار الفائدة للسيطرة على التضخم.</li>
+          <li>The Fisher Effect links nominal rate, real rate, and inflation.<br />ويشرح أثر فيشر العلاقة بين المعدل الاسمي والمعدل الحقيقي والتضخم.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 43-53</div>
+        <h3>Term Structure and Bond Yields</h3>
+        <ul class="point-list">
+          <li>The term structure is shown by the yield curve.<br />الهيكل الزمني للفائدة يظهر من خلال منحنى العائد.</li>
+          <li>The chapter explains upward-sloping yield curves.<br />ويشرح الفصل منحنى العائد الصاعد.</li>
+          <li>Determinants of bond yields include interest rate risk, inflation expectations, credit risk, liquidity risk, and economic conditions.<br />ومن محددات عوائد السندات: مخاطر سعر الفائدة، وتوقعات التضخم، والمخاطر الائتمانية، والسيولة، والظروف الاقتصادية.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="chapter">
+      <h2>Chapter 5: Stocks</h2>
+
+      <div class="section">
+        <div class="page-ref">Pages 1-10</div>
+        <h3>Stock Valuation from Dividends and Growth</h3>
+        <ul class="point-list">
+          <li>Common stock valuation is more complex than bond valuation because stock cash flows are uncertain.<br />تقييم الأسهم العادية أكثر تعقيدًا من تقييم السندات لأن تدفقاتها النقدية غير مؤكدة.</li>
+          <li>Stocks have a perpetual life.<br />والأسهم لها عمر افتراضي دائم تقريبًا.</li>
+          <li>The required return plays a central role in valuation.<br />كما أن العائد المطلوب يلعب دورًا أساسيًا في التقييم.</li>
+          <li>Models covered:
+            <ul class="point-list">
+              <li>Zero Growth Stock<br />السهم ذو النمو الصفري</li>
+              <li>Constant Growth Stock<br />السهم ذو النمو الثابت</li>
+              <li>Nonconstant Growth<br />النمو غير الثابت</li>
+              <li>Two-stage Growth Model<br />نموذج النمو على مرحلتين</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 11-18</div>
+        <h3>Stock Valuation Using Multiples</h3>
+        <ul class="point-list">
+          <li>If dividends are not enough for valuation, the chapter introduces multiples.<br />إذا لم تكن التوزيعات كافية للتقييم، يقدم الفصل أسلوب المضاعفات.</li>
+          <li>Covered multiples:
+            <ul class="point-list">
+              <li>P/E Ratio<br />مضاعف السعر إلى الربحية</li>
+              <li>P/S Ratio<br />مضاعف السعر إلى المبيعات</li>
+              <li>EV/EBITDA Ratio<br />مضاعف قيمة المنشأة إلى EBITDA</li>
+            </ul>
+          </li>
+          <li>The chapter also explains Sustainable Growth Rate (SGR), retention ratio, and ROE.<br />كما يشرح الفصل معدل النمو المستدام ونسبة الاحتجاز والعائد على حقوق الملكية.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 19-25</div>
+        <h3>Corporate Directors and Voting</h3>
+        <ul class="point-list">
+          <li>Cumulative voting gives minority shareholders more power.<br />التصويت التراكمي يمنح المساهمين الأقلية قوة أكبر.</li>
+          <li>Straight voting favors majority shareholders.<br />أما التصويت المباشر فيميل لمصلحة الأغلبية.</li>
+          <li>Proxy voting allows voting without attending in person.<br />والتصويت بالوكالة يسمح بالتصويت دون الحضور الشخصي.</li>
+          <li>Staggered boards elect directors in groups over time.<br />أما المجالس المتدرجة فتنتخب الأعضاء على دفعات عبر الزمن.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="page-ref">Pages 26-34</div>
+        <h3>How Stock Markets Work</h3>
+        <ul class="point-list">
+          <li>The chapter introduces Tadawul and market participants.<br />الفصل يعرّف بتداول وبالمشاركين في السوق.</li>
+          <li>Order types: market order, limit order, stop order.<br />ومن أنواع الأوامر: أمر السوق، والأمر المحدد، وأمر الإيقاف.</li>
+          <li>Core metrics covered: market capitalization, dividend yield, EPS, and P/E ratio.<br />كما يغطي مؤشرات أساسية مثل القيمة السوقية، وعائد التوزيعات، وربحية السهم، ومضاعف الربحية.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

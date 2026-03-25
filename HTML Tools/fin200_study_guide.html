@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Excel Memo</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --paper: #ffffff;
+      --ink: #21242c;
+      --muted: #6d7385;
+      --line: #e5e8f1;
+      --purple: #6c63ff;
+      --purple-soft: #f1efff;
+      --yellow: #fff9cf;
+      --green: #eaf8ef;
+      --blue: #eef5ff;
+      --shadow: 0 16px 40px rgba(53, 65, 114, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 25%),
+        linear-gradient(180deg, #f7f8fe 0%, #f1f4fb 100%);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5e58d8, #7d75ff);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4.8vw, 3.3rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 860px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .note ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .chapters {
+      display: grid;
+      gap: 16px;
+    }
+
+    .chapter {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .chapter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .chapter-head h2 {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+    }
+
+    .chapter-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--purple-soft);
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .helper {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: #fafbff;
+    }
+
+    .helper h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .helper p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .helper ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink);
+    }
+
+    .sheet-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .sheet-title {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfbff;
+      font-weight: 800;
+    }
+
+    table.sheet {
+      width: 100%;
+      border-collapse: collapse;
+      direction: ltr;
+      font-size: 0.95rem;
+    }
+
+    .sheet th,
+    .sheet td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .sheet th {
+      background: #f5f6fc;
+      color: #596079;
+      font-weight: 800;
+    }
+
+    .cell-id {
+      width: 88px;
+      background: #fafafe;
+      color: var(--purple);
+      font-weight: 800;
+    }
+
+    .input-row { background: var(--yellow); }
+    .formula-row { background: var(--blue); }
+    .result-row { background: var(--green); }
+
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      border: 1px solid #d6dbeb;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      background: white;
+      color: var(--ink);
+    }
+
+    .mono {
+      font-family: Menlo, Consolas, monospace;
+      white-space: nowrap;
+    }
+
+    .sheet-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      border-top: 1px solid var(--line);
+      background: #fcfcff;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--purple);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      border-color: var(--purple);
+      color: white;
+    }
+
+    .result-text {
+      padding: 0 16px 16px;
+      font-size: 0.97rem;
+      color: var(--muted);
+    }
+
+    .result-text strong {
+      color: #1f7a4d;
+    }
+
+    @media (max-width: 920px) {
+      .chapter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body x-data="excelMemo()">
+  <div class="page">
+    <section class="hero">
+      <div class="tag">FIN 200 Excel Memo</div>
+      <h1>Chapter-by-Chapter Excel Practice Memo</h1>
+      <p>
+        This file is organized by chapter. Each chapter has its own narrow spreadsheet where the student types the inputs
+        and writes the Excel formula directly. The goal is to practice the exact spreadsheet habit needed in finance questions.
+      </p>
+    </section>
+
+    <section class="note">
+      <strong>How to use this memo</strong>
+      <ul>
+        <li>Each chapter is separated clearly.</li>
+        <li>Type the given numbers in the yellow input cells.</li>
+        <li>Write the Excel formula yourself in the blue formula row.</li>
+        <li>Use the green result row as the final output area.</li>
+        <li>This is meant to feel like a compact workbook, not a full Excel clone.</li>
+      </ul>
+    </section>
+
+    <section class="chapters">
+      <article class="chapter">
+        <div class="chapter-head">
+          <div>
+            <h2>Chapter 2: Future Value of an Investment</h2>
+            <p>Practice how to set up a simple future value problem in a compact spreadsheet layout.</p>
+          </div>
+          <span class="pill">FV Setup</span>
+        </div>
+        <div class="chapter-grid">
+          <aside class="helper">
+            <h3>Question Style</h3>
+            <p>You invest $2,400 today at 7% annually for 6 years. Find the future value.</p>
+            <h3>What to type</h3>
+            <ul>
+              <li>Inputs: present value, rate, years</li>
+              <li>Formula: Excel FV function</li>
+              <li>Result: final future value</li>
+            </ul>
+          </aside>
+          <div class="sheet-box">
+            <div class="sheet-title">Spreadsheet for Chapter 2</div>
+            <table class="sheet">
+              <thead>
+                <tr>
+                  <th>Cell</th>
+                  <th>Label</th>
+                  <th>Entry</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="input-row">
+                  <td class="cell-id">B2</td>
+                  <td>Present Value</td>
+                  <td><input type="number" step="0.01" x-model.number="ch2.pv" /></td>
+                  <td>Input the amount invested today</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">B3</td>
+                  <td>Rate</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch2.rate" /></td>
+                  <td>Enter as decimal, e.g. 0.07</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">B4</td>
+                  <td>Years</td>
+                  <td><input type="number" step="1" x-model.number="ch2.years" /></td>
+                  <td>Number of periods</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">B5</td>
+                  <td>Excel Formula</td>
+                  <td><input type="text" x-model="ch2.formula" placeholder="Write your Excel formula here" /></td>
+                  <td class="mono">Example: =FV(B3,B4,0,-B2,0)</td>
+                </tr>
+                <tr class="result-row">
+                  <td class="cell-id">B6</td>
+                  <td>Final Result</td>
+                  <td class="mono" x-text="money(ch2Result)"></td>
+                  <td>Future value output</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="sheet-actions">
+              <button class="btn btn-primary" type="button">Practice Writing Formula</button>
+            </div>
+            <div class="result-text">
+              Current result based on the inputs: <strong x-text="money(ch2Result)"></strong>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="chapter-head">
+          <div>
+            <h2>Chapter 3: Present Value of Multiple Cash Flows</h2>
+            <p>Set up a row-by-row discounted cash flow spreadsheet.</p>
+          </div>
+          <span class="pill">Multiple CF</span>
+        </div>
+        <div class="chapter-grid">
+          <aside class="helper">
+            <h3>Question Style</h3>
+            <p>Cash flows: 500 at year 1, 900 at year 2, and 1,400 at year 4. Discount rate = 10%.</p>
+            <h3>What to type</h3>
+            <ul>
+              <li>One cash flow per row</li>
+              <li>One Excel formula per discounted row</li>
+              <li>One final SUM row</li>
+            </ul>
+          </aside>
+          <div class="sheet-box">
+            <div class="sheet-title">Spreadsheet for Chapter 3</div>
+            <table class="sheet">
+              <thead>
+                <tr>
+                  <th>Cell</th>
+                  <th>Label</th>
+                  <th>Entry</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="input-row">
+                  <td class="cell-id">F2</td>
+                  <td>Discount Rate</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch3.rate" /></td>
+                  <td>Enter as decimal</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">F4</td>
+                  <td>Cash Flow at t=1</td>
+                  <td><input type="number" step="0.01" x-model.number="ch3.cf1" /></td>
+                  <td>Year 1 cash flow</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">G4</td>
+                  <td>Formula for PV at t=1</td>
+                  <td><input type="text" x-model="ch3.formula1" placeholder="Write formula" /></td>
+                  <td class="mono">Example: =F4/(1+$F$2)^1</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">F5</td>
+                  <td>Cash Flow at t=2</td>
+                  <td><input type="number" step="0.01" x-model.number="ch3.cf2" /></td>
+                  <td>Year 2 cash flow</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">G5</td>
+                  <td>Formula for PV at t=2</td>
+                  <td><input type="text" x-model="ch3.formula2" placeholder="Write formula" /></td>
+                  <td class="mono">Example: =F5/(1+$F$2)^2</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">F6</td>
+                  <td>Cash Flow at t=4</td>
+                  <td><input type="number" step="0.01" x-model.number="ch3.cf4" /></td>
+                  <td>Year 4 cash flow</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">G6</td>
+                  <td>Formula for PV at t=4</td>
+                  <td><input type="text" x-model="ch3.formula4" placeholder="Write formula" /></td>
+                  <td class="mono">Example: =F6/(1+$F$2)^4</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">G7</td>
+                  <td>SUM Formula</td>
+                  <td><input type="text" x-model="ch3.sumFormula" placeholder="Write SUM formula" /></td>
+                  <td class="mono">Example: =SUM(G4:G6)</td>
+                </tr>
+                <tr class="result-row">
+                  <td class="cell-id">G8</td>
+                  <td>Final Result</td>
+                  <td class="mono" x-text="money(ch3Result)"></td>
+                  <td>Total present value</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="result-text">
+              Current result based on the inputs: <strong x-text="money(ch3Result)"></strong>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="chapter-head">
+          <div>
+            <h2>Chapter 4: Bond Pricing</h2>
+            <p>Use a compact spreadsheet to set up the bond inputs and price calculation.</p>
+          </div>
+          <span class="pill">Bond Price</span>
+        </div>
+        <div class="chapter-grid">
+          <aside class="helper">
+            <h3>Question Style</h3>
+            <p>Face value = 1,000, coupon rate = 7%, YTM = 9%, years = 8.</p>
+            <h3>What to type</h3>
+            <ul>
+              <li>Inputs for face value, coupon rate, YTM, and years</li>
+              <li>Formula for coupon amount</li>
+              <li>Formula for bond price</li>
+            </ul>
+          </aside>
+          <div class="sheet-box">
+            <div class="sheet-title">Spreadsheet for Chapter 4</div>
+            <table class="sheet">
+              <thead>
+                <tr>
+                  <th>Cell</th>
+                  <th>Label</th>
+                  <th>Entry</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="input-row">
+                  <td class="cell-id">J2</td>
+                  <td>Face Value</td>
+                  <td><input type="number" step="0.01" x-model.number="ch4.face" /></td>
+                  <td>Bond par value</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">J3</td>
+                  <td>Coupon Rate</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch4.couponRate" /></td>
+                  <td>Enter as decimal</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">J4</td>
+                  <td>YTM</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch4.ytm" /></td>
+                  <td>Required return</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">J5</td>
+                  <td>Years</td>
+                  <td><input type="number" step="1" x-model.number="ch4.years" /></td>
+                  <td>Years to maturity</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">J6</td>
+                  <td>Coupon Formula</td>
+                  <td><input type="text" x-model="ch4.couponFormula" placeholder="Write coupon formula" /></td>
+                  <td class="mono">Example: =J2*J3</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">J7</td>
+                  <td>Bond Price Formula</td>
+                  <td><input type="text" x-model="ch4.priceFormula" placeholder="Write price formula" /></td>
+                  <td class="mono">Example: =-PV(J4,J5,J6,J2)</td>
+                </tr>
+                <tr class="result-row">
+                  <td class="cell-id">J8</td>
+                  <td>Final Result</td>
+                  <td class="mono" x-text="money(ch4Result)"></td>
+                  <td>Bond price</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="result-text">
+              Current result based on the inputs: <strong x-text="money(ch4Result)"></strong>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="chapter">
+        <div class="chapter-head">
+          <div>
+            <h2>Chapter 5: Stock Valuation</h2>
+            <p>Build a simple Gordon growth stock valuation sheet.</p>
+          </div>
+          <span class="pill">Stock Value</span>
+        </div>
+        <div class="chapter-grid">
+          <aside class="helper">
+            <h3>Question Style</h3>
+            <p>D1 = 3.20, required return = 11%, growth rate = 4%.</p>
+            <h3>What to type</h3>
+            <ul>
+              <li>Inputs for D1, required return, and growth</li>
+              <li>Excel formula for price</li>
+              <li>Final stock value</li>
+            </ul>
+          </aside>
+          <div class="sheet-box">
+            <div class="sheet-title">Spreadsheet for Chapter 5</div>
+            <table class="sheet">
+              <thead>
+                <tr>
+                  <th>Cell</th>
+                  <th>Label</th>
+                  <th>Entry</th>
+                  <th>Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="input-row">
+                  <td class="cell-id">L2</td>
+                  <td>D1</td>
+                  <td><input type="number" step="0.01" x-model.number="ch5.d1" /></td>
+                  <td>Next dividend</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">L3</td>
+                  <td>Required Return</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch5.r" /></td>
+                  <td>Enter as decimal</td>
+                </tr>
+                <tr class="input-row">
+                  <td class="cell-id">L4</td>
+                  <td>Growth Rate</td>
+                  <td><input type="number" step="0.0001" x-model.number="ch5.g" /></td>
+                  <td>Enter as decimal</td>
+                </tr>
+                <tr class="formula-row">
+                  <td class="cell-id">L5</td>
+                  <td>Price Formula</td>
+                  <td><input type="text" x-model="ch5.formula" placeholder="Write formula" /></td>
+                  <td class="mono">Example: =L2/(L3-L4)</td>
+                </tr>
+                <tr class="result-row">
+                  <td class="cell-id">L6</td>
+                  <td>Final Result</td>
+                  <td class="mono" x-text="ch5Display"></td>
+                  <td>Stock value</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="result-text">
+              Current result based on the inputs: <strong x-text="ch5Display"></strong>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    function excelMemo() {
+      return {
+        ch2: {
+          pv: 2400,
+          rate: 0.07,
+          years: 6,
+          formula: ''
+        },
+        ch3: {
+          rate: 0.10,
+          cf1: 500,
+          cf2: 900,
+          cf4: 1400,
+          formula1: '',
+          formula2: '',
+          formula4: '',
+          sumFormula: ''
+        },
+        ch4: {
+          face: 1000,
+          couponRate: 0.07,
+          ytm: 0.09,
+          years: 8,
+          couponFormula: '',
+          priceFormula: ''
+        },
+        ch5: {
+          d1: 3.2,
+          r: 0.11,
+          g: 0.04,
+          formula: ''
+        },
+        money(value) {
+          const n = Number(value);
+          if (!Number.isFinite(n)) return 'Invalid';
+          return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 2
+          }).format(n);
+        },
+        format(value) {
+          const n = Number(value);
+          if (!Number.isFinite(n)) return 'Invalid';
+          return new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: 2
+          }).format(n);
+        },
+        get ch2Result() {
+          return this.ch2.pv * Math.pow(1 + this.ch2.rate, this.ch2.years);
+        },
+        get ch3Result() {
+          return (
+            this.ch3.cf1 / Math.pow(1 + this.ch3.rate, 1) +
+            this.ch3.cf2 / Math.pow(1 + this.ch3.rate, 2) +
+            this.ch3.cf4 / Math.pow(1 + this.ch3.rate, 4)
+          );
+        },
+        get ch4Result() {
+          const coupon = this.ch4.face * this.ch4.couponRate;
+          let price = 0;
+          for (let t = 1; t <= this.ch4.years; t++) {
+            price += coupon / Math.pow(1 + this.ch4.ytm, t);
+          }
+          price += this.ch4.face / Math.pow(1 + this.ch4.ytm, this.ch4.years);
+          return price;
+        },
+        get ch5Result() {
+          if (this.ch5.r <= this.ch5.g) return NaN;
+          return this.ch5.d1 / (this.ch5.r - this.ch5.g);
+        },
+        get ch5Display() {
+          return this.ch5.r <= this.ch5.g ? 'Invalid when r <= g' : this.money(this.ch5Result);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

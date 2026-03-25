@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIN 200 Test Bank</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6ff;
+      --paper: #ffffff;
+      --ink: #222539;
+      --muted: #6f7488;
+      --accent: #6c63ff;
+      --accent-soft: #efedff;
+      --line: #e6e8f3;
+      --good: #1f8f5f;
+      --good-soft: #eefbf4;
+      --warn-soft: #fff8ef;
+      --shadow: 0 18px 40px rgba(70, 80, 140, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(108, 99, 255, 0.1), transparent 24%),
+        linear-gradient(180deg, #f8f9ff 0%, #f1f4ff 100%);
+      line-height: 1.7;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5f58da, #7c74ff);
+      color: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4.8vw, 3.2rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 900px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+    }
+
+    .toolbar,
+    .section,
+    .question {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      padding: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar button {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .toolbar button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .section {
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 1.45rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .questions {
+      display: grid;
+      gap: 14px;
+    }
+
+    .question {
+      padding: 16px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .qtitle {
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+    }
+
+    .question p {
+      margin: 0 0 10px;
+    }
+
+    .options {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .options li {
+      margin: 6px 0;
+    }
+
+    .answer {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--good-soft);
+      border: 1px solid #d8efdf;
+    }
+
+    .explain {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .calc-box {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--warn-soft);
+      border: 1px solid #f0dfc5;
+      color: #6b5c45;
+      font-family: Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body x-data="testBank()">
+  <div class="page">
+    <section class="hero">
+      <div class="tag">FIN 200 • Test Bank</div>
+      <h1>Mixed Theory and Practical Review Bank</h1>
+      <p>
+        This file is separate from the memo. It is designed as a revision bank with both conceptual and calculation-based questions
+        drawn from the chapter themes. Use it for active recall before the exam.
+      </p>
+    </section>
+
+    <section class="toolbar">
+      <button :class="{ active: filter === 'all' }" @click="filter = 'all'">All</button>
+      <button :class="{ active: filter === 'theory' }" @click="filter = 'theory'">Theory Only</button>
+      <button :class="{ active: filter === 'practical' }" @click="filter = 'practical'">Practical Only</button>
+      <button :class="{ active: filter === 'ch2' }" @click="filter = 'ch2'">Chapter 2</button>
+      <button :class="{ active: filter === 'ch3' }" @click="filter = 'ch3'">Chapter 3</button>
+      <button :class="{ active: filter === 'ch4' }" @click="filter = 'ch4'">Chapter 4</button>
+      <button :class="{ active: filter === 'ch5' }" @click="filter = 'ch5'">Chapter 5</button>
+    </section>
+
+    <template x-for="section in visibleSections" :key="section.id">
+      <section class="section">
+        <h2 x-text="section.title"></h2>
+        <p class="section-intro" x-text="section.intro"></p>
+
+        <div class="questions">
+          <template x-for="item in section.questions" :key="item.id">
+            <article class="question">
+              <div class="meta">
+                <span class="pill" x-text="item.chapter"></span>
+                <span class="pill" x-text="item.type"></span>
+                <span class="pill" x-text="item.level"></span>
+              </div>
+
+              <div class="qtitle" x-text="item.question"></div>
+
+              <template x-if="item.options">
+                <ol class="options" type="A">
+                  <template x-for="opt in item.options" :key="opt">
+                    <li x-text="opt"></li>
+                  </template>
+                </ol>
+              </template>
+
+              <button
+                type="button"
+                style="margin-top:12px;border:1px solid var(--line);background:white;color:var(--accent);border-radius:999px;padding:9px 12px;font:inherit;font-weight:700;cursor:pointer;"
+                @click="toggle(item.id)"
+                x-text="open[item.id] ? 'Hide Answer' : 'Show Answer'">
+              </button>
+
+              <div class="answer" x-show="open[item.id]">
+                <strong>Answer:</strong>
+                <span x-text="item.answer"></span>
+                <div class="explain" x-text="item.explanation"></div>
+                <template x-if="item.work">
+                  <div class="calc-box" x-text="item.work"></div>
+                </template>
+              </div>
+            </article>
+          </template>
+        </div>
+      </section>
+    </template>
+  </div>
+
+  <script>
+    function testBank() {
+      return {
+        filter: 'all',
+        open: {},
+        sections: [
+          {
+            id: 'ch2',
+            title: 'Chapter 2 Test Bank',
+            intro: 'Future value, present value, return on investment, and investment duration.',
+            questions: [
+              {
+                id: 'ch2-q1',
+                chapter: 'Chapter 2',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Which statement best describes compounded interest?',
+                options: [
+                  'Interest is earned only on the original principal',
+                  'Interest is earned on the principal and previously earned interest',
+                  'Interest is always paid at the beginning of the period',
+                  'Interest does not depend on time'
+                ],
+                answer: 'B',
+                explanation: 'Compounded interest grows on both principal and accumulated interest.'
+              },
+              {
+                id: 'ch2-q2',
+                chapter: 'Chapter 2',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'What are the three core variables that determine future value?',
+                answer: 'Present value, interest rate, and time.',
+                explanation: 'These are the key determinants emphasized in the chapter.'
+              },
+              {
+                id: 'ch2-q3',
+                chapter: 'Chapter 2',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'Find the future value of $1,000 invested for 1 year at 10%.',
+                answer: '$1,100',
+                explanation: 'Single-period future value equals present value multiplied by one plus the rate.',
+                work: 'FV = 1000 x (1 + 0.10)\nFV = 1100'
+              },
+              {
+                id: 'ch2-q4',
+                chapter: 'Chapter 2',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'Find the present value of $5,000 to be received in 3 years at a 7% discount rate.',
+                answer: '$4,081.54',
+                explanation: 'This is the multi-period present value example pattern in the chapter.',
+                work: 'PV = 5000 / (1.07)^3\nPV = 4081.54'
+              },
+              {
+                id: 'ch2-q5',
+                chapter: 'Chapter 2',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'An investment grows from $500,000 to $750,000 in 4 years. What is the annual return?',
+                answer: '10.67%',
+                explanation: 'This matches the annualized return style shown in the chapter.',
+                work: 'RATE = (750000 / 500000)^(1/4) - 1\nRATE = 10.67%'
+              },
+              {
+                id: 'ch2-q6',
+                chapter: 'Chapter 2',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'How long will it take $10,000 to double to $20,000 at 8%?',
+                answer: 'About 9 years',
+                explanation: 'This is the investment duration idea from the chapter.',
+                work: 'NPER = ln(20000/10000) / ln(1.08)\nNPER ≈ 9 years'
+              }
+            ]
+          },
+          {
+            id: 'ch3',
+            title: 'Chapter 3 Test Bank',
+            intro: 'Multiple cash flows, annuities, PMT, RATE, amortization, APR, and EAR.',
+            questions: [
+              {
+                id: 'ch3-q1',
+                chapter: 'Chapter 3',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Why can multiple cash flows not be added directly before valuation?',
+                answer: 'Because they occur at different points in time.',
+                explanation: 'Cash flows must first be brought to the same time point.'
+              },
+              {
+                id: 'ch3-q2',
+                chapter: 'Chapter 3',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'What is the difference between an ordinary annuity and an annuity due?',
+                answer: 'Ordinary annuity payments occur at the end of each period, while annuity due payments occur at the beginning.',
+                explanation: 'The chapter explicitly distinguishes these two payment timings.'
+              },
+              {
+                id: 'ch3-q3',
+                chapter: 'Chapter 3',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'An investment pays 500 in year 1, 900 in year 2, and 1,400 in year 4. If the discount rate is 10%, what is the total present value?',
+                answer: '$2,241.08',
+                explanation: 'Each cash flow must be discounted separately, then summed.',
+                work: 'PV = 500/(1.10)^1 + 900/(1.10)^2 + 1400/(1.10)^4\nPV = 454.55 + 743.80 + 1042.74\nPV = 2241.08'
+              },
+              {
+                id: 'ch3-q4',
+                chapter: 'Chapter 3',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'Find the annual loan payment on a 1,000,000 SAR loan at 6% for 5 years.',
+                answer: 'About 237,396 SAR',
+                explanation: 'This is the PMT-style loan payment problem shown in the chapter.',
+                work: 'PMT = [1000000 x 0.06] / [1 - (1.06)^(-5)]\nPMT ≈ 237,396'
+              },
+              {
+                id: 'ch3-q5',
+                chapter: 'Chapter 3',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'A loan amount is 1,000,000 SAR, annual payment is 237,396 SAR, and term is 5 years. What is the interest rate?',
+                answer: '6%',
+                explanation: 'This matches the RATE-style question given in the chapter.'
+              },
+              {
+                id: 'ch3-q6',
+                chapter: 'Chapter 3',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Which rate reflects the true annual return after accounting for compounding: APR or EAR?',
+                answer: 'EAR',
+                explanation: 'EAR accounts for compounding, while APR does not.'
+              }
+            ]
+          },
+          {
+            id: 'ch4',
+            title: 'Chapter 4 Test Bank',
+            intro: 'Bond features, bond values and yields, ratings, inflation, and term structure.',
+            questions: [
+              {
+                id: 'ch4-q1',
+                chapter: 'Chapter 4',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'What are the key basic bond features covered in the chapter?',
+                answer: 'Face value, coupon payment, coupon rate, maturity date, and issuer.',
+                explanation: 'These are explicitly listed under Basic Bond Features.'
+              },
+              {
+                id: 'ch4-q2',
+                chapter: 'Chapter 4',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Name four types of bonds introduced in the chapter.',
+                answer: 'Treasury bonds, municipal bonds, corporate bonds, and zero-coupon bonds.',
+                explanation: 'These are the main types highlighted in the types of bonds section.'
+              },
+              {
+                id: 'ch4-q3',
+                chapter: 'Chapter 4',
+                type: 'Theory',
+                level: 'Medium',
+                question: 'Why is a call provision less desirable for bondholders?',
+                answer: 'Because the issuer can redeem the bond early, taking away the investor’s higher-yielding investment.',
+                explanation: 'This creates reinvestment risk for the bondholder.'
+              },
+              {
+                id: 'ch4-q4',
+                chapter: 'Chapter 4',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'A bond has face value 1,000, annual coupon rate 5%, maturity 10 years, and required return 6%. What is its price?',
+                answer: 'About 926.40',
+                explanation: 'This is the bond pricing style shown in the Maaden example.',
+                work: 'Coupon = 1000 x 0.05 = 50\nBond Price = PV of coupons + PV of face value\nPrice ≈ 926.40'
+              },
+              {
+                id: 'ch4-q5',
+                chapter: 'Chapter 4',
+                type: 'Theory',
+                level: 'Medium',
+                question: 'How do bond prices generally respond when market interest rates rise?',
+                answer: 'Bond prices generally fall.',
+                explanation: 'Bond price and market-required return move inversely.'
+              },
+              {
+                id: 'ch4-q6',
+                chapter: 'Chapter 4',
+                type: 'Theory',
+                level: 'Medium',
+                question: 'What is the Fisher Effect concerned with?',
+                answer: 'The relationship between nominal interest rate, real interest rate, and inflation.',
+                explanation: 'It explains how inflation affects observed interest rates.'
+              }
+            ]
+          },
+          {
+            id: 'ch5',
+            title: 'Chapter 5 Test Bank',
+            intro: 'Dividend-based stock valuation, multiples, voting systems, and stock market basics.',
+            questions: [
+              {
+                id: 'ch5-q1',
+                chapter: 'Chapter 5',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Why is valuing common stock more complex than valuing a bond?',
+                answer: 'Because stock cash flows are uncertain, stock life is essentially perpetual, and required return is harder to determine.',
+                explanation: 'These points are stated directly in the chapter’s common stock valuation section.'
+              },
+              {
+                id: 'ch5-q2',
+                chapter: 'Chapter 5',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'What is a zero-growth stock?',
+                answer: 'A stock expected to pay the same dividend forever.',
+                explanation: 'It behaves like a perpetuity in valuation.'
+              },
+              {
+                id: 'ch5-q3',
+                chapter: 'Chapter 5',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'Tasnee pays a 3 SAR annual dividend forever and the required return is 12%. What is the stock value under zero growth?',
+                answer: '25 SAR',
+                explanation: 'Zero-growth stock value equals dividend divided by required return.',
+                work: 'P0 = D / r\nP0 = 3 / 0.12 = 25'
+              },
+              {
+                id: 'ch5-q4',
+                chapter: 'Chapter 5',
+                type: 'Practical',
+                level: 'Medium',
+                question: 'Mobily pays a 4 SAR annual dividend, expected growth is 5%, and required return is 15%. What is the stock value using constant growth?',
+                answer: '42 SAR',
+                explanation: 'Use the Gordon growth formula with next dividend.',
+                work: 'D1 = 4 x 1.05 = 4.20\nP0 = D1 / (r - g)\nP0 = 4.20 / (0.15 - 0.05) = 42'
+              },
+              {
+                id: 'ch5-q5',
+                chapter: 'Chapter 5',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'Which voting system gives minority shareholders greater power by allowing them to combine votes for one candidate?',
+                answer: 'Cumulative voting',
+                explanation: 'This is the defining feature of cumulative voting.'
+              },
+              {
+                id: 'ch5-q6',
+                chapter: 'Chapter 5',
+                type: 'Theory',
+                level: 'Basic',
+                question: 'What does market capitalization represent?',
+                answer: 'The total market value of a company’s outstanding shares.',
+                explanation: 'It is calculated as share price multiplied by number of shares outstanding.'
+              }
+            ]
+          }
+        ],
+        toggle(id) {
+          this.open[id] = !this.open[id];
+        },
+        get visibleSections() {
+          if (this.filter === 'all') return this.sections;
+          if (this.filter === 'theory') {
+            return this.sections.map(section => ({
+              ...section,
+              questions: section.questions.filter(q => q.type === 'Theory')
+            })).filter(section => section.questions.length);
+          }
+          if (this.filter === 'practical') {
+            return this.sections.map(section => ({
+              ...section,
+              questions: section.questions.filter(q => q.type === 'Practical')
+            })).filter(section => section.questions.length);
+          }
+          return this.sections
+            .filter(section => section.id === this.filter)
+            .map(section => ({ ...section }));
+        }
+      };
+    }
+  </script>
+</body>
+</html>
